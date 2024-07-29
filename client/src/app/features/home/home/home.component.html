@@ -1,0 +1,134 @@
+<!-- Hero Image -->
+<!-- <img src="assets/images/Hero.svg" alt="Hero Image" class="heroImage" /> -->
+<div class="row heroWrapper">
+  <div class="column heroText">
+    <span class="darkText">Discover</span>
+    <span class="darkText">More Than</span>
+    <span class="primaryText">5000+ Jobs</span>
+    <img class="curlyLine" src="assets\images\curly-line.svg" />
+    <span class="labelText mt-25">Where Talent Meets Opportunity !</span>
+    <div class="searchBar row gap-1 mt-15">
+      <input type="text" placeholder="Job Title or Keyword" />
+      <div>
+        <select>
+          <option value="" disabled selected>Florence, Italy</option>
+          <option value="us">United States</option>
+          <option value="ca">Canada</option>
+          <option value="uk">United Kingdom</option>
+          <option value="au">Australia</option>
+        </select>
+      </div>
+      <button class="button search-button">
+        <p>Search</p>
+      </button>
+    </div>
+  </div>
+
+  <!-- <img
+    src="../../../../assets/images/hero-pattern.svg"
+    alt=""
+    class="heroImage"
+  /> -->
+  <img
+    src="../../../../assets/images/hero-person.svg"
+    alt=""
+    class="heroImage"
+  />
+  <img
+    src="../../../../assets/images/rectangle.svg"
+    alt=""
+    class="heroImage"
+    style=" left: 64rem;"
+  />
+</div>
+
+<img
+  src="assets\images\How_talentum_works.svg"
+  alt="Hero image"
+  class="image"
+/>
+
+<div class="column homeContent">
+  <!-- Categories Section -->
+  <section class="categories">
+    <div class="row space-between align-center sectionHeading">
+      <!-- Title -->
+      <div class="row gap-1 sectionTitle">
+        <span class="darkText">Explore by</span>
+        <span class="primaryText">Category</span>
+      </div>
+      <!-- show all -->
+      <div class="full-center showAllButton" (click)="showAll()">
+        <span>{{ buttonLabel }} all Categories</span>
+        <i class="pi {{ buttonIcon }}"></i>
+      </div>
+    </div>
+
+    <!-- Categories -->
+    <div class="gridView-4">
+      <app-category-card
+        *ngFor="
+          let category of categories
+            | slice : 0 : (showAllCategories ? categories.length : 8);
+          let index = index
+        "
+        [category]="category"
+        (onSelect)="filterJobsByCategory(category.id, index)"
+        [isSelected]="selectedCardIndex === index"
+      ></app-category-card>
+    </div>
+  </section>
+
+  <!-- Featured Jobs Section  -->
+  <section class="featuredJobs">
+    <div class="row space-between align-center sectionHeading">
+      <!-- Title -->
+      <div class="row gap-1 sectionTitle">
+        <span class="darkText">Featured</span>
+        <span class="primaryText">Jobs</span>
+      </div>
+      <!-- show all -->
+      <div class="full-center showAllButton" routerLink="/jobs">
+        <span>Show all Jobs</span>
+        <i class="pi pi-arrow-right"></i>
+      </div>
+    </div>
+
+    <!-- Featured Jobs -->
+    <div class="gridView-4">
+      <app-job-card
+        *ngFor="let job of filteredJobs; let index = index"
+        [isVertical]="true"
+        [job]="job"
+      ></app-job-card>
+    </div>
+
+    <!-- Featured Jobs -->
+  </section>
+
+  <!-- Latest Jobs Section -->
+  <section class="latestJobs">
+    <div class="row space-between align-center sectionHeading">
+      <!-- Title -->
+      <div class="row gap-1 sectionTitle">
+        <span class="darkText">Latest </span>
+        <span class="primaryText">jobs open</span>
+      </div>
+      <!-- show all -->
+      <div class="full-center showAllButton" routerLink="/jobs">
+        <span>Show all Jobs</span>
+        <i class="pi pi-arrow-right"></i>
+      </div>
+    </div>
+
+    <!-- Latest Jobs -->
+    <div class="gridView-2">
+      <app-job-card
+        *ngFor="let job of latestJobs | slice : 0 : 8; let index = index"
+        [isVertical]="false"
+        [job]="job"
+        backgroundColor="white"
+      ></app-job-card>
+    </div>
+  </section>
+</div>

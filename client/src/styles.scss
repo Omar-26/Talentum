@@ -1,0 +1,203 @@
+/* You can add global styles to this file, and also import other style files */
+@import "primeng/resources/themes/lara-light-blue/theme.css";
+@import "primeng/resources/primeng.css";
+@import "primeicons/primeicons.css";
+@import "./styles/variables.scss";
+@import "./styles/theme-overrides.scss";
+
+// <uniquifier>: Use a unique and descriptive class name
+// <weight>: Use a value from 300 to 900
+
+.red-hat-display {
+  font-family: "Red Hat Display", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 300;
+  font-style: normal;
+}
+
+html,
+body,
+p,
+h1,
+h2,
+h3,
+h4 {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html,
+body,
+app-root {
+  height: 100%;
+}
+
+app-root {
+  display: flex;
+  flex-direction: column;
+}
+
+.row {
+  display: flex;
+  flex-direction: row;
+}
+
+.column {
+  display: flex;
+  flex-direction: column;
+}
+
+.mt-15 {
+  margin-top: 15px;
+}
+
+.mt-25 {
+  margin-top: 25px;
+}
+
+.mb-15 {
+  margin-bottom: 15px;
+}
+
+.mb-25 {
+  margin-bottom: 25px;
+}
+
+.wrap {
+  flex-wrap: wrap;
+}
+
+.gap-025 {
+  gap: 0.25rem;
+}
+
+.gap-05 {
+  gap: 0.5rem;
+}
+
+.gap-1 {
+  gap: 1rem;
+}
+
+.gap-2 {
+  gap: 2rem;
+}
+
+.space-between {
+  justify-content: space-between;
+}
+
+.align-center {
+  align-items: center;
+}
+
+.justify-center {
+  justify-content: center;
+}
+
+.full-center {
+  align-items: center;
+  justify-content: center;
+}
+
+.hidden {
+  display: none;
+}
+
+.disabled {
+  pointer-events: none;
+  opacity: 0.5;
+}
+
+.image-container {
+  position: relative;
+  display: inline-block; /* Adjust as needed */
+}
+
+.image {
+  display: block;
+  width: 100%; /* Adjust as needed */
+}
+
+/**
+* Font Family: Clash Display
+
+* Clash Display Extralight 
+* Clash Display Light 
+* Clash Display Regular 
+* Clash Display Medium 
+* Clash Display Semibold 
+* Clash Display Bold 
+* Clash Display Variable (Variable font)
+*
+*/
+@font-face {
+  font-family: "ClashDisplay-Extralight";
+  src: url("assets/fonts/ClashDisplay-Extralight.woff2") format("woff2"),
+    url("assets/fonts/ClashDisplay-Extralight.woff") format("woff"),
+    url("assets/fonts/ClashDisplay-Extralight.ttf") format("truetype");
+  font-weight: 200;
+  font-display: swap;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "ClashDisplay-Light";
+  src: url("assets/fonts/ClashDisplay-Light.woff2") format("woff2"),
+    url("assets/fonts/ClashDisplay-Light.woff") format("woff"),
+    url("assets/fonts/ClashDisplay-Light.ttf") format("truetype");
+  font-weight: 300;
+  font-display: swap;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "ClashDisplay-Regular";
+  src: url("assets/fonts/ClashDisplay-Regular.woff2") format("woff2"),
+    url("assets/fonts/ClashDisplay-Regular.woff") format("woff"),
+    url("assets/fonts/ClashDisplay-Regular.ttf") format("truetype");
+  font-weight: 400;
+  font-display: swap;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "ClashDisplay-Medium";
+  src: url("assets/fonts/ClashDisplay-Medium.woff2") format("woff2"),
+    url("assets/fonts/ClashDisplay-Medium.woff") format("woff"),
+    url("assets/fonts/ClashDisplay-Medium.ttf") format("truetype");
+  font-weight: 500;
+  font-display: swap;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "ClashDisplay-Semibold";
+  src: url("assets/fonts/ClashDisplay-Semibold.woff2") format("woff2"),
+    url("assets/fonts/ClashDisplay-Semibold.woff") format("woff"),
+    url("assets/fonts/ClashDisplay-Semibold.ttf") format("truetype");
+  font-weight: 600;
+  font-display: swap;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "ClashDisplay-Bold";
+  src: url("assets/fonts/ClashDisplay-Bold.woff2") format("woff2"),
+    url("assets/fonts/ClashDisplay-Bold.woff") format("woff"),
+    url("assets/fonts/ClashDisplay-Bold.ttf") format("truetype");
+  font-weight: 700;
+  font-display: swap;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "ClashDisplay-Variable";
+  src: url("assets/fonts/ClashDisplay-Variable.woff2") format("woff2"),
+    url("assets/fonts/ClashDisplay-Variable.woff") format("woff"),
+    url("assets/fonts/ClashDisplay-Variable.ttf") format("truetype");
+  font-weight: 200 700;
+  font-display: swap;
+  font-style: normal;
+}

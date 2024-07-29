@@ -1,0 +1,62 @@
+<div
+  class="card"
+  [ngClass]="{ 'vertical column': isVertical, 'horizontal row': !isVertical }"
+  [style.background-color]="backgroundColor"
+>
+  <div class="row space-between align-center">
+    <!-- Company Logo -->
+    <div class="full-center companyLogoContainer">
+      <img src="{{ job.companyLogo }}" alt="Company" />
+    </div>
+    <!-- Job Type Tag -->
+    <span class="jobType" *ngIf="isVertical">Full Time</span>
+  </div>
+
+  <!-- Job meta data -->
+  <div class="gap-025 column">
+    <!-- Job Title -->
+    <div class="darkText jobTitle">{{ job.title }}</div>
+
+    <div class="gap-05" [ngClass]="{ column: isVertical, row: !isVertical }">
+      <!-- Company Name -->
+      <div class="row gap-025 company align-center">
+        <i class="pi pi-verified"></i>
+        <span>{{ job.companyName }}</span>
+      </div>
+      <!-- Location -->
+      <div class="row gap-025 location align-center">
+        <i class="pi pi-map-marker"></i>
+        <span class="">{{ job.location }}</span>
+      </div>
+    </div>
+
+    <!-- job description -->
+    <div class="jobDescription" *ngIf="isVertical">
+      <span>
+        {{ job.description }}
+      </span>
+    </div>
+
+    <!-- job tags -->
+    <div class="row gap-05 mt-15 tags">
+      <!-- Job Type Tag -->
+      <div class="row gap-05 full-center" *ngIf="!isVertical">
+        <span class="jobType">{{ job.type }}</span>
+        <div class="divider"></div>
+      </div>
+      <div class="row gap-05 tag-container">
+        <span *ngFor="let tag of job.tags | slice : 0 : 3" class="tag">
+          {{ tag }}
+        </span>
+      </div>
+    </div>
+  </div>
+
+  <!-- bookmark button-->
+  <div class="saveButton">
+    <app-save-button
+      *ngIf="!isVertical"
+      (click)="onSaveJob()"
+    ></app-save-button>
+  </div>
+</div>

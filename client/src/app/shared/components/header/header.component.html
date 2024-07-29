@@ -1,0 +1,39 @@
+<header class="wrapper row align-center space-between">
+  <!-- Logo -->
+  <div class="row gap-05 align-center logo" routerLink="">
+    <img src="assets/images/Logo.svg" />
+    <p>Talentum</p>
+  </div>
+
+  <!-- Navigation -->
+  <div class="row gap-1">
+    <a
+      routerLink="/"
+      routerLinkActive="active"
+      [routerLinkActiveOptions]="{ exact: true }"
+      >Home</a
+    >
+    <a routerLink="/jobs" routerLinkActive="active">Jobs</a>
+    <a routerLink="categories" routerLinkActive="active">Categories</a>
+    <a routerLink="companies" routerLinkActive="active">Companies</a>
+  </div>
+
+  <!-- Buttons -->
+  <div class="row gap-1">
+    <!-- Login Button -->
+    <button class="login-button" routerLink="/login">
+      <p>Log in</p>
+    </button>
+    <!-- Signup Button -->
+    <app-button
+      label="Sign Up"
+      width="6.6875rem"
+      height="3.125rem"
+      backgroundColor="var(--primary-color)"
+      fontSize="1rem"
+      fontWeight="800"
+      [routerLink]="['/jobs']"
+      routerLinkActive="router-link-active"
+    ></app-button>
+  </div>
+</header>

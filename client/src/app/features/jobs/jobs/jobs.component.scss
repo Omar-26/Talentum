@@ -1,0 +1,27 @@
+.jobTitle {
+  width: 100%;
+}
+
+.darkText {
+  font-family: "ClashDisplay-Semibold";
+  color: var(--text-color);
+  font-size: 4.5rem;
+}
+
+.curlyLine {
+  display: block;
+  width: 100%;
+}
+
+.image-container {
+  position: relative;
+  display: inline-block;
+}
+
+.column.full-center.textOverlay {
+  position: absolute;
+  text-align: center;
+  top: 22%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}

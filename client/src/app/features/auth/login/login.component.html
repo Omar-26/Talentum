@@ -1,0 +1,80 @@
+<div class="pattern">
+  <div class="column content-wrap">
+    <div class="logo full-center"><img src="assets/images/Logo.svg" /></div>
+    <h2 class="mt-15 welcome">Welcome Back !</h2>
+    <h2 class="subHeading">
+      Enter to get unlimited access to jobs and opportunities
+    </h2>
+
+    <form [formGroup]="loginForm" (submit)="submitApplication()">
+      <div class="login-form">
+        <label for="email">Email</label>
+        <input
+          type="email"
+          id="email"
+          formControlName="email"
+          placeholder="Email Address"
+          required
+          [ngClass]="{
+            'is-invalid': submitted && loginForm.controls.email.errors
+          }"
+        />
+        <div *ngIf="submitted && loginForm.controls.email.errors">
+          <small
+            class="invalid"
+            *ngIf="loginForm.controls.email.errors['required']"
+            >*Email is required.</small
+          >
+          <small
+            class="invalid"
+            *ngIf="loginForm.controls.email.errors['email']"
+            >*Please enter a valid email address</small
+          >
+        </div>
+
+        <label for="password">Password</label>
+        <input
+          [type]="type"
+          id="password"
+          formControlName="password"
+          placeholder="Password"
+          required
+          [ngClass]="{
+            'is-invalid': submitted && loginForm.controls.password.errors
+          }"
+        />
+
+        <i class="pi {{ eyeIcon }} pass-icon" (click)="hideShowPass()"></i>
+        <div *ngIf="submitted && loginForm.controls.password.errors">
+          <small class="invalid" *ngIf="loginForm.controls.password.errors"
+            >*Password is required.</small
+          >
+        </div>
+
+        <div class="row mt-15 space-between">
+          <div class="row">
+            <input id="remember" type="checkbox" formControlName="remember" />
+            <label for="remember" class="remember-me">
+              <span></span>
+              Remember me
+              <ins><i>Remember me</i></ins>
+            </label>
+          </div>
+          <a href="#">Forgot Password ?</a>
+        </div>
+        <div class="mt-15">
+          <app-button
+            label="Log in"
+            width="100%"
+            height="3.5rem"
+            backgroundColor="var(--primary-color)"
+            fontSize="1.2rem"
+            fontWeight="900"
+            type="submit"
+            routerLink="/jobs"
+          ></app-button>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>

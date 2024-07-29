@@ -1,0 +1,171 @@
+.heroWrapper {
+  width: 100%;
+  position: relative;
+  height: 48.15rem;
+  overflow: hidden;
+  background: url("../../../../assets/images/hero-pattern.svg") no-repeat;
+  background-size: auto;
+  background-position-x: 155%;
+  background-color: var(--accent-color);
+
+  .heroText {
+    position: absolute;
+    align-items: left;
+    font-weight: bolder;
+    font-size: 72px;
+    margin-left: 7.7rem;
+    margin-top: 5.5rem;
+  }
+
+  .heroImage {
+    position: absolute;
+    right: 8rem;
+    top: 4.4rem;
+    height: 100%;
+  }
+}
+
+.darkText {
+  font-family: "ClashDisplay-Semibold";
+  color: var(--text-color);
+}
+
+.primaryText {
+  font-family: "ClashDisplay-Semibold";
+  color: var(--primary-color);
+}
+
+.labelText {
+  font-family: "Red Hat Display", sans-serif;
+  font-size: 32px;
+  color: var(--grey-color);
+}
+
+.textOverlay {
+  position: absolute;
+  top: 16%;
+  left: 8%;
+}
+
+.curlyLine {
+  width: 28rem;
+}
+
+.searchBar {
+  padding: 0.5rem;
+  border-radius: 25px;
+  background-color: #f9f9f9;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  transition: box-shadow 0.3s ease;
+
+  input[type="text"] {
+    padding: 0.5rem 1rem;
+    border: none;
+    border-radius: 25px;
+    outline: none;
+    font-size: 1rem;
+    background-color: #fff;
+    box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.1);
+    transition: box-shadow 0.3s ease;
+
+    &:focus {
+      box-shadow: inset 0 2px 8px rgba(0, 0, 0, 0.2);
+    }
+  }
+
+  button {
+    padding: 0.5rem 1.5rem;
+    margin-left: 0.5rem;
+    border: none;
+    border-radius: 25px;
+    background-color: var(--primary-color);
+    color: white;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+
+    &:hover {
+      transform: scale(1.1);
+      background-color: var(--primary-color);
+      color: white;
+    }
+  }
+
+  select {
+    padding: 0.5rem 1.5rem;
+    border: none;
+    border-radius: 25px;
+    outline: none;
+    font-size: 1rem;
+    background-color: #fff;
+    box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.1);
+    transition: box-shadow 0.3s ease;
+    // appearance: none;
+
+    &:focus {
+      box-shadow: inset 0 2px 8px rgba(0, 0, 0, 0.2);
+    }
+  }
+}
+
+.sectionHeading {
+  margin-top: 4.5rem;
+  margin-bottom: 1rem;
+  padding: 0 0.9rem;
+}
+
+.sectionTitle {
+  font-size: 3rem;
+}
+
+.showAllButton {
+  background-color: transparent;
+  font-family: var(--font-red-hat);
+  color: var(--primary-color);
+  font-weight: 600;
+  border: none;
+  border-radius: 25px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+
+  &:hover {
+    transform: scale(1.1);
+  }
+  i {
+    background-color: var(--primary-color);
+    margin-left: 0.4rem;
+    padding: 0.35rem;
+    border-radius: 2rem;
+    color: white;
+  }
+}
+
+.gridView-4 {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+  margin-top: 20px;
+}
+
+.gridView-2 {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 16px;
+  margin-top: 20px;
+}
+
+.categories {
+  padding: 0 7.8rem;
+}
+
+.featuredJobs {
+  padding: 0 7.8rem;
+  margin-bottom: 4.5rem;
+}
+
+.latestJobs {
+  background-image: url("../../../../assets/images/hero-pattern.svg");
+  background-position: 270% 100%;
+  padding: 0 7.8rem;
+  background-color: var(--accent-color);
+}
