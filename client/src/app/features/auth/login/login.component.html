@@ -71,10 +71,55 @@
             fontSize="1.2rem"
             fontWeight="900"
             type="submit"
-            routerLink="/jobs"
           ></app-button>
         </div>
       </div>
     </form>
   </div>
 </div>
+
+<!-- 
+<div class="card flex justify-content-center mt-15">
+  <p-floatLabel>
+    <input
+      type="email"
+      id="email"
+      pInputText
+      formControlName="email"
+      required
+      [ngClass]="{
+        'is-invalid': submitted && loginForm.controls.email.errors
+      }"
+    />
+    <label for="email">Email</label>
+  </p-floatLabel>
+</div>
+
+<div *ngIf="submitted && loginForm.controls.email.errors">
+  <small
+    class="invalid"
+    *ngIf="loginForm.controls.email.errors['required']"
+    >*Email is required.</small
+  >
+  <small
+    class="invalid"
+    *ngIf="loginForm.controls.email.errors['email']"
+    >*Please enter a valid email address</small
+  >
+</div>
+
+<div class="card flex justify-content-center mt-15">
+  <p-floatLabel>
+    <input
+      type="password"
+      id="password"
+      pInputText
+      formControlName="password"
+      required
+      [ngClass]="{
+        'is-invalid': submitted && loginForm.controls.password.errors
+      }"
+    />
+    <label for="password">Password</label>
+  </p-floatLabel>
+</div> -->

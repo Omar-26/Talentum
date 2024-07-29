@@ -1,4 +1,4 @@
-.heroWrapper {
+.hero {
   width: 100%;
   position: relative;
   height: 48.15rem;
@@ -22,6 +22,65 @@
     right: 8rem;
     top: 4.4rem;
     height: 100%;
+  }
+}
+
+.how {
+  display: flex;
+  width: 100%;
+  height: 23rem;
+  padding-top: 1.5rem;
+  .heading {
+    font-family: var(--font-clash-variable);
+    color: var(--text-color);
+    display: flex;
+    font-size: 2.5rem;
+    font-weight: 600;
+  }
+
+  .howIcons {
+    display: flex;
+    padding-right: 2rem;
+    .arrow {
+      img {
+        width: 16rem;
+        height: 6rem;
+      }
+    }
+    .icon {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 4.5rem;
+      height: 4.5rem;
+      border-radius: 4.5rem;
+      i {
+        color: var(--primary-color);
+        font-weight: 400;
+        font-size: 2rem;
+      }
+    }
+  }
+
+  .text {
+    font-family: var(--font-red-hat);
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    padding: 0 2rem;
+    .title {
+      color: var(--text-color);
+      font-size: 1.2rem;
+      font-weight: 700;
+      margin-bottom: 0.6rem;
+    }
+    .subTitle {
+      color: #515b6fa8;
+      font-size: 1rem;
+      font-weight: 700;
+      white-space: wrap;
+      overflow: visible;
+    }
   }
 }
 

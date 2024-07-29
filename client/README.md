@@ -45,139 +45,6 @@ client
 │  │  ├─ app.component.spec.ts
 │  │  ├─ app.component.ts
 │  │  ├─ app.module.ts
-│  │  ├─ auth
-│  │  │  ├─ auth-routing.module.ts
-│  │  │  ├─ auth.module.ts
-│  │  │  └─ login
-│  │  │     ├─ login.component.html
-│  │  │     ├─ login.component.scss
-│  │  │     ├─ login.component.spec.ts
-│  │  │     └─ login.component.ts
-│  │  ├─ components
-│  │  │  ├─ button
-│  │  │  │  ├─ button.component.html
-│  │  │  │  ├─ button.component.scss
-│  │  │  │  ├─ button.component.spec.ts
-│  │  │  │  └─ button.component.ts
-│  │  │  ├─ category-card
-│  │  │  │  ├─ category-card.component.html
-│  │  │  │  ├─ category-card.component.scss
-│  │  │  │  ├─ category-card.component.spec.ts
-│  │  │  │  └─ category-card.component.ts
-│  │  │  ├─ components.module.ts
-│  │  │  ├─ job-card
-│  │  │  │  ├─ job-card.component.html
-│  │  │  │  ├─ job-card.component.scss
-│  │  │  │  ├─ job-card.component.spec.ts
-│  │  │  │  └─ job-card.component.ts
-│  │  │  ├─ save-button
-│  │  │  │  ├─ save-button.component.html
-│  │  │  │  ├─ save-button.component.scss
-│  │  │  │  ├─ save-button.component.spec.ts
-│  │  │  │  └─ save-button.component.ts
-│  │  │  └─ vertical-job-card
-│  │  │     ├─ vertical-job-card.component.html
-│  │  │     ├─ vertical-job-card.component.scss
-│  │  │     ├─ vertical-job-card.component.spec.ts
-│  │  │     └─ vertical-job-card.component.ts
-│  │  ├─ home
-│  │  │  ├─ home
-│  │  │  │  ├─ home.component.html
-│  │  │  │  ├─ home.component.scss
-│  │  │  │  ├─ home.component.spec.ts
-│  │  │  │  └─ home.component.ts
-│  │  │  └─ home.module.ts
-│  │  ├─ jobs
-│  │  │  ├─ jobs
-│  │  │  │  ├─ jobs.component.html
-│  │  │  │  ├─ jobs.component.scss
-│  │  │  │  ├─ jobs.component.spec.ts
-│  │  │  │  └─ jobs.component.ts
-│  │  │  ├─ jobs-routing.module.ts
-│  │  │  └─ jobs.module.ts
-│  │  ├─ layout
-│  │  │  ├─ footer
-│  │  │  │  ├─ footer.component.html
-│  │  │  │  ├─ footer.component.scss
-│  │  │  │  ├─ footer.component.spec.ts
-│  │  │  │  └─ footer.component.ts
-│  │  │  ├─ header
-│  │  │  │  ├─ header.component.html
-│  │  │  │  ├─ header.component.scss
-│  │  │  │  ├─ header.component.spec.ts
-│  │  │  │  └─ header.component.ts
-│  │  │  └─ layout.module.ts
-│  │  └─ services
-│  │     ├─ logging.service.spec.ts
-│  │     └─ logging.service.ts
-│  ├─ assets
-│  │  ├─ fonts
-│  │  │  ├─ ClashDisplay-Bold.eot
-│  │  │  ├─ ClashDisplay-Bold.ttf
-│  │  │  ├─ ClashDisplay-Bold.woff
-│  │  │  ├─ ClashDisplay-Bold.woff2
-│  │  │  ├─ ClashDisplay-Extralight.eot
-│  │  │  ├─ ClashDisplay-Extralight.ttf
-│  │  │  ├─ ClashDisplay-Extralight.woff
-│  │  │  ├─ ClashDisplay-Extralight.woff2
-│  │  │  ├─ ClashDisplay-Light.eot
-│  │  │  ├─ ClashDisplay-Light.ttf
-│  │  │  ├─ ClashDisplay-Light.woff
-│  │  │  ├─ ClashDisplay-Light.woff2
-│  │  │  ├─ ClashDisplay-Medium.eot
-│  │  │  ├─ ClashDisplay-Medium.ttf
-│  │  │  ├─ ClashDisplay-Medium.woff
-│  │  │  ├─ ClashDisplay-Medium.woff2
-│  │  │  ├─ ClashDisplay-Regular.eot
-│  │  │  ├─ ClashDisplay-Regular.ttf
-│  │  │  ├─ ClashDisplay-Regular.woff
-│  │  │  ├─ ClashDisplay-Regular.woff2
-│  │  │  ├─ ClashDisplay-Semibold.eot
-│  │  │  ├─ ClashDisplay-Semibold.ttf
-│  │  │  ├─ ClashDisplay-Semibold.woff
-│  │  │  ├─ ClashDisplay-Semibold.woff2
-│  │  │  ├─ ClashDisplay-Variable.eot
-│  │  │  ├─ ClashDisplay-Variable.ttf
-│  │  │  ├─ ClashDisplay-Variable.woff
-│  │  │  └─ ClashDisplay-Variable.woff2
-│  │  └─ images
-│  │     ├─ curly-line.svg
-│  │     ├─ godaddy-logo.svg
-│  │     ├─ header-bg.svg
-│  │     ├─ Hero.svg
-│  │     ├─ How_talentum_works.svg
-│  │     ├─ Logo.svg
-│  │     └─ Pattern.svg
-│  ├─ index.html
-│  ├─ main.ts
-│  ├─ styles
-│  │  ├─ theme-overrides.scss
-│  │  └─ variables.scss
-│  └─ styles.scss
-├─ tsconfig.app.json
-├─ tsconfig.json
-└─ tsconfig.spec.json
-
-```
-```
-client
-├─ .angular
-├─ .editorconfig
-├─ .gitignore
-├─ angular.json
-├─ package-lock.json
-├─ package.json
-├─ public
-│  └─ favicon.ico
-├─ README.md
-├─ src
-│  ├─ app
-│  │  ├─ app-routing.module.ts
-│  │  ├─ app.component.html
-│  │  ├─ app.component.scss
-│  │  ├─ app.component.spec.ts
-│  │  ├─ app.component.ts
-│  │  ├─ app.module.ts
 │  │  ├─ core
 │  │  │  ├─ core.module.ts
 │  │  │  └─ services
@@ -252,6 +119,7 @@ client
 │  │  │  ├─ ClashDisplay-Extralight.ttf
 │  │  │  ├─ ClashDisplay-Extralight.woff
 │  │  │  ├─ ClashDisplay-Extralight.woff2
+│  │  │  ├─ ClashDisplay-Font.scss
 │  │  │  ├─ ClashDisplay-Light.eot
 │  │  │  ├─ ClashDisplay-Light.ttf
 │  │  │  ├─ ClashDisplay-Light.woff
@@ -273,19 +141,26 @@ client
 │  │  │  ├─ ClashDisplay-Variable.woff
 │  │  │  └─ ClashDisplay-Variable.woff2
 │  │  └─ images
+│  │     ├─ curly-arrow-down.svg
+│  │     ├─ curly-arrow-up.svg
 │  │     ├─ curly-line.svg
 │  │     ├─ godaddy-logo.svg
 │  │     ├─ header-bg.svg
+│  │     ├─ hero-pattern.svg
+│  │     ├─ hero-person-02.svg
+│  │     ├─ hero-person-03.svg
+│  │     ├─ hero-person.svg
 │  │     ├─ Hero.svg
 │  │     ├─ How_talentum_works.svg
 │  │     ├─ Logo.svg
-│  │     └─ Pattern.svg
+│  │     └─ rectangle.svg
 │  ├─ index.html
 │  ├─ main.ts
 │  ├─ styles
 │  │  ├─ theme-overrides.scss
 │  │  └─ variables.scss
-│  └─ styles.scss
+│  ├─ styles.scss
+│  └─ testing-data.ts
 ├─ tsconfig.app.json
 ├─ tsconfig.json
 └─ tsconfig.spec.json
