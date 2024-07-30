@@ -1,21 +1,21 @@
 * {
   border-radius: var(--border-radius);
   box-sizing: border-box;
-  user-select: none;
+}
+
+.pattern {
+  border-radius: 0;
+  background-color: var(--accent-color);
+  background-image: url("../../../../assets/images/hero-pattern.svg");
+  background-size: 70rem;
+  background-position: -30% 80%;
+  padding: 3rem 0;
 }
 
 .logo img {
   width: 50px;
   display: inline;
   // margin-right: 20px;
-}
-
-.pattern {
-  background-color: var(--accent-color);
-  background-image: url("../../../../assets/images/hero-pattern.svg");
-  background-size: 70rem;
-  background-position: -30% 80%;
-  padding: 4.9rem 0;
 }
 
 .welcome {
@@ -39,7 +39,6 @@
   margin: 0 auto;
   padding: 3.75rem;
   max-width: 50rem;
-  border-radius: var(--border-radius);
   background-color: #fff;
   text-align: center;
   justify-content: center;

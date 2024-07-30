@@ -1,63 +1,83 @@
-<section class="signup">
-    <div class="pattern">
-      <div class="container" [class.right-panel-active]="isRightPanelActive">
-          <div class="form-container sign-up-container">
-          <form action="#">
-              <h1>Attract, hire, and retain the best talent.</h1>
-              <span class="create-account-text">Register Your Company</span>
-              <input type="text" placeholder="Company Name" />
-              <input type="email" placeholder="Company Email" />
-              <input type="url" placeholder="Website" />
-              <input type="text" placeholder="Office Address"/>
-              <input type="password" placeholder="Password" />
-              <input type="text" placeholder="Industry"/>
-              <textarea name="description" id="description">Add Company Description</textarea> 
-              <a href="">Already have an account?</a>
-              <button>Sign Up</button>
-          </form>
+<div class="background">
+  <div class="content-wrap" [class.right-panel-active]="isRightPanelActive">
+    <div class="form-container companySignup">
+      <form action="#">
+        <div class="mt-15 welcome">
+          Attract, hire, and retain the best talent.
+        </div>
+        <h2 class="subHeading">Register your company</h2>
+        <input type="text" placeholder="Company Name" />
+        <input type="email" placeholder="Email Address" />
+        <input type="url" placeholder="Website" />
+        <input type="text" placeholder="Office Address" />
+        <input type="password" placeholder="Password" />
+        <input type="text" placeholder="Industry" />
+        <textarea name="description" id="description">
+Add Company Description</textarea
+        >
+        <app-button
+          label="Register"
+          width="18.25rem"
+          height="2.9rem"
+          fontSize="1rem"
+          fontWeight="900"
+          backgroundColor="var(--primary-color)"
+          class="mt-15"
+          (click)="onSignup('company')"
+        ></app-button>
+        <a href="">Already have an account?</a>
+      </form>
+    </div>
+
+    <div class="form-container userSignup">
+      <form>
+        <div class="mt-15 welcome">Start Your Job Search</div>
+        <h2 class="subHeading">Create an account</h2>
+        <div class="row gap-05 space-between">
+          <input type="firstName" placeholder="First Name" />
+          <input type="lastName" placeholder="Last Name" />
+        </div>
+        <input type="text" placeholder="Username" />
+        <div class="row gap-05 space-between">
+          <input type="date" />
+          <input type="telephone" placeholder="Phone Number" required />
+        </div>
+        <input type="email" placeholder="Email Address" />
+        <input type="password" placeholder="Password" />
+        <input type="password" placeholder="Confirm Password" />
+        <app-button
+          label="Register"
+          width="18.25rem"
+          height="2.9rem"
+          fontSize="1rem"
+          fontWeight="900"
+          backgroundColor="var(--primary-color)"
+          class="mt-15"
+          (click)="onSignup('user')"
+        ></app-button>
+        <a href="">Already have an account?</a>
+      </form>
+    </div>
+
+    <div class="overlay-container">
+      <div class="overlay">
+        <div class="overlay-panel overlay-left">
+          <h2 class="welcome">Find Your Dream Job <br />with Talentum</h2>
+          <h2 class="subHeading">
+            Connect with top employers and advance your career
+          </h2>
+          <button class="full-center overlayButton" (click)="onRegisterUser()">
+            <p>Unlock Your Career</p>
+          </button>
+        </div>
+        <div class="overlay-panel overlay-right">
+          <h2 class="welcome">Elevate Your Business with Talentum</h2>
+          <h2 class="subHeading">Showcase your company, find top talents</h2>
+          <div class="full-center overlayButton" (click)="onRegisterCompany()">
+            <p>Start Hiring</p>
           </div>
-      
-          <div class="form-container sign-in-container">
-          <form action="#">
-              <h1>Start Your Job Search</h1>
-              <span class="create-account-text">Create an account</span>
-              <div class="two-elements">
-              <input type="firstName" placeholder="First Name" />
-              <input type="lastName" placeholder="Last Name" />
-              </div>
-              <input type="text" placeholder="Username" />
-              <div class="two-elements">
-                  <input type="date" placeholder="Birthday">
-                  <input type="tel" placeholder="Cell (000) 000-000" required>
-              </div>
-              <input type="email" placeholder="Email" />
-              
-              <input type="password" placeholder="Password" />
-              <input type="password" placeholder="Confirm Password" />
-              
-              
-  
-              <a href="">Already have an account?</a>
-              <button>Sign Up</button>
-          </form>
-          </div>
-      
-          <div class="overlay-container">
-          <div class="overlay">
-              <div class="overlay-panel overlay-left">
-              <h1>Find Your Dream Job with Talentum</h1>
-              <p>
-                  Connect with top employers and advance your career
-              </p>
-              <button class="ghost" (click)="onSignInClick()">Unlock Your Career</button>
-              </div>
-              <div class="overlay-panel overlay-right">
-              <h1>Elevate Your Business with Talentum</h1>
-              <p>Showcase your company, find top talent</p>
-              <button class="ghost" (click)="onSignUpClick()">Start Hiring</button>
-              </div>
-          </div>
-          </div>
+        </div>
       </div>
     </div>
-  </section>
+  </div>
+</div>
