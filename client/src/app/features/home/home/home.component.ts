@@ -35,4 +35,3 @@ export class HomeComponent {
     this.showAllCategories = !this.showAllCategories;
   }
 }
-

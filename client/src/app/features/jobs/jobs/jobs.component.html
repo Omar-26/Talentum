@@ -10,10 +10,19 @@
     <div class="red"></div>
   </div>
   <div class="column gap-1 jobs">
-    <div class="blue"></div>
-    <div class="blue"></div>
-    <div class="blue"></div>
-    <div class="blue"></div>
-    <div class="blue"></div>
+    <app-full-job-card
+      *ngFor="let job of paginatedJobs"
+      [job]="job"
+      [category]="getCategoryById(job.categoryId)"
+    ></app-full-job-card>
+    <div class="card flex justify-content-center">
+      <p-paginator
+        (onPageChange)="onPageChange($event)"
+        [first]="first"
+        [rows]="rows"
+        [totalRecords]="featuredJobs.length"
+        [rowsPerPageOptions]="[10, 20, 30]"
+      ></p-paginator>
+    </div>
   </div>
 </div>

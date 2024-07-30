@@ -5,9 +5,10 @@ import { FloatLabelModule } from 'primeng/floatlabel';
 import { SharedModule } from '../../shared/shared.module';
 import { AuthRoutingModule } from './auth-routing.module';
 import { LoginComponent } from './login/login.component';
+import { SignupComponent } from './signup/signup.component';
 
 @NgModule({
-  declarations: [LoginComponent],
+  declarations: [LoginComponent, SignupComponent],
   imports: [
     CommonModule,
     ReactiveFormsModule,
@@ -15,6 +16,6 @@ import { LoginComponent } from './login/login.component';
     SharedModule,
     FloatLabelModule,
   ],
-  exports: [LoginComponent],
+  exports: [LoginComponent, SignupComponent],
 })
 export class AuthModule {}

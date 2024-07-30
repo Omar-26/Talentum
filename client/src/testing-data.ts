@@ -7,7 +7,7 @@ export const categories: {
   { id: 101, name: 'Software Development', icon: 'pi-code', numOfJobs: 12 },
   { id: 205, name: 'Data Science', icon: 'pi-chart-scatter', numOfJobs: 8 },
   { id: 309, name: 'Marketing', icon: 'pi-megaphone', numOfJobs: 15 },
-  { id: 412, name: 'Finance', icon: 'pi-wallet', numOfJobs: 9 },
+  { id: 412, name: 'Finance', icon: 'pi-money-bill', numOfJobs: 9 },
   { id: 523, name: 'Human Resources', icon: 'pi-users', numOfJobs: 7 },
   { id: 634, name: 'Sales', icon: 'pi-shopping-cart', numOfJobs: 14 },
   { id: 745, name: 'Customer Support', icon: 'pi-headphones', numOfJobs: 10 },
