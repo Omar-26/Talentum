@@ -2,8 +2,6 @@ package com.Talentum.TalentumApplication.Model;
 
 import jakarta.persistence.*;
 
-import org.apache.catalina.User;
-
 import java.security.Timestamp;
 
 @Entity
@@ -14,36 +12,24 @@ public class JobApplication {
 
     @ManyToOne
     @JoinColumn(name = "user_id", nullable = false)
-    private UserEntity user;
+    private User user;
 
     @ManyToOne
     @JoinColumn(name = "job_id", nullable = false)
-    private JobEntity job;
+    private Job job;
 
     private String status;
     private Timestamp appliedAt;
-    
-    @Column(name = "cv")
-    private String cvFileName;
 
-    public String getCvFileName() {
-		return cvFileName;
-	}
-
-	public void setCvFileName(String cvFileName) {
-		this.cvFileName = cvFileName;
-	}
-
-	// Default constructor
+    // Default constructor
     public JobApplication() {}
 
     // Parameterized constructor
-    public JobApplication(UserEntity user, JobEntity job, String status, Timestamp appliedAt,String cvFileName) {
+    public JobApplication(User user, Job job, String status, Timestamp appliedAt) {
         this.user = user;
         this.job = job;
         this.status = status;
         this.appliedAt = appliedAt;
-        this.cvFileName=cvFileName;
     }
 
     // Getters and Setters
@@ -55,19 +41,19 @@ public class JobApplication {
         this.id = id;
     }
 
-    public UserEntity getUser() {
+    public User getUser() {
         return user;
     }
 
-    public void setUser(UserEntity user) {
+    public void setUser(User user) {
         this.user = user;
     }
 
-    public JobEntity getJob() {
+    public Job getJob() {
         return job;
     }
 
-    public void setJob(JobEntity job) {
+    public void setJob(Job job) {
         this.job = job;
     }
 
