@@ -1,5 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { LoginComponent } from './features/auth/login/login.component';
+import { SignupComponent } from './features/auth/signup/signup.component';
 import { HomeComponent } from './features/home/home/home.component';
 export const routes: Routes = [
   {
@@ -14,14 +16,23 @@ export const routes: Routes = [
   },
   {
     path: 'login',
-    loadChildren: () =>
-      import('./features/auth/auth.module').then((m) => m.AuthModule),
+    component: LoginComponent,
   },
   {
     path: 'signup',
-    loadChildren: () =>
-      import('./features/auth/auth.module').then((m) => m.AuthModule),
+    component: SignupComponent,
   },
+
+  // {
+  //   path: 'login',
+  //   loadChildren: () =>
+  //     import('./features/auth/auth.module').then((m) => m.AuthModule),
+  // },
+  // {
+  //   path: 'signup',
+  //   loadChildren: () =>
+  //     import('./features/auth/auth.module').then((m) => m.AuthModule),
+  // },
 
   // Eager loading --> not recommended
   // {

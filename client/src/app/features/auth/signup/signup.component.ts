@@ -8,11 +8,19 @@ import { Component } from '@angular/core';
 export class SignupComponent {
   isRightPanelActive = false;
 
-  onSignUpClick() {
+  onRegisterCompany() {
     this.isRightPanelActive = true;
   }
-
-  onSignInClick() {
+  onRegisterUser() {
     this.isRightPanelActive = false;
+  }
+  onSignup(type: string) {
+    if (type === 'user') {
+      // Add user data to the database
+      console.log('User registered');
+    } else if (type === 'company') {
+      // Add company data to the database
+      console.log('Company registered');
+    }
   }
 }
