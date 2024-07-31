@@ -1,5 +1,6 @@
 package com.Talentum.TalentumApplication.Model;
 
+import com.Talentum.TalentumApplication.Service.TimeFormatter;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -23,7 +24,7 @@ public class User {
     private Timestamp createdAt;
     public User(){}
 
-    public User(String firstName, String lastName, String username, String email, String phoneNumber, String password, Date dateOfBirth, Timestamp createdAt) {
+    public User(String firstName, String lastName, String username, String email, String phoneNumber, String password, Date dateOfBirth) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.username = username;
@@ -31,8 +32,8 @@ public class User {
         this.phoneNumber = phoneNumber;
         this.password = password;
         this.dateOfBirth = dateOfBirth;
-        this.createdAt = createdAt;
     }
+
 
     public Long getId() {
         return id;

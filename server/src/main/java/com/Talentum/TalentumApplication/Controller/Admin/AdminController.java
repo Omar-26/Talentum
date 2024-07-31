@@ -16,33 +16,38 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("/api/v1/admin")
-public class admin_controller {
+public class AdminController {
     @Autowired
-    private CompanyRepository companyReprosity;
+    private CompanyRepository companyRepository;
 
     @Autowired
-    private CategoryRepository category_repo;
+    private CategoryRepository categoryRepository;
 
     @Autowired
-    private UserRepository userRepro;
+    private UserRepository userRepository;
 
-    @PostMapping("/adduser")
+    @PostMapping("/addUser")
     public ResponseEntity<User> addUser(@RequestBody User user) {
         // Set creation timestamp if not set
-
-        User savedUser = userRepro.save(user);
+        User savedUser = userRepository.save(user);
+        if (user.getCreatedAt() == null) {
+            user.setCreatedAt(new java.sql.Timestamp(System.currentTimeMillis()));
+        }
         return new ResponseEntity<>(savedUser, HttpStatus.CREATED);
     }
 
     @PostMapping("/addCompany")
-    public ResponseEntity<Company> addCompany(@RequestBody Company newcompany) {
-        Company savedCompany = companyReprosity.save(newcompany);
+    public ResponseEntity<Company> addCompany(@RequestBody Company newCompany) {
+        Company savedCompany = companyRepository.save(newCompany);
+        if (newCompany.getCreatedAt() == null) {
+            newCompany.setCreatedAt(new java.sql.Timestamp(System.currentTimeMillis()));
+        }
         return new ResponseEntity<>(savedCompany, HttpStatus.CREATED);
     }
 
     @PostMapping("/addCategory")
     public ResponseEntity<Category> addCategory(@RequestBody Category category) {
-        Category savedCategory = category_repo.save(category);
+        Category savedCategory = categoryRepository.save(category);
         return new ResponseEntity<>(savedCategory, HttpStatus.CREATED);
     }
 }

@@ -4,8 +4,8 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import java.sql.Timestamp;
 
+import java.sql.Timestamp;
 @Entity
 public class Company {
     @Id
@@ -19,16 +19,12 @@ public class Company {
     private String description;
     private String location;
     private String industry;
-    //private byte[] logo;
+   // private byte[] logo;
+   // private byte[] banner;
     private Timestamp createdAt;
-
-    public Company() {
-        // Default constructor for JPA
-    }
-
-    public Company(String name, String email, String username, String password,
-                   String description, String location, String industry,
-                   Timestamp createdAt) {
+    private Timestamp updatedAt;
+public Company(){}
+    public Company(String name, String email, String username, String password, String description, String location, String industry, Timestamp createdAt, Timestamp updatedAt) {
         this.name = name;
         this.email = email;
         this.username = username;
@@ -37,9 +33,9 @@ public class Company {
         this.location = location;
         this.industry = industry;
         this.createdAt = createdAt;
+        this.updatedAt = updatedAt;
     }
 
-    // Getters and setters
     public Long getId() {
         return id;
     }
@@ -80,6 +76,8 @@ public class Company {
         this.password = password;
     }
 
+
+
     public String getDescription() {
         return description;
     }
@@ -112,6 +110,11 @@ public class Company {
         this.createdAt = createdAt;
     }
 
+    public Timestamp getUpdatedAt() {
+        return updatedAt;
+    }
 
-
+    public void setUpdatedAt(Timestamp updatedAt) {
+        this.updatedAt = updatedAt;
+    }
 }

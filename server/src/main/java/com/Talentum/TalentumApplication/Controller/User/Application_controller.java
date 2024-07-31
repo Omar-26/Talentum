@@ -17,7 +17,7 @@ import com.Talentum.TalentumApplication.Service.ApplicationService;
 
 @Controller
 public class Application_controller {
-	
+	/*
 	@Autowired
 	private ApplicationService applicationService;
 
@@ -56,7 +56,7 @@ public class Application_controller {
         
 
         return "apply"; 
-    }
+    }*/
 }
 	
 

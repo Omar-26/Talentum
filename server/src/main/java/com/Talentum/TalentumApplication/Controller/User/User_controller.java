@@ -84,8 +84,20 @@ public class User_controller {
 
         return ResponseEntity.ok(jobs);
     }
+    @GetMapping("/profile/{id}")
+    public User GetProfile(@PathVariable Long id){
+         return  userRepository.findById(id)
+                 .orElseThrow(()->new RuntimeException(" the user with this id is not found ")) ;
 
-
-
-
+    }
+    @DeleteMapping("saved-jobs/{id}")
+    public String deleteSavedJob (@PathVariable Long id){
+        savedJobRepository.findById(id)
+                .orElseThrow(()-> new RuntimeException("The saved job is not found "));
+        return "Deleted Successfully";
+    }
+    @GetMapping("/cat-jobs/{cat_id}")
+    public List<Job> getAllJobByCategory(@PathVariable Long cat_id){
+        return jobRepository.findByCategoryId(cat_id);
+    }
 }
