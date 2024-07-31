@@ -1,48 +1,38 @@
-package com.Talentum.TalentumApplication.Model;
+package com.Talentum.TalentumApplication.payload;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import lombok.Setter;
 
 import java.sql.Timestamp;
 import java.sql.Date;
 
-@Entity
-public class UserEntity {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
 
+
+public class UserDTO {
+    private Long id;
     private String firstName;
     private String lastName;
     private String username;
-    @Setter
     private String email;
     private String phoneNumber;
-    @Setter
     private String password;
     private Date dateOfBirth;
     private Timestamp createdAt;
     private String role="USER";
-    public UserEntity() {}
-    public UserEntity(String firstName, String lastName, String username, String email, String phoneNumber, String password, Date dateOfBirth, Timestamp createdAt, String role) {
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.username = username;
-        this.email = email;
-        this.phoneNumber = phoneNumber;
-        this.password = password;
-        this.dateOfBirth = dateOfBirth;
-        this.createdAt = createdAt;
-        this.role = role;
-    }
 
-    public String getRole() {
-        return role;
+    public UserDTO() {}
+
+    public UserDTO(Long id,String email,String lastName,String firstName,String username,String phoneNumber,String password,String role,Date dateOfBirth,Timestamp createdAt) {
+        this.id=id;
+        this.email=email;
+        this.lastName=lastName;
+        this.firstName=firstName;
+        this.username=username;
+        this.phoneNumber=phoneNumber;
+        this.password=password;
+        this.role=role;
+        this.dateOfBirth=dateOfBirth;
+        this.createdAt=createdAt;
+
     }
-    public void setRole(String role) {}
 
     public Long getId() {
         return id;
@@ -80,6 +70,10 @@ public class UserEntity {
         return email;
     }
 
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
     public String getPhoneNumber() {
         return phoneNumber;
     }
@@ -90,6 +84,10 @@ public class UserEntity {
 
     public String getPassword() {
         return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
     }
 
     public Date getDateOfBirth() {
@@ -107,4 +105,13 @@ public class UserEntity {
     public void setCreatedAt(Timestamp createdAt) {
         this.createdAt = createdAt;
     }
+
+    public String getRole() {
+        return role;
+    }
+
+    public void setRole(String role) {
+        this.role = role;
+    }
 }
+
