@@ -1,6 +1,6 @@
 import { Component, inject } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { Logger } from '../../../core/services/logger';
+import { Logger } from '../../../core/services/logger/logger';
 
 @Component({
   selector: 'app-login',
@@ -12,6 +12,8 @@ export class LoginComponent {
   eyeIcon: string = 'pi-eye-slash';
   submitted = false;
 
+  constructor() {}
+
   loginForm = new FormGroup({
     email: new FormControl('', [Validators.required, Validators.email]),
     password: new FormControl('', [Validators.required]),
@@ -19,8 +21,6 @@ export class LoginComponent {
   });
 
   logger = inject(Logger);
-
-  constructor() {}
 
   submitApplication() {
     this.submitted = true;

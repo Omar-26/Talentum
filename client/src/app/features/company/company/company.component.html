@@ -1,0 +1,65 @@
+<h1>{{ companyProfile.companyName }}</h1>
+<img [src]="companyProfile.logo" alt="{{ companyProfile.companyName }} logo" />
+<img
+  [src]="companyProfile.banner"
+  alt="{{ companyProfile.companyName }} banner"
+/>
+<p>{{ companyProfile.description }}</p>
+<p>Location: {{ companyProfile.location }}</p>
+<p>Industry: {{ companyProfile.industry }}</p>
+<p>
+  LinkedIn:
+  <a [href]="companyProfile.socialMediaLinks.linkedIn" target="_blank"
+    >View Profile</a
+  >
+</p>
+<p>
+  Twitter:
+  <a [href]="companyProfile.socialMediaLinks.twitter" target="_blank"
+    >View Profile</a
+  >
+</p>
+
+<!-- List job openings -->
+<h2>Current Job Openings</h2>
+<ul>
+  <li *ngFor="let job of companyProfile.jobOpenings">
+    <!-- <a [routerLink]="['/job', job.id]">{{ job.title }}</a> -->
+  </li>
+</ul>
+
+<!-- Edit mode controls -->
+<button (click)="toggleEdit()">Edit Profile</button>
+
+<div *ngIf="isEditing">
+  <form formGroup="companyProfileForm" (ngSubmit)="saveProfile()">
+    <!-- Form fields -->
+    <label for="companyName">Company Name:</label>
+    <input id="companyName" formControlName="companyName" />
+
+    <label for="description">Description:</label>
+    <textarea id="description" formControlName="description"></textarea>
+
+    <label for="location">Location:</label>
+    <input id="location" formControlName="location" />
+
+    <label for="industry">Industry:</label>
+    <input id="industry" formControlName="industry" />
+
+    <div formGroupName="socialMediaLinks">
+      <label for="linkedIn">LinkedIn:</label>
+      <input id="linkedIn" formControlName="linkedIn" />
+
+      <label for="twitter">Twitter:</label>
+      <input id="twitter" formControlName="twitter" />
+    </div>
+
+    <label for="logo">Logo URL:</label>
+    <input id="logo" formControlName="logo" />
+
+    <label for="banner">Banner URL:</label>
+    <input id="banner" formControlName="banner" />
+
+    <button type="submit">Save</button>
+  </form>
+</div>

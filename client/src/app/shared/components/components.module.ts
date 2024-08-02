@@ -9,6 +9,7 @@ import { FullJobCardComponent } from './full-job-card/full-job-card.component';
 import { HeaderComponent } from './header/header.component';
 import { JobCardComponent } from './job-card/job-card.component';
 import { SaveButtonComponent } from './save-button/save-button.component';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,7 @@ import { SaveButtonComponent } from './save-button/save-button.component';
     FooterComponent,
     FullJobCardComponent,
   ],
-  imports: [CommonModule, RouterModule, FormsModule],
+  imports: [CommonModule, RouterModule, FormsModule,HttpClientModule],
   exports: [
     CategoryCardComponent,
     JobCardComponent,

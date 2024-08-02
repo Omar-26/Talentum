@@ -1,6 +1,11 @@
 <label class="ui-bookmark" (click)="onClicked()">
   <input type="checkbox" [(ngModel)]="isChecked" />
-  <div class="bookmark" [ngClass]="{ checked: isChecked }">
+  <div
+    class="bookmark"
+    [ngClass]="{ checked: isChecked }"
+    [style.width]="iconSize"
+    
+  >
     <svg viewBox="0 0 32 32">
       <g>
         <path

@@ -1,4 +1,5 @@
 import { Component, Input } from '@angular/core';
+import { Job } from '../../models/job';
 
 @Component({
   selector: 'app-job-card',
@@ -7,15 +8,7 @@ import { Component, Input } from '@angular/core';
 })
 export class JobCardComponent {
   @Input() backgroundColor: string = 'var(--accent-color)';
-  @Input() job!: {
-    title: string;
-    type: string;
-    companyLogo: string;
-    companyName: string;
-    location: string;
-    description: string;
-    tags: string[];
-  };
+  @Input() job!: Job;
   @Input() isVertical: boolean = true;
   @Input() isChecked!: boolean;
 

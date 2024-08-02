@@ -2,7 +2,9 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { LoginComponent } from './features/auth/login/login.component';
 import { SignupComponent } from './features/auth/signup/signup.component';
+import { CompanyComponent } from './features/company/company/company.component';
 import { HomeComponent } from './features/home/home/home.component';
+import { JobDetailsComponent } from './features/jobs/job-details/job-details.component';
 export const routes: Routes = [
   {
     path: '',
@@ -14,6 +16,7 @@ export const routes: Routes = [
     loadChildren: () =>
       import('./features/jobs/jobs.module').then((m) => m.JobsModule),
   },
+  { path: 'job-details', component: JobDetailsComponent },
   {
     path: 'login',
     component: LoginComponent,
@@ -22,6 +25,7 @@ export const routes: Routes = [
     path: 'signup',
     component: SignupComponent,
   },
+  { path: 'company', component: CompanyComponent },
 
   // {
   //   path: 'login',

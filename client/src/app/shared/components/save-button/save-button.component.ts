@@ -7,6 +7,7 @@ import { Component, Output } from '@angular/core';
 })
 export class SaveButtonComponent {
   @Output() isChecked!: boolean;
+  iconSize: string = '24px';
 
   onClicked() {
     this.isChecked = !this.isChecked;

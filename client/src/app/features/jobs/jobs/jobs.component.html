@@ -6,14 +6,141 @@
 </div>
 
 <div class="row content">
-  <div class="gap-1 filters">
-    <div class="red"></div>
+  <div class="filtersSection">
+    <div class="column gap-1 filtersCard">
+      <!-- Job Title -->
+      <p class="filterHeader">Search By Job Title</p>
+      <input type="text" class="searchBar" placeholder="Search by job title" />
+
+      <!-- Location -->
+      <p class="filterHeader">Location</p>
+      <input type="text" class="searchBar" placeholder="Choose City" />
+
+      <p class="filterHeader">Category</p>
+      <div
+        *ngFor="
+          let category of categories
+            | slice : 0 : (showAllCategories ? categories.length : 6)
+        "
+        class="row space-between"
+      >
+        <div class="row">
+          <input
+            type="checkbox"
+            id="{{ category.name }}"
+            (click)="onCategoryChange(category.id)"
+          />
+          <label for="{{ category.name }}">
+            <span></span>
+            {{ category.name }}
+            <ins
+              ><i>{{ category.name }}</i></ins
+            >
+          </label>
+        </div>
+        <p class="full-center countTag">
+          {{ filterJobsByCategory(category.id).length }}
+        </p>
+      </div>
+      <app-button
+        label="{{ showAllCategoriesText }} all categories"
+        width="100%"
+        height="2.5rem"
+        backgroundColor="var(--primary-color)"
+        fontSize="1rem"
+        fontWeight="600"
+        (click)="toggleCategories()"
+      ></app-button>
+
+      <!-- Job Type -->
+      <p class="filterHeader">Job Type</p>
+      <div
+        *ngFor="let type of jobTypes; let index = index"
+        class="row space-between"
+      >
+        <div class="row">
+          <input type="checkbox" id="{{ jobTypes.at(index) }}" />
+          <label for="{{ jobTypes.at(index) }}">
+            <span></span>
+            {{ jobTypes.at(index) }}
+            <ins
+              ><i>{{ jobTypes.at(index) }}</i></ins
+            >
+          </label>
+        </div>
+        <p class="full-center countTag">10</p>
+      </div>
+
+      <!-- Experience Level -->
+      <p class="filterHeader">Experience Level</p>
+      <div
+        *ngFor="let type of experiences; let index = index"
+        class="row space-between"
+      >
+        <div class="row">
+          <input type="checkbox" id="{{ experiences.at(index) }}" />
+          <label for="{{ experiences.at(index) }}">
+            <span></span>
+            {{ experiences.at(index) }}
+            <ins
+              ><i>{{ experiences.at(index) }}</i></ins
+            >
+          </label>
+        </div>
+        <p class="full-center countTag">10</p>
+      </div>
+
+      <!-- Date Posted -->
+      <p class="filterHeader">Date Posted</p>
+      <div
+        *ngFor="let type of datePosted; let index = index"
+        class="row space-between"
+      >
+        <div class="row">
+          <input type="checkbox" id="{{ datePosted.at(index) }}" />
+          <label for="{{ datePosted.at(index) }}">
+            <span></span>
+            {{ datePosted.at(index) }}
+            <ins
+              ><i>{{ datePosted.at(index) }}</i></ins
+            >
+          </label>
+        </div>
+        <p class="full-center countTag">10</p>
+      </div>
+
+      <!-- Salary -->
+      <p class="filterHeader">Salary</p>
+      <p-slider [(ngModel)]="rangeValues" [range]="true" styleClass="w-14rem" />
+      <div class="row full-center">
+        <p class="salaryRange">Salary:</p>
+        &nbsp;
+        <p class="salaryRange">{{ rangeValues[0] | currency }} -</p>
+        &nbsp;
+        <p class="salaryRange">{{ rangeValues[1] | currency }}</p>
+      </div>
+      <app-button
+        label="Apply"
+        width="100%"
+        height="2rem"
+        backgroundColor="var(--primary-color)"
+        fontSize="1rem"
+        fontWeight="600"
+      ></app-button>
+    </div>
   </div>
-  <div class="column gap-1 jobs">
+
+  <div class="column gap-2 jobsSection">
+    <div class="countTag">
+      <p class="darkText">
+        Showing {{ paginatedJobs.length }} - {{ rows }} of
+        {{ filteredJobs.length }}
+      </p>
+    </div>
     <app-full-job-card
       *ngFor="let job of paginatedJobs"
       [job]="job"
-      [category]="getCategoryById(job.categoryId)"
+      [category]="getCategoryById(job.categoryId!)"
     ></app-full-job-card>
     <div class="card flex justify-content-center">
       <p-paginator
@@ -21,7 +148,7 @@
         [first]="first"
         [rows]="rows"
         [totalRecords]="featuredJobs.length"
-        [rowsPerPageOptions]="[10, 20, 30]"
+        [rowsPerPageOptions]="[5, 10, 15]"
       ></p-paginator>
     </div>
   </div>

@@ -5,6 +5,8 @@
 @import "./styles/variables.scss";
 @import "./styles/theme-overrides.scss";
 @import "assets/fonts/ClashDisplay-Font.scss";
+@import "../node_modules/quill/dist/quill.core.css";
+@import "../node_modules/quill/dist/quill.snow.css";
 
 // <uniquifier>: Use a unique and descriptive class name
 // <weight>: Use a value from 300 to 900

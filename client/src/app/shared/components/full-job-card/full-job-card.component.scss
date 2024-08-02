@@ -1,6 +1,6 @@
 .card {
   border-radius: var(--border-radius);
-  width: 68rem;
+  width: 100%;
   height: 15.75rem;
   padding: 2.5rem;
   background: url("../../../../assets/images/hero-pattern.svg");
@@ -8,6 +8,7 @@
   background-blend-mode: color-dodge;
   background-color: var(--accent-color);
   overflow: hidden;
+
 
   .timeAdded {
     font-family: var(--font-clash-variable);
@@ -49,7 +50,7 @@
   .jobData {
     gap: 1.5rem;
     .data {
-      gap: 0.5rem;
+      gap: 0.3rem;
       display: flex;
       direction: row;
       justify-content: space-between;
@@ -57,10 +58,14 @@
       text-overflow: ellipsis;
       white-space: nowrap;
       overflow: hidden;
+
+      i {
+        padding: 0.2rem;
+      }
     }
   }
 
-  .pi {
+  i {
     color: var(--primary-color);
     font-weight: 600;
     font-size: 1.2rem;

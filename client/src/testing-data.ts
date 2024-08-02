@@ -1,7 +1,10 @@
+import { Job } from './app/shared/models/job';
+
 export const categories: {
   id: number;
   name: string;
   icon: string;
+  // we by fetched from backend by categoryId
   numOfJobs: number;
 }[] = [
   { id: 101, name: 'Software Development', icon: 'pi-code', numOfJobs: 12 },
@@ -18,29 +21,13 @@ export const categories: {
   { id: 321, name: 'DevOps', icon: 'pi-cloud', numOfJobs: 10 },
 ];
 
-export const featuredJobs: {
-  id: number;
-  categoryId: number;
-  title: string;
-  type: string;
-  companyLogo: string;
-  companyName: string;
-  location: string;
-  salary: string;
-  gender: string;
-  experience: string;
-  description: string;
-  responsibilities: string;
-  qualifications: string;
-  benefits: string;
-  tags: string[];
-}[] = [
+export const featuredJobs: Job[] = [
   // Software Development
   {
     id: 234,
     categoryId: 101,
     title: 'Software Engineer',
-    type: 'Full-time',
+    type: 'Full Time',
     companyLogo:
       'https://upload.wikimedia.org/wikipedia/commons/c/ce/X_logo_2023.svg',
     companyName: 'X (formerly Twitter)',
@@ -55,13 +42,13 @@ export const featuredJobs: {
     qualifications:
       "Bachelor's degree in Computer Science or related field. Proficiency in Java, Python, or C++.",
     benefits: 'Health insurance, stock options, remote work flexibility.',
-    tags: ['software development', 'full-time', 'San Francisco', 'tech'],
+    tags: ['software development', 'Full Time', 'San Francisco', 'tech'],
   },
   {
     id: 678,
     categoryId: 101,
     title: 'Front-end Developer',
-    type: 'Full-time',
+    type: 'Full Time',
     companyLogo:
       'https://upload.wikimedia.org/wikipedia/commons/5/51/Facebook_f_logo_%282019%29.svg',
     companyName: 'Facebook',
@@ -80,7 +67,7 @@ export const featuredJobs: {
     tags: [
       'software development',
       'front-end',
-      'full-time',
+      'Full Time',
       'Menlo Park',
       'tech',
     ],
@@ -89,7 +76,7 @@ export const featuredJobs: {
     id: 543,
     categoryId: 101,
     title: 'Back-end Developer',
-    type: 'Full-time',
+    type: 'Full Time',
     companyLogo:
       'https://upload.wikimedia.org/wikipedia/commons/a/a9/Amazon_logo.svg',
     companyName: 'Amazon',
@@ -105,13 +92,13 @@ export const featuredJobs: {
       "Bachelor's degree in Computer Science or related field. Proficiency in Java, Node.js, SQL.",
     benefits:
       'Health insurance, stock options, career development opportunities.',
-    tags: ['software development', 'back-end', 'full-time', 'Seattle', 'tech'],
+    tags: ['software development', 'back-end', 'Full Time', 'Seattle', 'tech'],
   },
   {
     id: 987,
     categoryId: 101,
     title: 'Mobile App Developer',
-    type: 'Full-time',
+    type: 'Full Time',
     companyLogo:
       'https://upload.wikimedia.org/wikipedia/commons/f/fa/Apple_logo_black.svg',
     companyName: 'Apple',
@@ -129,7 +116,7 @@ export const featuredJobs: {
     tags: [
       'software development',
       'mobile app',
-      'full-time',
+      'Full Time',
       'Cupertino',
       'tech',
     ],
@@ -138,7 +125,7 @@ export const featuredJobs: {
     id: 321,
     categoryId: 101,
     title: 'DevOps Engineer',
-    type: 'Full-time',
+    type: 'Full Time',
     companyLogo:
       'https://upload.wikimedia.org/wikipedia/commons/b/bd/Tesla_Motors.svg',
     companyName: 'Tesla',
@@ -153,13 +140,13 @@ export const featuredJobs: {
     qualifications:
       "Bachelor's degree in Computer Science or related field. Experience with Docker, Kubernetes, and cloud services.",
     benefits: 'Health insurance, stock options, flexible working hours.',
-    tags: ['software development', 'DevOps', 'full-time', 'Austin', 'tech'],
+    tags: ['software development', 'DevOps', 'Full Time', 'Austin', 'tech'],
   },
   {
     id: 654,
     categoryId: 101,
     title: 'Full-stack Developer',
-    type: 'Full-time',
+    type: 'Full Time',
     companyLogo:
       'https://upload.wikimedia.org/wikipedia/commons/2/2f/Google_2015_logo.svg',
     companyName: 'Google',
@@ -178,7 +165,7 @@ export const featuredJobs: {
     tags: [
       'software development',
       'full-stack',
-      'full-time',
+      'Full Time',
       'Mountain View',
       'tech',
     ],
@@ -187,7 +174,7 @@ export const featuredJobs: {
     id: 876,
     categoryId: 101,
     title: 'UI/UX Designer',
-    type: 'Full-time',
+    type: 'Full Time',
     companyLogo:
       'https://upload.wikimedia.org/wikipedia/commons/0/08/Netflix_2015_logo.svg',
     companyName: 'Netflix',
@@ -202,13 +189,13 @@ export const featuredJobs: {
     qualifications:
       "Bachelor's degree in Design or related field. Experience with design tools like Sketch, Figma.",
     benefits: 'Health insurance, stock options, professional development.',
-    tags: ['software development', 'UI/UX', 'full-time', 'Los Gatos', 'tech'],
+    tags: ['software development', 'UI/UX', 'Full Time', 'Los Gatos', 'tech'],
   },
   {
     id: 192,
     categoryId: 101,
     title: 'Systems Architect',
-    type: 'Full-time',
+    type: 'Full Time',
     companyLogo:
       'https://upload.wikimedia.org/wikipedia/commons/c/ce/X_logo_2023.svg',
     companyName: 'X (formerly Twitter)',
@@ -223,13 +210,13 @@ export const featuredJobs: {
     qualifications:
       "Bachelor's degree in Computer Science or related field. Extensive experience in system design and architecture.",
     benefits: 'Flexible work hours, stock options, professional development.',
-    tags: ['software development', 'architect', 'full-time', 'Remote', 'tech'],
+    tags: ['software development', 'architect', 'Full Time', 'Remote', 'tech'],
   },
   {
     id: 847,
     categoryId: 101,
     title: 'Cloud Solutions Engineer',
-    type: 'Full-time',
+    type: 'Full Time',
     companyLogo:
       'https://upload.wikimedia.org/wikipedia/commons/a/a9/Amazon_logo.svg',
     companyName: 'Amazon',
@@ -244,13 +231,13 @@ export const featuredJobs: {
     qualifications:
       "Bachelor's degree in Computer Science or related field. Experience with AWS or Azure.",
     benefits: 'Health insurance, stock options, career development.',
-    tags: ['software development', 'cloud', 'full-time', 'Seattle', 'tech'],
+    tags: ['software development', 'cloud', 'Full Time', 'Seattle', 'tech'],
   },
   {
     id: 935,
     categoryId: 101,
     title: 'Game Developer',
-    type: 'Full-time',
+    type: 'Full Time',
     companyLogo:
       'https://upload.wikimedia.org/wikipedia/commons/f/fa/Apple_logo_black.svg',
     companyName: 'Apple',
@@ -268,7 +255,7 @@ export const featuredJobs: {
     tags: [
       'software development',
       'game development',
-      'full-time',
+      'Full Time',
       'Cupertino',
       'tech',
     ],
@@ -277,7 +264,7 @@ export const featuredJobs: {
     id: 486,
     categoryId: 101,
     title: 'Embedded Systems Engineer',
-    type: 'Full-time',
+    type: 'Full Time',
     companyLogo:
       'https://upload.wikimedia.org/wikipedia/commons/c/ce/X_logo_2023.svg',
     companyName: 'X (formerly Twitter)',
@@ -295,7 +282,7 @@ export const featuredJobs: {
     tags: [
       'software development',
       'embedded systems',
-      'full-time',
+      'Full Time',
       'San Francisco',
       'tech',
     ],
@@ -304,7 +291,7 @@ export const featuredJobs: {
     id: 772,
     categoryId: 101,
     title: 'Security Software Engineer',
-    type: 'Full-time',
+    type: 'Full Time',
     companyLogo:
       'https://upload.wikimedia.org/wikipedia/commons/0/08/Netflix_2015_logo.svg',
     companyName: 'Netflix',
@@ -322,7 +309,7 @@ export const featuredJobs: {
     tags: [
       'software development',
       'security',
-      'full-time',
+      'Full Time',
       'Los Gatos',
       'tech',
     ],
@@ -333,7 +320,7 @@ export const featuredJobs: {
     id: 9021,
     categoryId: 205,
     title: 'Junior Data Scientist',
-    type: 'Full-time',
+    type: 'Full Time',
     companyLogo:
       'https://upload.wikimedia.org/wikipedia/commons/0/08/Netflix_2015_logo.svg',
     companyName: 'Netflix',
@@ -349,13 +336,13 @@ export const featuredJobs: {
       "Bachelor's degree in Data Science, Mathematics, or related field. Knowledge of Python and SQL.",
     benefits:
       'Health insurance, 401(k), professional development opportunities.',
-    tags: ['data science', 'junior', 'full-time', 'New York', 'tech'],
+    tags: ['data science', 'junior', 'Full Time', 'New York', 'tech'],
   },
   {
     id: 5173,
     categoryId: 205,
     title: 'Senior Data Scientist',
-    type: 'Full-time',
+    type: 'Full Time',
     companyLogo:
       'https://upload.wikimedia.org/wikipedia/commons/2/2f/Google_2015_logo.svg',
     companyName: 'Google',
@@ -371,13 +358,13 @@ export const featuredJobs: {
       "Master's degree in Data Science or related field. Extensive experience with machine learning algorithms.",
     benefits:
       'Comprehensive health insurance, stock options, flexible work hours.',
-    tags: ['data science', 'senior', 'full-time', 'San Francisco', 'tech'],
+    tags: ['data science', 'senior', 'Full Time', 'San Francisco', 'tech'],
   },
   {
     id: 3948,
     categoryId: 205,
     title: 'Data Analyst',
-    type: 'Full-time',
+    type: 'Full Time',
     companyLogo:
       'https://upload.wikimedia.org/wikipedia/commons/5/51/Facebook_f_logo_%282019%29.svg',
     companyName: 'Facebook',
@@ -395,7 +382,7 @@ export const featuredJobs: {
     tags: [
       'data science',
       'data analyst',
-      'full-time',
+      'Full Time',
       'Chicago',
       'market research',
     ],
@@ -404,7 +391,7 @@ export const featuredJobs: {
     id: 5812,
     categoryId: 205,
     title: 'Data Engineer',
-    type: 'Full-time',
+    type: 'Full Time',
     companyLogo:
       'https://upload.wikimedia.org/wikipedia/commons/a/a9/Amazon_logo.svg',
     companyName: 'Amazon',
@@ -419,13 +406,13 @@ export const featuredJobs: {
     qualifications:
       "Bachelor's degree in Computer Science or related field. Experience with SQL and cloud platforms.",
     benefits: 'Health insurance, stock options, remote work options.',
-    tags: ['data science', 'data engineer', 'full-time', 'Austin', 'tech'],
+    tags: ['data science', 'data engineer', 'Full Time', 'Austin', 'tech'],
   },
   {
     id: 7156,
     categoryId: 205,
     title: 'Machine Learning Engineer',
-    type: 'Full-time',
+    type: 'Full Time',
     companyLogo:
       'https://upload.wikimedia.org/wikipedia/commons/b/bd/Tesla_Motors.svg',
     companyName: 'Tesla',
@@ -440,13 +427,13 @@ export const featuredJobs: {
     qualifications:
       "Master's degree in Data Science, Computer Science, or related field. Strong programming skills in Python and TensorFlow.",
     benefits: 'Health insurance, 401(k) matching, flexible hours.',
-    tags: ['data science', 'machine learning', 'full-time', 'Boston', 'AI'],
+    tags: ['data science', 'machine learning', 'Full Time', 'Boston', 'AI'],
   },
   {
     id: 2837,
     categoryId: 205,
     title: 'Business Intelligence Analyst',
-    type: 'Full-time',
+    type: 'Full Time',
     companyLogo:
       'https://upload.wikimedia.org/wikipedia/commons/5/51/IBM_logo.svg',
     companyName: 'IBM',
@@ -464,7 +451,7 @@ export const featuredJobs: {
     tags: [
       'data science',
       'business intelligence',
-      'full-time',
+      'Full Time',
       'Seattle',
       'BI',
     ],
@@ -487,14 +474,14 @@ export const featuredJobs: {
       'Assist in data collection, preprocessing, and analysis. Support data scientists in various projects.',
     qualifications:
       'Currently pursuing a degree in Data Science, Computer Science, or related field. Basic knowledge of Python and SQL.',
-    benefits: 'Flexible hours, mentorship, opportunity for full-time offer.',
+    benefits: 'Flexible hours, mentorship, opportunity for Full Time offer.',
     tags: ['data science', 'internship', 'remote', 'startup'],
   },
   {
     id: 3921,
     categoryId: 205,
     title: 'Lead Data Scientist',
-    type: 'Full-time',
+    type: 'Full Time',
     companyLogo:
       'https://upload.wikimedia.org/wikipedia/commons/4/44/Microsoft_logo.svg',
     companyName: 'Microsoft',
@@ -509,7 +496,7 @@ export const featuredJobs: {
     qualifications:
       'PhD in Data Science, Mathematics, or related field. Extensive experience in data analysis and machine learning.',
     benefits: 'Health insurance, pension plan, flexible work environment.',
-    tags: ['data science', 'lead', 'full-time', 'London', 'tech'],
+    tags: ['data science', 'lead', 'Full Time', 'London', 'tech'],
   },
 
   // Marketing
@@ -517,7 +504,7 @@ export const featuredJobs: {
     id: 983,
     categoryId: 309,
     title: 'Marketing Manager',
-    type: 'Full-time',
+    type: 'Full Time',
     companyLogo:
       'https://upload.wikimedia.org/wikipedia/commons/0/08/Netflix_2015_logo.svg',
     companyName: 'Netflix',
@@ -532,13 +519,13 @@ export const featuredJobs: {
     qualifications:
       "Bachelor's degree in Marketing or related field. Proven experience in marketing management.",
     benefits: 'Health insurance, stock options, professional development.',
-    tags: ['marketing', 'management', 'full-time', 'Los Gatos', 'tech'],
+    tags: ['marketing', 'management', 'Full Time', 'Los Gatos', 'tech'],
   },
   {
     id: 564,
     categoryId: 309,
     title: 'Digital Marketing Specialist',
-    type: 'Full-time',
+    type: 'Full Time',
     companyLogo:
       'https://upload.wikimedia.org/wikipedia/commons/2/2f/Google_2015_logo.svg',
     companyName: 'Google',
@@ -554,13 +541,13 @@ export const featuredJobs: {
       "Bachelor's degree in Marketing or related field. Experience with digital marketing tools and analytics.",
     benefits:
       'Comprehensive health insurance, stock options, on-site services.',
-    tags: ['marketing', 'digital', 'full-time', 'Mountain View', 'tech'],
+    tags: ['marketing', 'digital', 'Full Time', 'Mountain View', 'tech'],
   },
   {
     id: 278,
     categoryId: 309,
     title: 'Content Marketing Strategist',
-    type: 'Full-time',
+    type: 'Full Time',
     companyLogo:
       'https://upload.wikimedia.org/wikipedia/commons/5/51/Facebook_f_logo_%282019%29.svg',
     companyName: 'Facebook',
@@ -575,13 +562,13 @@ export const featuredJobs: {
     qualifications:
       "Bachelor's degree in Marketing, Communications, or related field. Strong writing and editing skills.",
     benefits: 'Health insurance, retirement plans, wellness programs.',
-    tags: ['marketing', 'content', 'full-time', 'Menlo Park', 'tech'],
+    tags: ['marketing', 'content', 'Full Time', 'Menlo Park', 'tech'],
   },
   {
     id: 729,
     categoryId: 309,
     title: 'Social Media Manager',
-    type: 'Full-time',
+    type: 'Full Time',
     companyLogo:
       'https://upload.wikimedia.org/wikipedia/commons/a/a9/Amazon_logo.svg',
     companyName: 'Amazon',
@@ -597,13 +584,13 @@ export const featuredJobs: {
       "Bachelor's degree in Marketing or related field. Experience with social media management tools.",
     benefits:
       'Health insurance, stock options, career development opportunities.',
-    tags: ['marketing', 'social media', 'full-time', 'Seattle', 'tech'],
+    tags: ['marketing', 'social media', 'Full Time', 'Seattle', 'tech'],
   },
   {
     id: 483,
     categoryId: 309,
     title: 'SEO Specialist',
-    type: 'Full-time',
+    type: 'Full Time',
     companyLogo:
       'https://upload.wikimedia.org/wikipedia/commons/b/bd/Tesla_Motors.svg',
     companyName: 'Tesla',
@@ -618,13 +605,13 @@ export const featuredJobs: {
     qualifications:
       "Bachelor's degree in Marketing or related field. Proficiency in SEO tools and techniques.",
     benefits: 'Health insurance, stock options, flexible working hours.',
-    tags: ['marketing', 'SEO', 'full-time', 'Austin', 'tech'],
+    tags: ['marketing', 'SEO', 'Full Time', 'Austin', 'tech'],
   },
   {
     id: 391,
     categoryId: 309,
     title: 'Email Marketing Coordinator',
-    type: 'Full-time',
+    type: 'Full Time',
     companyLogo:
       'https://upload.wikimedia.org/wikipedia/commons/5/51/IBM_logo.svg',
     companyName: 'IBM',
@@ -639,13 +626,13 @@ export const featuredJobs: {
     qualifications:
       "Bachelor's degree in Marketing or related field. Experience with email marketing platforms.",
     benefits: 'Health insurance, stock options, career development.',
-    tags: ['marketing', 'email marketing', 'full-time', 'Armonk', 'tech'],
+    tags: ['marketing', 'email marketing', 'Full Time', 'Armonk', 'tech'],
   },
   {
     id: 284,
     categoryId: 309,
     title: 'Brand Strategist',
-    type: 'Full-time',
+    type: 'Full Time',
     companyLogo:
       'https://upload.wikimedia.org/wikipedia/commons/c/ce/X_logo_2023.svg',
     companyName: 'X (formerly Twitter)',
@@ -660,13 +647,13 @@ export const featuredJobs: {
     qualifications:
       "Bachelor's degree in Marketing, Business, or related field. Strong analytical and strategic skills.",
     benefits: 'Health insurance, stock options, remote work flexibility.',
-    tags: ['marketing', 'branding', 'full-time', 'San Francisco', 'tech'],
+    tags: ['marketing', 'branding', 'Full Time', 'San Francisco', 'tech'],
   },
   {
     id: 495,
     categoryId: 309,
     title: 'Product Marketing Manager',
-    type: 'Full-time',
+    type: 'Full Time',
     companyLogo:
       'https://upload.wikimedia.org/wikipedia/commons/4/44/Microsoft_logo.svg',
     companyName: 'Microsoft',
@@ -682,13 +669,13 @@ export const featuredJobs: {
       "Bachelor's degree in Marketing or related field. Experience with product marketing and management.",
     benefits:
       'Comprehensive health insurance, stock options, on-site services.',
-    tags: ['marketing', 'product marketing', 'full-time', 'Redmond', 'tech'],
+    tags: ['marketing', 'product marketing', 'Full Time', 'Redmond', 'tech'],
   },
   {
     id: 208,
     categoryId: 309,
     title: 'Market Research Analyst',
-    type: 'Full-time',
+    type: 'Full Time',
     companyLogo:
       'https://upload.wikimedia.org/wikipedia/commons/a/a9/Amazon_logo.svg',
     companyName: 'Amazon',
@@ -703,13 +690,13 @@ export const featuredJobs: {
     qualifications:
       "Bachelor's degree in Marketing, Business, or related field. Experience with market research tools.",
     benefits: 'Health insurance, stock options, career development.',
-    tags: ['marketing', 'market research', 'full-time', 'Seattle', 'tech'],
+    tags: ['marketing', 'market research', 'Full Time', 'Seattle', 'tech'],
   },
   {
     id: 729,
     categoryId: 309,
     title: 'Public Relations Specialist',
-    type: 'Full-time',
+    type: 'Full Time',
     companyLogo:
       'https://upload.wikimedia.org/wikipedia/commons/2/2f/Google_2015_logo.svg',
     companyName: 'Google',
@@ -725,13 +712,13 @@ export const featuredJobs: {
       "Bachelor's degree in Public Relations, Marketing, or related field. Strong communication skills.",
     benefits:
       'Comprehensive health insurance, stock options, on-site services.',
-    tags: ['marketing', 'PR', 'full-time', 'Mountain View', 'tech'],
+    tags: ['marketing', 'PR', 'Full Time', 'Mountain View', 'tech'],
   },
   {
     id: 874,
     categoryId: 309,
     title: 'Advertising Coordinator',
-    type: 'Full-time',
+    type: 'Full Time',
     companyLogo:
       'https://upload.wikimedia.org/wikipedia/commons/0/08/Netflix_2015_logo.svg',
     companyName: 'Netflix',
@@ -746,13 +733,13 @@ export const featuredJobs: {
     qualifications:
       "Bachelor's degree in Marketing or related field. Experience with advertising platforms.",
     benefits: 'Health insurance, stock options, professional development.',
-    tags: ['marketing', 'advertising', 'full-time', 'Los Gatos', 'tech'],
+    tags: ['marketing', 'advertising', 'Full Time', 'Los Gatos', 'tech'],
   },
   {
     id: 605,
     categoryId: 309,
     title: 'Customer Engagement Specialist',
-    type: 'Full-time',
+    type: 'Full Time',
     companyLogo:
       'https://upload.wikimedia.org/wikipedia/commons/5/51/Facebook_f_logo_%282019%29.svg',
     companyName: 'Facebook',
@@ -770,7 +757,7 @@ export const featuredJobs: {
     tags: [
       'marketing',
       'customer engagement',
-      'full-time',
+      'Full Time',
       'Menlo Park',
       'tech',
     ],
@@ -779,7 +766,7 @@ export const featuredJobs: {
     id: 476,
     categoryId: 309,
     title: 'Creative Director',
-    type: 'Full-time',
+    type: 'Full Time',
     companyLogo:
       'https://upload.wikimedia.org/wikipedia/commons/b/bd/Tesla_Motors.svg',
     companyName: 'Tesla',
@@ -794,13 +781,13 @@ export const featuredJobs: {
     qualifications:
       "Bachelor's degree in Design, Marketing, or related field. Proven experience in creative direction.",
     benefits: 'Health insurance, stock options, flexible working hours.',
-    tags: ['marketing', 'creative', 'full-time', 'Austin', 'tech'],
+    tags: ['marketing', 'creative', 'Full Time', 'Austin', 'tech'],
   },
   {
     id: 237,
     categoryId: 309,
     title: 'Marketing Analyst',
-    type: 'Full-time',
+    type: 'Full Time',
     companyLogo:
       'https://upload.wikimedia.org/wikipedia/commons/4/44/Microsoft_logo.svg',
     companyName: 'Microsoft',
@@ -816,13 +803,13 @@ export const featuredJobs: {
       "Bachelor's degree in Marketing, Business, or related field. Experience with data analysis tools.",
     benefits:
       'Comprehensive health insurance, stock options, on-site services.',
-    tags: ['marketing', 'analysis', 'full-time', 'Redmond', 'tech'],
+    tags: ['marketing', 'analysis', 'Full Time', 'Redmond', 'tech'],
   },
   {
     id: 384,
     categoryId: 309,
     title: 'Event Marketing Specialist',
-    type: 'Full-time',
+    type: 'Full Time',
     companyLogo:
       'https://upload.wikimedia.org/wikipedia/commons/a/a9/Amazon_logo.svg',
     companyName: 'Amazon',
@@ -837,13 +824,13 @@ export const featuredJobs: {
     qualifications:
       "Bachelor's degree in Marketing, Event Management, or related field. Experience in event planning.",
     benefits: 'Health insurance, stock options, career development.',
-    tags: ['marketing', 'events', 'full-time', 'Seattle', 'tech'],
+    tags: ['marketing', 'events', 'Full Time', 'Seattle', 'tech'],
   },
   {
     id: 629,
     categoryId: 309,
     title: 'Influencer Marketing Manager',
-    type: 'Full-time',
+    type: 'Full Time',
     companyLogo:
       'https://upload.wikimedia.org/wikipedia/commons/c/ce/X_logo_2023.svg',
     companyName: 'X (formerly Twitter)',
@@ -858,13 +845,13 @@ export const featuredJobs: {
     qualifications:
       "Bachelor's degree in Marketing or related field. Experience with influencer marketing.",
     benefits: 'Health insurance, stock options, remote work flexibility.',
-    tags: ['marketing', 'influencers', 'full-time', 'San Francisco', 'tech'],
+    tags: ['marketing', 'influencers', 'Full Time', 'San Francisco', 'tech'],
   },
   {
     id: 379,
     categoryId: 309,
     title: 'Product Marketing Specialist',
-    type: 'Full-time',
+    type: 'Full Time',
     companyLogo:
       'https://upload.wikimedia.org/wikipedia/commons/2/2f/Google_2015_logo.svg',
     companyName: 'Google',
@@ -883,7 +870,7 @@ export const featuredJobs: {
     tags: [
       'marketing',
       'product marketing',
-      'full-time',
+      'Full Time',
       'Mountain View',
       'tech',
     ],
@@ -892,7 +879,7 @@ export const featuredJobs: {
     id: 291,
     categoryId: 309,
     title: 'Customer Acquisition Manager',
-    type: 'Full-time',
+    type: 'Full Time',
     companyLogo:
       'https://upload.wikimedia.org/wikipedia/commons/5/51/Facebook_f_logo_%282019%29.svg',
     companyName: 'Facebook',
@@ -910,7 +897,7 @@ export const featuredJobs: {
     tags: [
       'marketing',
       'customer acquisition',
-      'full-time',
+      'Full Time',
       'Menlo Park',
       'tech',
     ],
@@ -921,7 +908,7 @@ export const featuredJobs: {
     id: 147,
     categoryId: 412,
     title: 'Financial Analyst',
-    type: 'Full-time',
+    type: 'Full Time',
     companyLogo:
       'https://upload.wikimedia.org/wikipedia/commons/2/2f/Google_2015_logo.svg',
     companyName: 'Google',
@@ -940,7 +927,7 @@ export const featuredJobs: {
     tags: [
       'finance',
       'financial analysis',
-      'full-time',
+      'Full Time',
       'Mountain View',
       'tech',
     ],
@@ -949,7 +936,7 @@ export const featuredJobs: {
     id: 308,
     categoryId: 412,
     title: 'Investment Banker',
-    type: 'Full-time',
+    type: 'Full Time',
     companyLogo:
       'https://upload.wikimedia.org/wikipedia/commons/4/44/Microsoft_logo.svg',
     companyName: 'Microsoft',
@@ -964,13 +951,13 @@ export const featuredJobs: {
     qualifications:
       "Bachelor's degree in Finance, Business, or related field. Experience in investment banking.",
     benefits: 'Health insurance, stock options, career development.',
-    tags: ['finance', 'investment', 'full-time', 'Redmond', 'tech'],
+    tags: ['finance', 'investment', 'Full Time', 'Redmond', 'tech'],
   },
   {
     id: 521,
     categoryId: 412,
     title: 'Financial Controller',
-    type: 'Full-time',
+    type: 'Full Time',
     companyLogo:
       'https://upload.wikimedia.org/wikipedia/commons/5/51/Facebook_f_logo_%282019%29.svg',
     companyName: 'Facebook',
@@ -985,13 +972,13 @@ export const featuredJobs: {
     qualifications:
       "Bachelor's degree in Accounting or Finance. CPA certification preferred.",
     benefits: 'Health insurance, retirement plans, wellness programs.',
-    tags: ['finance', 'controller', 'full-time', 'Menlo Park', 'tech'],
+    tags: ['finance', 'controller', 'Full Time', 'Menlo Park', 'tech'],
   },
   {
     id: 432,
     categoryId: 412,
     title: 'Tax Advisor',
-    type: 'Full-time',
+    type: 'Full Time',
     companyLogo:
       'https://upload.wikimedia.org/wikipedia/commons/a/a9/Amazon_logo.svg',
     companyName: 'Amazon',
@@ -1006,13 +993,13 @@ export const featuredJobs: {
     qualifications:
       "Bachelor's degree in Accounting or Finance. CPA or other relevant certification.",
     benefits: 'Health insurance, stock options, career development.',
-    tags: ['finance', 'tax', 'full-time', 'Seattle', 'tech'],
+    tags: ['finance', 'tax', 'Full Time', 'Seattle', 'tech'],
   },
   {
     id: 645,
     categoryId: 412,
     title: 'Risk Manager',
-    type: 'Full-time',
+    type: 'Full Time',
     companyLogo:
       'https://upload.wikimedia.org/wikipedia/commons/0/08/Netflix_2015_logo.svg',
     companyName: 'Netflix',
@@ -1027,13 +1014,13 @@ export const featuredJobs: {
     qualifications:
       "Bachelor's degree in Finance, Risk Management, or related field. Experience in risk management.",
     benefits: 'Health insurance, stock options, professional development.',
-    tags: ['finance', 'risk management', 'full-time', 'Los Gatos', 'tech'],
+    tags: ['finance', 'risk management', 'Full Time', 'Los Gatos', 'tech'],
   },
   {
     id: 217,
     categoryId: 412,
     title: 'Credit Analyst',
-    type: 'Full-time',
+    type: 'Full Time',
     companyLogo:
       'https://upload.wikimedia.org/wikipedia/commons/b/bd/Tesla_Motors.svg',
     companyName: 'Tesla',
@@ -1048,13 +1035,13 @@ export const featuredJobs: {
     qualifications:
       "Bachelor's degree in Finance, Economics, or related field. Experience in credit analysis.",
     benefits: 'Health insurance, stock options, flexible working hours.',
-    tags: ['finance', 'credit', 'full-time', 'Austin', 'tech'],
+    tags: ['finance', 'credit', 'Full Time', 'Austin', 'tech'],
   },
   {
     id: 934,
     categoryId: 412,
     title: 'Treasury Analyst',
-    type: 'Full-time',
+    type: 'Full Time',
     companyLogo:
       'https://upload.wikimedia.org/wikipedia/commons/4/44/Microsoft_logo.svg',
     companyName: 'Microsoft',
@@ -1070,13 +1057,13 @@ export const featuredJobs: {
       "Bachelor's degree in Finance or related field. Experience with treasury management.",
     benefits:
       'Comprehensive health insurance, stock options, on-site services.',
-    tags: ['finance', 'treasury', 'full-time', 'Redmond', 'tech'],
+    tags: ['finance', 'treasury', 'Full Time', 'Redmond', 'tech'],
   },
   {
     id: 794,
     categoryId: 412,
     title: 'Finance Manager',
-    type: 'Full-time',
+    type: 'Full Time',
     companyLogo:
       'https://upload.wikimedia.org/wikipedia/commons/c/ce/X_logo_2023.svg',
     companyName: 'X (formerly Twitter)',
@@ -1091,13 +1078,13 @@ export const featuredJobs: {
     qualifications:
       "Bachelor's degree in Finance, Accounting, or related field. Experience in financial management.",
     benefits: 'Health insurance, stock options, remote work flexibility.',
-    tags: ['finance', 'management', 'full-time', 'San Francisco', 'tech'],
+    tags: ['finance', 'management', 'Full Time', 'San Francisco', 'tech'],
   },
   {
     id: 586,
     categoryId: 412,
     title: 'Financial Planner',
-    type: 'Full-time',
+    type: 'Full Time',
     companyLogo:
       'https://upload.wikimedia.org/wikipedia/commons/5/51/Facebook_f_logo_%282019%29.svg',
     companyName: 'Facebook',
@@ -1112,13 +1099,13 @@ export const featuredJobs: {
     qualifications:
       "Bachelor's degree in Finance, Financial Planning, or related field. Experience with financial planning.",
     benefits: 'Health insurance, retirement plans, wellness programs.',
-    tags: ['finance', 'financial planning', 'full-time', 'Menlo Park', 'tech'],
+    tags: ['finance', 'financial planning', 'Full Time', 'Menlo Park', 'tech'],
   },
   {
     id: 371,
     categoryId: 412,
     title: 'Accounting Manager',
-    type: 'Full-time',
+    type: 'Full Time',
     companyLogo:
       'https://upload.wikimedia.org/wikipedia/commons/a/a9/Amazon_logo.svg',
     companyName: 'Amazon',
@@ -1133,13 +1120,13 @@ export const featuredJobs: {
     qualifications:
       "Bachelor's degree in Accounting or Finance. CPA certification preferred.",
     benefits: 'Health insurance, stock options, career development.',
-    tags: ['finance', 'accounting', 'full-time', 'Seattle', 'tech'],
+    tags: ['finance', 'accounting', 'Full Time', 'Seattle', 'tech'],
   },
   {
     id: 405,
     categoryId: 412,
     title: 'Chief Financial Officer (CFO)',
-    type: 'Full-time',
+    type: 'Full Time',
     companyLogo:
       'https://upload.wikimedia.org/wikipedia/commons/b/bd/Tesla_Motors.svg',
     companyName: 'Tesla',
@@ -1154,7 +1141,7 @@ export const featuredJobs: {
     qualifications:
       "Bachelor's degree in Finance, Accounting, or related field. Extensive experience in senior financial roles.",
     benefits: 'Health insurance, stock options, executive benefits.',
-    tags: ['finance', 'executive', 'full-time', 'Austin', 'tech'],
+    tags: ['finance', 'executive', 'Full Time', 'Austin', 'tech'],
   },
 
   // Human Resources
@@ -1162,7 +1149,7 @@ export const featuredJobs: {
     id: 742,
     categoryId: 523,
     title: 'HR Manager',
-    type: 'Full-time',
+    type: 'Full Time',
     companyLogo:
       'https://upload.wikimedia.org/wikipedia/commons/0/08/Netflix_2015_logo.svg',
     companyName: 'Netflix',
@@ -1177,13 +1164,13 @@ export const featuredJobs: {
     qualifications:
       "Bachelor's degree in Human Resources or related field. Proven experience in HR management.",
     benefits: 'Health insurance, stock options, flexible work hours.',
-    tags: ['HR', 'management', 'full-time', 'Los Gatos', 'tech'],
+    tags: ['HR', 'management', 'Full Time', 'Los Gatos', 'tech'],
   },
   {
     id: 859,
     categoryId: 523,
     title: 'Recruitment Specialist',
-    type: 'Full-time',
+    type: 'Full Time',
     companyLogo:
       'https://upload.wikimedia.org/wikipedia/commons/2/2f/Google_2015_logo.svg',
     companyName: 'Google',
@@ -1199,13 +1186,13 @@ export const featuredJobs: {
       "Bachelor's degree in Human Resources or related field. Experience in recruitment.",
     benefits:
       'Comprehensive health insurance, stock options, career development.',
-    tags: ['HR', 'recruitment', 'full-time', 'Mountain View', 'tech'],
+    tags: ['HR', 'recruitment', 'Full Time', 'Mountain View', 'tech'],
   },
   {
     id: 496,
     categoryId: 523,
     title: 'HR Coordinator',
-    type: 'Full-time',
+    type: 'Full Time',
     companyLogo:
       'https://upload.wikimedia.org/wikipedia/commons/5/51/Facebook_f_logo_%282019%29.svg',
     companyName: 'Facebook',
@@ -1220,13 +1207,13 @@ export const featuredJobs: {
     qualifications:
       "Bachelor's degree in Human Resources or related field. Experience in HR coordination.",
     benefits: 'Health insurance, stock options, professional development.',
-    tags: ['HR', 'coordination', 'full-time', 'Menlo Park', 'tech'],
+    tags: ['HR', 'coordination', 'Full Time', 'Menlo Park', 'tech'],
   },
   {
     id: 631,
     categoryId: 523,
     title: 'Compensation Analyst',
-    type: 'Full-time',
+    type: 'Full Time',
     companyLogo:
       'https://upload.wikimedia.org/wikipedia/commons/a/a9/Amazon_logo.svg',
     companyName: 'Amazon',
@@ -1241,13 +1228,13 @@ export const featuredJobs: {
     qualifications:
       "Bachelor's degree in Human Resources, Finance, or related field. Experience in compensation analysis.",
     benefits: 'Health insurance, stock options, performance bonuses.',
-    tags: ['HR', 'compensation', 'full-time', 'Seattle', 'tech'],
+    tags: ['HR', 'compensation', 'Full Time', 'Seattle', 'tech'],
   },
   {
     id: 309,
     categoryId: 523,
     title: 'Employee Relations Specialist',
-    type: 'Full-time',
+    type: 'Full Time',
     companyLogo:
       'https://upload.wikimedia.org/wikipedia/commons/b/bd/Tesla_Motors.svg',
     companyName: 'Tesla',
@@ -1262,13 +1249,13 @@ export const featuredJobs: {
     qualifications:
       "Bachelor's degree in Human Resources or related field. Experience in employee relations.",
     benefits: 'Health insurance, stock options, flexible work hours.',
-    tags: ['HR', 'employee relations', 'full-time', 'Austin', 'tech'],
+    tags: ['HR', 'employee relations', 'Full Time', 'Austin', 'tech'],
   },
   {
     id: 728,
     categoryId: 523,
     title: 'HR Business Partner',
-    type: 'Full-time',
+    type: 'Full Time',
     companyLogo:
       'https://upload.wikimedia.org/wikipedia/commons/4/44/Microsoft_logo.svg',
     companyName: 'Microsoft',
@@ -1284,13 +1271,13 @@ export const featuredJobs: {
       "Bachelor's degree in Human Resources or related field. Extensive HR business partner experience.",
     benefits:
       'Comprehensive health insurance, stock options, career growth opportunities.',
-    tags: ['HR', 'business partner', 'full-time', 'Redmond', 'tech'],
+    tags: ['HR', 'business partner', 'Full Time', 'Redmond', 'tech'],
   },
   {
     id: 901,
     categoryId: 523,
     title: 'Training and Development Specialist',
-    type: 'Full-time',
+    type: 'Full Time',
     companyLogo:
       'https://upload.wikimedia.org/wikipedia/commons/c/ce/X_logo_2023.svg',
     companyName: 'X (formerly Twitter)',
@@ -1305,13 +1292,13 @@ export const featuredJobs: {
     qualifications:
       "Bachelor's degree in Human Resources, Education, or related field. Experience in training and development.",
     benefits: 'Health insurance, stock options, remote work flexibility.',
-    tags: ['HR', 'training', 'full-time', 'San Francisco', 'tech'],
+    tags: ['HR', 'training', 'Full Time', 'San Francisco', 'tech'],
   },
   {
     id: 562,
     categoryId: 523,
     title: 'HR Generalist',
-    type: 'Full-time',
+    type: 'Full Time',
     companyLogo:
       'https://upload.wikimedia.org/wikipedia/commons/f/fa/Apple_logo_black.svg',
     companyName: 'Apple',
@@ -1326,7 +1313,7 @@ export const featuredJobs: {
     qualifications:
       "Bachelor's degree in Human Resources or related field. Experience as an HR generalist.",
     benefits: 'Health insurance, stock options, career development.',
-    tags: ['HR', 'generalist', 'full-time', 'Cupertino', 'tech'],
+    tags: ['HR', 'generalist', 'Full Time', 'Cupertino', 'tech'],
   },
 
   // Sales
@@ -1334,7 +1321,7 @@ export const featuredJobs: {
     id: 932,
     categoryId: 634,
     title: 'Sales Manager',
-    type: 'Full-time',
+    type: 'Full Time',
     companyLogo:
       'https://upload.wikimedia.org/wikipedia/commons/0/08/Netflix_2015_logo.svg',
     companyName: 'Netflix',
@@ -1349,13 +1336,13 @@ export const featuredJobs: {
     qualifications:
       "Bachelor's degree in Business or related field. Proven experience in sales management.",
     benefits: 'Health insurance, stock options, remote work options.',
-    tags: ['sales', 'management', 'full-time', 'Los Gatos', 'tech'],
+    tags: ['sales', 'management', 'Full Time', 'Los Gatos', 'tech'],
   },
   {
     id: 847,
     categoryId: 634,
     title: 'Account Executive',
-    type: 'Full-time',
+    type: 'Full Time',
     companyLogo:
       'https://upload.wikimedia.org/wikipedia/commons/2/2f/Google_2015_logo.svg',
     companyName: 'Google',
@@ -1371,13 +1358,13 @@ export const featuredJobs: {
       "Bachelor's degree in Business or related field. Experience in account management.",
     benefits:
       'Comprehensive health insurance, stock options, wellness programs.',
-    tags: ['sales', 'account management', 'full-time', 'Mountain View', 'tech'],
+    tags: ['sales', 'account management', 'Full Time', 'Mountain View', 'tech'],
   },
   {
     id: 614,
     categoryId: 634,
     title: 'Sales Development Representative',
-    type: 'Full-time',
+    type: 'Full Time',
     companyLogo:
       'https://upload.wikimedia.org/wikipedia/commons/5/51/Facebook_f_logo_%282019%29.svg',
     companyName: 'Facebook',
@@ -1392,13 +1379,13 @@ export const featuredJobs: {
     qualifications:
       "Bachelor's degree in Marketing, Business, or related field.",
     benefits: 'Health insurance, stock options, career development.',
-    tags: ['sales', 'lead generation', 'full-time', 'Menlo Park', 'tech'],
+    tags: ['sales', 'lead generation', 'Full Time', 'Menlo Park', 'tech'],
   },
   {
     id: 287,
     categoryId: 634,
     title: 'Regional Sales Manager',
-    type: 'Full-time',
+    type: 'Full Time',
     companyLogo:
       'https://upload.wikimedia.org/wikipedia/commons/a/a9/Amazon_logo.svg',
     companyName: 'Amazon',
@@ -1413,13 +1400,13 @@ export const featuredJobs: {
     qualifications:
       "Bachelor's degree in Business or related field. Extensive experience in regional sales management.",
     benefits: 'Health insurance, stock options, performance bonuses.',
-    tags: ['sales', 'regional management', 'full-time', 'Seattle', 'tech'],
+    tags: ['sales', 'regional management', 'Full Time', 'Seattle', 'tech'],
   },
   {
     id: 751,
     categoryId: 634,
     title: 'Business Development Manager',
-    type: 'Full-time',
+    type: 'Full Time',
     companyLogo:
       'https://upload.wikimedia.org/wikipedia/commons/b/bd/Tesla_Motors.svg',
     companyName: 'Tesla',
@@ -1434,13 +1421,13 @@ export const featuredJobs: {
     qualifications:
       "Bachelor's degree in Business or related field. Experience in business development.",
     benefits: 'Health insurance, stock options, flexible work hours.',
-    tags: ['sales', 'business development', 'full-time', 'Austin', 'tech'],
+    tags: ['sales', 'business development', 'Full Time', 'Austin', 'tech'],
   },
   {
     id: 902,
     categoryId: 634,
     title: 'Inside Sales Representative',
-    type: 'Full-time',
+    type: 'Full Time',
     companyLogo:
       'https://upload.wikimedia.org/wikipedia/commons/4/44/Microsoft_logo.svg',
     companyName: 'Microsoft',
@@ -1456,13 +1443,13 @@ export const featuredJobs: {
       "Bachelor's degree in Business or related field. Experience in inside sales.",
     benefits:
       'Comprehensive health insurance, stock options, career growth opportunities.',
-    tags: ['sales', 'inside sales', 'full-time', 'Redmond', 'tech'],
+    tags: ['sales', 'inside sales', 'Full Time', 'Redmond', 'tech'],
   },
   {
     id: 546,
     categoryId: 634,
     title: 'Account Manager',
-    type: 'Full-time',
+    type: 'Full Time',
     companyLogo:
       'https://upload.wikimedia.org/wikipedia/commons/c/ce/X_logo_2023.svg',
     companyName: 'X (formerly Twitter)',
@@ -1477,13 +1464,13 @@ export const featuredJobs: {
     qualifications:
       "Bachelor's degree in Business or related field. Proven account management experience.",
     benefits: 'Health insurance, stock options, remote work flexibility.',
-    tags: ['sales', 'account management', 'full-time', 'San Francisco', 'tech'],
+    tags: ['sales', 'account management', 'Full Time', 'San Francisco', 'tech'],
   },
   {
     id: 398,
     categoryId: 634,
     title: 'Sales Operations Specialist',
-    type: 'Full-time',
+    type: 'Full Time',
     companyLogo:
       'https://upload.wikimedia.org/wikipedia/commons/5/51/Facebook_f_logo_%282019%29.svg',
     companyName: 'Facebook',
@@ -1498,13 +1485,13 @@ export const featuredJobs: {
     qualifications:
       "Bachelor's degree in Business or related field. Experience in sales operations.",
     benefits: 'Health insurance, stock options, professional development.',
-    tags: ['sales', 'operations', 'full-time', 'Menlo Park', 'tech'],
+    tags: ['sales', 'operations', 'Full Time', 'Menlo Park', 'tech'],
   },
   {
     id: 204,
     categoryId: 634,
     title: 'Field Sales Representative',
-    type: 'Full-time',
+    type: 'Full Time',
     companyLogo:
       'https://upload.wikimedia.org/wikipedia/commons/a/a9/Amazon_logo.svg',
     companyName: 'Amazon',
@@ -1519,13 +1506,13 @@ export const featuredJobs: {
     qualifications:
       "Bachelor's degree in Business or related field. Experience in field sales.",
     benefits: 'Health insurance, stock options, travel allowances.',
-    tags: ['sales', 'field sales', 'full-time', 'Seattle', 'tech'],
+    tags: ['sales', 'field sales', 'Full Time', 'Seattle', 'tech'],
   },
   {
     id: 783,
     categoryId: 634,
     title: 'Sales Engineer',
-    type: 'Full-time',
+    type: 'Full Time',
     companyLogo:
       'https://upload.wikimedia.org/wikipedia/commons/b/bd/Tesla_Motors.svg',
     companyName: 'Tesla',
@@ -1540,13 +1527,13 @@ export const featuredJobs: {
     qualifications:
       "Bachelor's degree in Engineering or related field. Experience in technical sales.",
     benefits: 'Health insurance, stock options, flexible working hours.',
-    tags: ['sales', 'engineering', 'full-time', 'Austin', 'tech'],
+    tags: ['sales', 'engineering', 'Full Time', 'Austin', 'tech'],
   },
   {
     id: 891,
     categoryId: 634,
     title: 'Product Sales Specialist',
-    type: 'Full-time',
+    type: 'Full Time',
     companyLogo:
       'https://upload.wikimedia.org/wikipedia/commons/4/44/Microsoft_logo.svg',
     companyName: 'Microsoft',
@@ -1561,13 +1548,13 @@ export const featuredJobs: {
     qualifications:
       "Bachelor's degree in Business or related field. Experience in product sales.",
     benefits: 'Health insurance, stock options, career advancement.',
-    tags: ['sales', 'product specialist', 'full-time', 'Redmond', 'tech'],
+    tags: ['sales', 'product specialist', 'Full Time', 'Redmond', 'tech'],
   },
   {
     id: 509,
     categoryId: 634,
     title: 'Sales Consultant',
-    type: 'Full-time',
+    type: 'Full Time',
     companyLogo:
       'https://upload.wikimedia.org/wikipedia/commons/c/ce/X_logo_2023.svg',
     companyName: 'X (formerly Twitter)',
@@ -1582,13 +1569,13 @@ export const featuredJobs: {
     qualifications:
       "Bachelor's degree in Business or related field. Experience in sales consulting.",
     benefits: 'Health insurance, stock options, remote work flexibility.',
-    tags: ['sales', 'consulting', 'full-time', 'San Francisco', 'tech'],
+    tags: ['sales', 'consulting', 'Full Time', 'San Francisco', 'tech'],
   },
   {
     id: 312,
     categoryId: 634,
     title: 'Customer Success Manager',
-    type: 'Full-time',
+    type: 'Full Time',
     companyLogo:
       'https://upload.wikimedia.org/wikipedia/commons/0/08/Netflix_2015_logo.svg',
     companyName: 'Netflix',
@@ -1603,13 +1590,13 @@ export const featuredJobs: {
     qualifications:
       "Bachelor's degree in Business or related field. Experience in customer success.",
     benefits: 'Health insurance, stock options, career growth opportunities.',
-    tags: ['sales', 'customer success', 'full-time', 'Los Gatos', 'tech'],
+    tags: ['sales', 'customer success', 'Full Time', 'Los Gatos', 'tech'],
   },
   {
     id: 726,
     categoryId: 634,
     title: 'Sales Director',
-    type: 'Full-time',
+    type: 'Full Time',
     companyLogo:
       'https://upload.wikimedia.org/wikipedia/commons/b/bd/Tesla_Motors.svg',
     companyName: 'Tesla',
@@ -1624,13 +1611,13 @@ export const featuredJobs: {
     qualifications:
       "Bachelor's degree in Business or related field. Extensive experience in sales leadership.",
     benefits: 'Health insurance, stock options, executive benefits.',
-    tags: ['sales', 'director', 'full-time', 'Austin', 'tech'],
+    tags: ['sales', 'director', 'Full Time', 'Austin', 'tech'],
   },
   {
     id: 435,
     categoryId: 634,
     title: 'Sales Analyst',
-    type: 'Full-time',
+    type: 'Full Time',
     companyLogo:
       'https://upload.wikimedia.org/wikipedia/commons/2/2f/Google_2015_logo.svg',
     companyName: 'Google',
@@ -1645,13 +1632,13 @@ export const featuredJobs: {
     qualifications:
       "Bachelor's degree in Business, Statistics, or related field. Experience in sales analysis.",
     benefits: 'Health insurance, stock options, professional development.',
-    tags: ['sales', 'analysis', 'full-time', 'Mountain View', 'tech'],
+    tags: ['sales', 'analysis', 'Full Time', 'Mountain View', 'tech'],
   },
   {
     id: 667,
     categoryId: 634,
     title: 'Retail Sales Associate',
-    type: 'Full-time',
+    type: 'Full Time',
     companyLogo:
       'https://upload.wikimedia.org/wikipedia/commons/a/a9/Amazon_logo.svg',
     companyName: 'Amazon',
@@ -1666,7 +1653,7 @@ export const featuredJobs: {
     qualifications:
       'High school diploma or equivalent. Experience in retail sales preferred.',
     benefits: 'Health insurance, employee discounts, career advancement.',
-    tags: ['sales', 'retail', 'full-time', 'Seattle', 'tech'],
+    tags: ['sales', 'retail', 'Full Time', 'Seattle', 'tech'],
   },
 
   // Customer Support
@@ -1674,7 +1661,7 @@ export const featuredJobs: {
     id: 831,
     categoryId: 745,
     title: 'Customer Support Specialist',
-    type: 'Full-time',
+    type: 'Full Time',
     companyLogo:
       'https://upload.wikimedia.org/wikipedia/commons/0/08/Netflix_2015_logo.svg',
     companyName: 'Netflix',
@@ -1689,13 +1676,13 @@ export const featuredJobs: {
     qualifications:
       'High school diploma or equivalent. Experience in customer support.',
     benefits: 'Health insurance, stock options, flexible hours.',
-    tags: ['customer support', 'full-time', 'Los Gatos', 'tech'],
+    tags: ['customer support', 'Full Time', 'Los Gatos', 'tech'],
   },
   {
     id: 214,
     categoryId: 745,
     title: 'Technical Support Engineer',
-    type: 'Full-time',
+    type: 'Full Time',
     companyLogo:
       'https://upload.wikimedia.org/wikipedia/commons/2/2f/Google_2015_logo.svg',
     companyName: 'Google',
@@ -1714,7 +1701,7 @@ export const featuredJobs: {
     tags: [
       'customer support',
       'technical',
-      'full-time',
+      'Full Time',
       'Mountain View',
       'tech',
     ],
@@ -1723,7 +1710,7 @@ export const featuredJobs: {
     id: 357,
     categoryId: 745,
     title: 'Customer Service Representative',
-    type: 'Full-time',
+    type: 'Full Time',
     companyLogo:
       'https://upload.wikimedia.org/wikipedia/commons/5/51/Facebook_f_logo_%282019%29.svg',
     companyName: 'Facebook',
@@ -1738,13 +1725,13 @@ export const featuredJobs: {
     qualifications:
       'High school diploma or equivalent. Previous experience in customer service preferred.',
     benefits: 'Health insurance, stock options, career advancement.',
-    tags: ['customer support', 'service', 'full-time', 'Menlo Park', 'tech'],
+    tags: ['customer support', 'service', 'Full Time', 'Menlo Park', 'tech'],
   },
   {
     id: 428,
     categoryId: 745,
     title: 'Customer Experience Specialist',
-    type: 'Full-time',
+    type: 'Full Time',
     companyLogo:
       'https://upload.wikimedia.org/wikipedia/commons/a/a9/Amazon_logo.svg',
     companyName: 'Amazon',
@@ -1759,13 +1746,13 @@ export const featuredJobs: {
     qualifications:
       "Bachelor's degree in Business or related field. Experience in customer experience roles.",
     benefits: 'Health insurance, employee discounts, career growth.',
-    tags: ['customer support', 'experience', 'full-time', 'Seattle', 'tech'],
+    tags: ['customer support', 'experience', 'Full Time', 'Seattle', 'tech'],
   },
   {
     id: 912,
     categoryId: 745,
     title: 'Client Support Manager',
-    type: 'Full-time',
+    type: 'Full Time',
     companyLogo:
       'https://upload.wikimedia.org/wikipedia/commons/b/bd/Tesla_Motors.svg',
     companyName: 'Tesla',
@@ -1780,13 +1767,13 @@ export const featuredJobs: {
     qualifications:
       "Bachelor's degree in Business or related field. Experience in client support management.",
     benefits: 'Health insurance, stock options, flexible work hours.',
-    tags: ['customer support', 'management', 'full-time', 'Austin', 'tech'],
+    tags: ['customer support', 'management', 'Full Time', 'Austin', 'tech'],
   },
   {
     id: 637,
     categoryId: 745,
     title: 'Customer Success Associate',
-    type: 'Full-time',
+    type: 'Full Time',
     companyLogo:
       'https://upload.wikimedia.org/wikipedia/commons/4/44/Microsoft_logo.svg',
     companyName: 'Microsoft',
@@ -1801,13 +1788,13 @@ export const featuredJobs: {
     qualifications:
       "Bachelor's degree in Business or related field. Experience in customer success.",
     benefits: 'Health insurance, stock options, career advancement.',
-    tags: ['customer support', 'success', 'full-time', 'Redmond', 'tech'],
+    tags: ['customer support', 'success', 'Full Time', 'Redmond', 'tech'],
   },
   {
     id: 745,
     categoryId: 745,
     title: 'Help Desk Technician',
-    type: 'Full-time',
+    type: 'Full Time',
     companyLogo:
       'https://upload.wikimedia.org/wikipedia/commons/2/2f/Google_2015_logo.svg',
     companyName: 'Google',
@@ -1826,7 +1813,7 @@ export const featuredJobs: {
     tags: [
       'customer support',
       'help desk',
-      'full-time',
+      'Full Time',
       'Mountain View',
       'tech',
     ],
@@ -1835,7 +1822,7 @@ export const featuredJobs: {
     id: 899,
     categoryId: 745,
     title: 'Support Operations Coordinator',
-    type: 'Full-time',
+    type: 'Full Time',
     companyLogo:
       'https://upload.wikimedia.org/wikipedia/commons/c/ce/X_logo_2023.svg',
     companyName: 'X (formerly Twitter)',
@@ -1853,7 +1840,7 @@ export const featuredJobs: {
     tags: [
       'customer support',
       'operations',
-      'full-time',
+      'Full Time',
       'San Francisco',
       'tech',
     ],
@@ -1862,7 +1849,7 @@ export const featuredJobs: {
     id: 356,
     categoryId: 745,
     title: 'Customer Support Analyst',
-    type: 'Full-time',
+    type: 'Full Time',
     companyLogo:
       'https://upload.wikimedia.org/wikipedia/commons/5/51/Facebook_f_logo_%282019%29.svg',
     companyName: 'Facebook',
@@ -1877,13 +1864,13 @@ export const featuredJobs: {
     qualifications:
       "Bachelor's degree in Business or related field. Experience in support analysis.",
     benefits: 'Health insurance, stock options, career development.',
-    tags: ['customer support', 'analysis', 'full-time', 'Menlo Park', 'tech'],
+    tags: ['customer support', 'analysis', 'Full Time', 'Menlo Park', 'tech'],
   },
   {
     id: 478,
     categoryId: 745,
     title: 'Customer Care Coordinator',
-    type: 'Full-time',
+    type: 'Full Time',
     companyLogo:
       'https://upload.wikimedia.org/wikipedia/commons/a/a9/Amazon_logo.svg',
     companyName: 'Amazon',
@@ -1898,13 +1885,13 @@ export const featuredJobs: {
     qualifications:
       "Bachelor's degree in Business or related field. Experience in customer care coordination.",
     benefits: 'Health insurance, employee discounts, career advancement.',
-    tags: ['customer support', 'care', 'full-time', 'Seattle', 'tech'],
+    tags: ['customer support', 'care', 'Full Time', 'Seattle', 'tech'],
   },
   {
     id: 284,
     categoryId: 745,
     title: 'Client Support Specialist',
-    type: 'Full-time',
+    type: 'Full Time',
     companyLogo:
       'https://upload.wikimedia.org/wikipedia/commons/b/bd/Tesla_Motors.svg',
     companyName: 'Tesla',
@@ -1919,14 +1906,14 @@ export const featuredJobs: {
     qualifications:
       "Bachelor's degree in Business or related field. Experience in client support.",
     benefits: 'Health insurance, stock options, flexible work hours.',
-    tags: ['customer support', 'client', 'full-time', 'Austin', 'tech'],
+    tags: ['customer support', 'client', 'Full Time', 'Austin', 'tech'],
   },
   // Operations
   {
     id: 947,
     categoryId: 856,
     title: 'Operations Manager',
-    type: 'Full-time',
+    type: 'Full Time',
     companyLogo:
       'https://upload.wikimedia.org/wikipedia/commons/0/08/Netflix_2015_logo.svg',
     companyName: 'Netflix',
@@ -1941,13 +1928,13 @@ export const featuredJobs: {
     qualifications:
       "Bachelor's degree in Business or related field. Proven experience in operations management.",
     benefits: 'Health insurance, stock options, flexible work hours.',
-    tags: ['operations', 'management', 'full-time', 'Los Gatos', 'tech'],
+    tags: ['operations', 'management', 'Full Time', 'Los Gatos', 'tech'],
   },
   {
     id: 124,
     categoryId: 856,
     title: 'Logistics Coordinator',
-    type: 'Full-time',
+    type: 'Full Time',
     companyLogo:
       'https://upload.wikimedia.org/wikipedia/commons/2/2f/Google_2015_logo.svg',
     companyName: 'Google',
@@ -1963,13 +1950,13 @@ export const featuredJobs: {
       "Bachelor's degree in Logistics, Supply Chain Management, or related field. Experience in logistics.",
     benefits:
       'Comprehensive health insurance, stock options, career development.',
-    tags: ['operations', 'logistics', 'full-time', 'Mountain View', 'tech'],
+    tags: ['operations', 'logistics', 'Full Time', 'Mountain View', 'tech'],
   },
   {
     id: 235,
     categoryId: 856,
     title: 'Supply Chain Manager',
-    type: 'Full-time',
+    type: 'Full Time',
     companyLogo:
       'https://upload.wikimedia.org/wikipedia/commons/5/51/Facebook_f_logo_%282019%29.svg',
     companyName: 'Facebook',
@@ -1984,13 +1971,13 @@ export const featuredJobs: {
     qualifications:
       "Bachelor's degree in Supply Chain Management or related field. Experience in supply chain management.",
     benefits: 'Health insurance, stock options, career growth opportunities.',
-    tags: ['operations', 'supply chain', 'full-time', 'Menlo Park', 'tech'],
+    tags: ['operations', 'supply chain', 'Full Time', 'Menlo Park', 'tech'],
   },
   {
     id: 382,
     categoryId: 856,
     title: 'Operations Analyst',
-    type: 'Full-time',
+    type: 'Full Time',
     companyLogo:
       'https://upload.wikimedia.org/wikipedia/commons/a/a9/Amazon_logo.svg',
     companyName: 'Amazon',
@@ -2005,13 +1992,13 @@ export const featuredJobs: {
     qualifications:
       "Bachelor's degree in Business, Operations, or related field. Experience in operations analysis.",
     benefits: 'Health insurance, employee discounts, performance bonuses.',
-    tags: ['operations', 'analysis', 'full-time', 'Seattle', 'tech'],
+    tags: ['operations', 'analysis', 'Full Time', 'Seattle', 'tech'],
   },
   {
     id: 578,
     categoryId: 856,
     title: 'Operations Coordinator',
-    type: 'Full-time',
+    type: 'Full Time',
     companyLogo:
       'https://upload.wikimedia.org/wikipedia/commons/b/bd/Tesla_Motors.svg',
     companyName: 'Tesla',
@@ -2026,13 +2013,13 @@ export const featuredJobs: {
     qualifications:
       "Bachelor's degree in Business or related field. Experience in operations coordination.",
     benefits: 'Health insurance, stock options, flexible work hours.',
-    tags: ['operations', 'coordination', 'full-time', 'Austin', 'tech'],
+    tags: ['operations', 'coordination', 'Full Time', 'Austin', 'tech'],
   },
   {
     id: 694,
     categoryId: 856,
     title: 'Business Operations Specialist',
-    type: 'Full-time',
+    type: 'Full Time',
     companyLogo:
       'https://upload.wikimedia.org/wikipedia/commons/4/44/Microsoft_logo.svg',
     companyName: 'Microsoft',
@@ -2047,13 +2034,13 @@ export const featuredJobs: {
     qualifications:
       "Bachelor's degree in Business or related field. Experience in business operations.",
     benefits: 'Health insurance, stock options, career development.',
-    tags: ['operations', 'business', 'full-time', 'Redmond', 'tech'],
+    tags: ['operations', 'business', 'Full Time', 'Redmond', 'tech'],
   },
   {
     id: 875,
     categoryId: 856,
     title: 'Process Improvement Specialist',
-    type: 'Full-time',
+    type: 'Full Time',
     companyLogo:
       'https://upload.wikimedia.org/wikipedia/commons/c/ce/X_logo_2023.svg',
     companyName: 'X (formerly Twitter)',
@@ -2071,7 +2058,7 @@ export const featuredJobs: {
     tags: [
       'operations',
       'process improvement',
-      'full-time',
+      'Full Time',
       'San Francisco',
       'tech',
     ],
@@ -2080,7 +2067,7 @@ export const featuredJobs: {
     id: 287,
     categoryId: 856,
     title: 'Facilities Manager',
-    type: 'Full-time',
+    type: 'Full Time',
     companyLogo:
       'https://upload.wikimedia.org/wikipedia/commons/5/51/Facebook_f_logo_%282019%29.svg',
     companyName: 'Facebook',
@@ -2095,13 +2082,13 @@ export const featuredJobs: {
     qualifications:
       "Bachelor's degree in Facilities Management or related field. Experience in facilities management.",
     benefits: 'Health insurance, stock options, career growth opportunities.',
-    tags: ['operations', 'facilities', 'full-time', 'Menlo Park', 'tech'],
+    tags: ['operations', 'facilities', 'Full Time', 'Menlo Park', 'tech'],
   },
   {
     id: 439,
     categoryId: 856,
     title: 'Production Manager',
-    type: 'Full-time',
+    type: 'Full Time',
     companyLogo:
       'https://upload.wikimedia.org/wikipedia/commons/a/a9/Amazon_logo.svg',
     companyName: 'Amazon',
@@ -2116,13 +2103,13 @@ export const featuredJobs: {
     qualifications:
       "Bachelor's degree in Production Management or related field. Experience in production management.",
     benefits: 'Health insurance, employee discounts, performance bonuses.',
-    tags: ['operations', 'production', 'full-time', 'Seattle', 'tech'],
+    tags: ['operations', 'production', 'Full Time', 'Seattle', 'tech'],
   },
   {
     id: 628,
     categoryId: 856,
     title: 'Operations Supervisor',
-    type: 'Full-time',
+    type: 'Full Time',
     companyLogo:
       'https://upload.wikimedia.org/wikipedia/commons/b/bd/Tesla_Motors.svg',
     companyName: 'Tesla',
@@ -2137,13 +2124,13 @@ export const featuredJobs: {
     qualifications:
       "Bachelor's degree in Business or related field. Experience in operations supervision.",
     benefits: 'Health insurance, stock options, flexible work hours.',
-    tags: ['operations', 'supervision', 'full-time', 'Austin', 'tech'],
+    tags: ['operations', 'supervision', 'Full Time', 'Austin', 'tech'],
   },
   {
     id: 739,
     categoryId: 856,
     title: 'Project Operations Coordinator',
-    type: 'Full-time',
+    type: 'Full Time',
     companyLogo:
       'https://upload.wikimedia.org/wikipedia/commons/4/44/Microsoft_logo.svg',
     companyName: 'Microsoft',
@@ -2158,13 +2145,13 @@ export const featuredJobs: {
     qualifications:
       "Bachelor's degree in Project Management or related field. Experience in project coordination.",
     benefits: 'Health insurance, stock options, career development.',
-    tags: ['operations', 'project management', 'full-time', 'Redmond', 'tech'],
+    tags: ['operations', 'project management', 'Full Time', 'Redmond', 'tech'],
   },
   {
     id: 841,
     categoryId: 856,
     title: 'Inventory Manager',
-    type: 'Full-time',
+    type: 'Full Time',
     companyLogo:
       'https://upload.wikimedia.org/wikipedia/commons/c/ce/X_logo_2023.svg',
     companyName: 'X (formerly Twitter)',
@@ -2179,13 +2166,13 @@ export const featuredJobs: {
     qualifications:
       "Bachelor's degree in Inventory Management or related field. Experience in inventory management.",
     benefits: 'Health insurance, stock options, remote work flexibility.',
-    tags: ['operations', 'inventory', 'full-time', 'San Francisco', 'tech'],
+    tags: ['operations', 'inventory', 'Full Time', 'San Francisco', 'tech'],
   },
   {
     id: 953,
     categoryId: 856,
     title: 'Operations Director',
-    type: 'Full-time',
+    type: 'Full Time',
     companyLogo:
       'https://upload.wikimedia.org/wikipedia/commons/0/08/Netflix_2015_logo.svg',
     companyName: 'Netflix',
@@ -2200,7 +2187,7 @@ export const featuredJobs: {
     qualifications:
       "Bachelor's degree in Business or related field. Extensive experience in operations management.",
     benefits: 'Health insurance, stock options, executive perks.',
-    tags: ['operations', 'management', 'full-time', 'Los Gatos', 'tech'],
+    tags: ['operations', 'management', 'Full Time', 'Los Gatos', 'tech'],
   },
 
   // Legal
@@ -2208,7 +2195,7 @@ export const featuredJobs: {
     id: 452,
     categoryId: 967,
     title: 'Legal Counsel',
-    type: 'Full-time',
+    type: 'Full Time',
     companyLogo:
       'https://upload.wikimedia.org/wikipedia/commons/0/08/Netflix_2015_logo.svg',
     companyName: 'Netflix',
@@ -2223,13 +2210,13 @@ export const featuredJobs: {
     qualifications:
       'Juris Doctor (JD) degree. Experience in entertainment or technology law.',
     benefits: 'Health insurance, stock options, flexible work hours.',
-    tags: ['legal', 'counsel', 'full-time', 'Los Gatos', 'tech'],
+    tags: ['legal', 'counsel', 'Full Time', 'Los Gatos', 'tech'],
   },
   {
     id: 593,
     categoryId: 967,
     title: 'Corporate Lawyer',
-    type: 'Full-time',
+    type: 'Full Time',
     companyLogo:
       'https://upload.wikimedia.org/wikipedia/commons/2/2f/Google_2015_logo.svg',
     companyName: 'Google',
@@ -2245,13 +2232,13 @@ export const featuredJobs: {
       'Juris Doctor (JD) degree. Experience in corporate law or business transactions.',
     benefits:
       'Comprehensive health insurance, stock options, career development.',
-    tags: ['legal', 'corporate', 'full-time', 'Mountain View', 'tech'],
+    tags: ['legal', 'corporate', 'Full Time', 'Mountain View', 'tech'],
   },
   {
     id: 726,
     categoryId: 967,
     title: 'Compliance Officer',
-    type: 'Full-time',
+    type: 'Full Time',
     companyLogo:
       'https://upload.wikimedia.org/wikipedia/commons/5/51/Facebook_f_logo_%282019%29.svg',
     companyName: 'Facebook',
@@ -2266,13 +2253,13 @@ export const featuredJobs: {
     qualifications:
       "Bachelor's degree in Law, Business, or related field. Experience in compliance or regulatory affairs.",
     benefits: 'Health insurance, stock options, career growth opportunities.',
-    tags: ['legal', 'compliance', 'full-time', 'Menlo Park', 'tech'],
+    tags: ['legal', 'compliance', 'Full Time', 'Menlo Park', 'tech'],
   },
   {
     id: 834,
     categoryId: 967,
     title: 'Intellectual Property Attorney',
-    type: 'Full-time',
+    type: 'Full Time',
     companyLogo:
       'https://upload.wikimedia.org/wikipedia/commons/a/a9/Amazon_logo.svg',
     companyName: 'Amazon',
@@ -2287,13 +2274,13 @@ export const featuredJobs: {
     qualifications:
       'Juris Doctor (JD) degree. Experience in intellectual property law.',
     benefits: 'Health insurance, employee discounts, performance bonuses.',
-    tags: ['legal', 'intellectual property', 'full-time', 'Seattle', 'tech'],
+    tags: ['legal', 'intellectual property', 'Full Time', 'Seattle', 'tech'],
   },
   {
     id: 294,
     categoryId: 967,
     title: 'Legal Compliance Specialist',
-    type: 'Full-time',
+    type: 'Full Time',
     companyLogo:
       'https://upload.wikimedia.org/wikipedia/commons/b/bd/Tesla_Motors.svg',
     companyName: 'Tesla',
@@ -2308,13 +2295,13 @@ export const featuredJobs: {
     qualifications:
       "Bachelor's degree in Law or related field. Experience in compliance or legal affairs.",
     benefits: 'Health insurance, stock options, flexible work hours.',
-    tags: ['legal', 'compliance', 'full-time', 'Austin', 'tech'],
+    tags: ['legal', 'compliance', 'Full Time', 'Austin', 'tech'],
   },
   {
     id: 413,
     categoryId: 967,
     title: 'Contracts Manager',
-    type: 'Full-time',
+    type: 'Full Time',
     companyLogo:
       'https://upload.wikimedia.org/wikipedia/commons/4/44/Microsoft_logo.svg',
     companyName: 'Microsoft',
@@ -2329,13 +2316,13 @@ export const featuredJobs: {
     qualifications:
       'Juris Doctor (JD) degree. Experience in contract management.',
     benefits: 'Health insurance, stock options, career development.',
-    tags: ['legal', 'contracts', 'full-time', 'Redmond', 'tech'],
+    tags: ['legal', 'contracts', 'Full Time', 'Redmond', 'tech'],
   },
   {
     id: 982,
     categoryId: 967,
     title: 'Legal Operations Manager',
-    type: 'Full-time',
+    type: 'Full Time',
     companyLogo:
       'https://upload.wikimedia.org/wikipedia/commons/c/ce/X_logo_2023.svg',
     companyName: 'X (formerly Twitter)',
@@ -2350,7 +2337,7 @@ export const featuredJobs: {
     qualifications:
       'Juris Doctor (JD) degree. Experience in legal operations management.',
     benefits: 'Health insurance, stock options, remote work flexibility.',
-    tags: ['legal', 'operations', 'full-time', 'San Francisco', 'tech'],
+    tags: ['legal', 'operations', 'Full Time', 'San Francisco', 'tech'],
   },
 
   // Product Management
@@ -2358,7 +2345,7 @@ export const featuredJobs: {
     id: 739,
     categoryId: 108,
     title: 'Product Manager',
-    type: 'Full-time',
+    type: 'Full Time',
     companyLogo:
       'https://upload.wikimedia.org/wikipedia/commons/0/08/Netflix_2015_logo.svg',
     companyName: 'Netflix',
@@ -2373,13 +2360,13 @@ export const featuredJobs: {
     qualifications:
       "Bachelor's degree in Business, Engineering, or related field. Experience in product management.",
     benefits: 'Health insurance, stock options, flexible work hours.',
-    tags: ['product management', 'full-time', 'Los Gatos', 'tech'],
+    tags: ['product management', 'Full Time', 'Los Gatos', 'tech'],
   },
   {
     id: 845,
     categoryId: 108,
     title: 'Senior Product Manager',
-    type: 'Full-time',
+    type: 'Full Time',
     companyLogo:
       'https://upload.wikimedia.org/wikipedia/commons/2/2f/Google_2015_logo.svg',
     companyName: 'Google',
@@ -2398,7 +2385,7 @@ export const featuredJobs: {
     tags: [
       'product management',
       'senior',
-      'full-time',
+      'Full Time',
       'Mountain View',
       'tech',
     ],
@@ -2407,7 +2394,7 @@ export const featuredJobs: {
     id: 654,
     categoryId: 108,
     title: 'Associate Product Manager',
-    type: 'Full-time',
+    type: 'Full Time',
     companyLogo:
       'https://upload.wikimedia.org/wikipedia/commons/5/51/Facebook_f_logo_%282019%29.svg',
     companyName: 'Facebook',
@@ -2425,7 +2412,7 @@ export const featuredJobs: {
     tags: [
       'product management',
       'associate',
-      'full-time',
+      'Full Time',
       'Menlo Park',
       'tech',
     ],
@@ -2434,7 +2421,7 @@ export const featuredJobs: {
     id: 322,
     categoryId: 108,
     title: 'Product Development Manager',
-    type: 'Full-time',
+    type: 'Full Time',
     companyLogo:
       'https://upload.wikimedia.org/wikipedia/commons/a/a9/Amazon_logo.svg',
     companyName: 'Amazon',
@@ -2449,13 +2436,13 @@ export const featuredJobs: {
     qualifications:
       "Bachelor's degree in Engineering, Business, or related field. Experience in product development.",
     benefits: 'Health insurance, employee discounts, performance bonuses.',
-    tags: ['product management', 'development', 'full-time', 'Seattle', 'tech'],
+    tags: ['product management', 'development', 'Full Time', 'Seattle', 'tech'],
   },
   {
     id: 437,
     categoryId: 108,
     title: 'Product Operations Manager',
-    type: 'Full-time',
+    type: 'Full Time',
     companyLogo:
       'https://upload.wikimedia.org/wikipedia/commons/b/bd/Tesla_Motors.svg',
     companyName: 'Tesla',
@@ -2470,13 +2457,13 @@ export const featuredJobs: {
     qualifications:
       "Bachelor's degree in Business, Operations, or related field. Experience in product operations.",
     benefits: 'Health insurance, stock options, flexible work hours.',
-    tags: ['product management', 'operations', 'full-time', 'Austin', 'tech'],
+    tags: ['product management', 'operations', 'Full Time', 'Austin', 'tech'],
   },
   {
     id: 682,
     categoryId: 108,
     title: 'Product Strategy Lead',
-    type: 'Full-time',
+    type: 'Full Time',
     companyLogo:
       'https://upload.wikimedia.org/wikipedia/commons/4/44/Microsoft_logo.svg',
     companyName: 'Microsoft',
@@ -2491,13 +2478,13 @@ export const featuredJobs: {
     qualifications:
       "Bachelor's degree in Business, Marketing, or related field. Experience in product strategy.",
     benefits: 'Health insurance, stock options, career development.',
-    tags: ['product management', 'strategy', 'full-time', 'Redmond', 'tech'],
+    tags: ['product management', 'strategy', 'Full Time', 'Redmond', 'tech'],
   },
   {
     id: 893,
     categoryId: 108,
     title: 'Product Marketing Manager',
-    type: 'Full-time',
+    type: 'Full Time',
     companyLogo:
       'https://upload.wikimedia.org/wikipedia/commons/c/ce/X_logo_2023.svg',
     companyName: 'X (formerly Twitter)',
@@ -2515,7 +2502,7 @@ export const featuredJobs: {
     tags: [
       'product management',
       'marketing',
-      'full-time',
+      'Full Time',
       'San Francisco',
       'tech',
     ],
@@ -2524,7 +2511,7 @@ export const featuredJobs: {
     id: 274,
     categoryId: 108,
     title: 'Product Lifecycle Manager',
-    type: 'Full-time',
+    type: 'Full Time',
     companyLogo:
       'https://upload.wikimedia.org/wikipedia/commons/0/08/Netflix_2015_logo.svg',
     companyName: 'Netflix',
@@ -2539,13 +2526,13 @@ export const featuredJobs: {
     qualifications:
       "Bachelor's degree in Business, Engineering, or related field. Experience in product lifecycle management.",
     benefits: 'Health insurance, stock options, flexible work hours.',
-    tags: ['product management', 'lifecycle', 'full-time', 'Los Gatos', 'tech'],
+    tags: ['product management', 'lifecycle', 'Full Time', 'Los Gatos', 'tech'],
   },
   {
     id: 319,
     categoryId: 108,
     title: 'Product Insights Analyst',
-    type: 'Full-time',
+    type: 'Full Time',
     companyLogo:
       'https://upload.wikimedia.org/wikipedia/commons/2/2f/Google_2015_logo.svg',
     companyName: 'Google',
@@ -2564,7 +2551,7 @@ export const featuredJobs: {
     tags: [
       'product management',
       'insights',
-      'full-time',
+      'Full Time',
       'Mountain View',
       'tech',
     ],
@@ -2573,7 +2560,7 @@ export const featuredJobs: {
     id: 485,
     categoryId: 108,
     title: 'Product Development Specialist',
-    type: 'Full-time',
+    type: 'Full Time',
     companyLogo:
       'https://upload.wikimedia.org/wikipedia/commons/5/51/Facebook_f_logo_%282019%29.svg',
     companyName: 'Facebook',
@@ -2591,7 +2578,7 @@ export const featuredJobs: {
     tags: [
       'product management',
       'development',
-      'full-time',
+      'Full Time',
       'Menlo Park',
       'tech',
     ],
@@ -2600,7 +2587,7 @@ export const featuredJobs: {
     id: 736,
     categoryId: 108,
     title: 'Product Planning Manager',
-    type: 'Full-time',
+    type: 'Full Time',
     companyLogo:
       'https://upload.wikimedia.org/wikipedia/commons/a/a9/Amazon_logo.svg',
     companyName: 'Amazon',
@@ -2615,13 +2602,13 @@ export const featuredJobs: {
     qualifications:
       "Bachelor's degree in Business, Product Management, or related field. Experience in product planning.",
     benefits: 'Health insurance, employee discounts, performance bonuses.',
-    tags: ['product management', 'planning', 'full-time', 'Seattle', 'tech'],
+    tags: ['product management', 'planning', 'Full Time', 'Seattle', 'tech'],
   },
   {
     id: 472,
     categoryId: 108,
     title: 'Product Experience Manager',
-    type: 'Full-time',
+    type: 'Full Time',
     companyLogo:
       'https://upload.wikimedia.org/wikipedia/commons/b/bd/Tesla_Motors.svg',
     companyName: 'Tesla',
@@ -2636,13 +2623,13 @@ export const featuredJobs: {
     qualifications:
       "Bachelor's degree in Product Management, User Experience, or related field. Experience in product experience.",
     benefits: 'Health insurance, stock options, flexible work hours.',
-    tags: ['product management', 'experience', 'full-time', 'Austin', 'tech'],
+    tags: ['product management', 'experience', 'Full Time', 'Austin', 'tech'],
   },
   {
     id: 617,
     categoryId: 108,
     title: 'Product Portfolio Manager',
-    type: 'Full-time',
+    type: 'Full Time',
     companyLogo:
       'https://upload.wikimedia.org/wikipedia/commons/4/44/Microsoft_logo.svg',
     companyName: 'Microsoft',
@@ -2657,13 +2644,13 @@ export const featuredJobs: {
     qualifications:
       "Bachelor's degree in Business, Engineering, or related field. Experience in portfolio management.",
     benefits: 'Health insurance, stock options, career development.',
-    tags: ['product management', 'portfolio', 'full-time', 'Redmond', 'tech'],
+    tags: ['product management', 'portfolio', 'Full Time', 'Redmond', 'tech'],
   },
   {
     id: 352,
     categoryId: 108,
     title: 'Product Innovation Manager',
-    type: 'Full-time',
+    type: 'Full Time',
     companyLogo:
       'https://upload.wikimedia.org/wikipedia/commons/c/ce/X_logo_2023.svg',
     companyName: 'X (formerly Twitter)',
@@ -2681,7 +2668,7 @@ export const featuredJobs: {
     tags: [
       'product management',
       'innovation',
-      'full-time',
+      'Full Time',
       'San Francisco',
       'tech',
     ],
@@ -2690,7 +2677,7 @@ export const featuredJobs: {
     id: 591,
     categoryId: 108,
     title: 'Product Metrics Analyst',
-    type: 'Full-time',
+    type: 'Full Time',
     companyLogo:
       'https://upload.wikimedia.org/wikipedia/commons/0/08/Netflix_2015_logo.svg',
     companyName: 'Netflix',
@@ -2705,13 +2692,13 @@ export const featuredJobs: {
     qualifications:
       "Bachelor's degree in Data Analysis, Business, or related field. Experience in metrics analysis.",
     benefits: 'Health insurance, stock options, flexible work hours.',
-    tags: ['product management', 'metrics', 'full-time', 'Los Gatos', 'tech'],
+    tags: ['product management', 'metrics', 'Full Time', 'Los Gatos', 'tech'],
   },
   {
     id: 978,
     categoryId: 108,
     title: 'Product Roadmap Manager',
-    type: 'Full-time',
+    type: 'Full Time',
     companyLogo:
       'https://upload.wikimedia.org/wikipedia/commons/2/2f/Google_2015_logo.svg',
     companyName: 'Google',
@@ -2730,7 +2717,7 @@ export const featuredJobs: {
     tags: [
       'product management',
       'roadmap',
-      'full-time',
+      'Full Time',
       'Mountain View',
       'tech',
     ],
@@ -2739,7 +2726,7 @@ export const featuredJobs: {
     id: 693,
     categoryId: 108,
     title: 'Product Design Manager',
-    type: 'Full-time',
+    type: 'Full Time',
     companyLogo:
       'https://upload.wikimedia.org/wikipedia/commons/5/51/Facebook_f_logo_%282019%29.svg',
     companyName: 'Facebook',
@@ -2754,7 +2741,7 @@ export const featuredJobs: {
     qualifications:
       "Bachelor's degree in Design, Product Management, or related field. Experience in product design.",
     benefits: 'Health insurance, stock options, career growth opportunities.',
-    tags: ['product management', 'design', 'full-time', 'Menlo Park', 'tech'],
+    tags: ['product management', 'design', 'Full Time', 'Menlo Park', 'tech'],
   },
 
   // Design
@@ -2762,7 +2749,7 @@ export const featuredJobs: {
     id: 1084,
     categoryId: 219,
     title: 'Product Designer',
-    type: 'Full-time',
+    type: 'Full Time',
     companyLogo:
       'https://upload.wikimedia.org/wikipedia/commons/0/08/Netflix_2015_logo.svg',
     companyName: 'Netflix',
@@ -2777,13 +2764,13 @@ export const featuredJobs: {
     qualifications:
       "Bachelor's degree in Design, HCI, or related field. Experience in UI/UX design.",
     benefits: 'Health insurance, stock options, flexible work hours.',
-    tags: ['design', 'UI/UX', 'full-time', 'Los Gatos', 'tech'],
+    tags: ['design', 'UI/UX', 'Full Time', 'Los Gatos', 'tech'],
   },
   {
     id: 1124,
     categoryId: 219,
     title: 'UX Designer',
-    type: 'Full-time',
+    type: 'Full Time',
     companyLogo:
       'https://upload.wikimedia.org/wikipedia/commons/2/2f/Google_2015_logo.svg',
     companyName: 'Google',
@@ -2799,13 +2786,13 @@ export const featuredJobs: {
       "Bachelor's degree in UX Design, HCI, or related field. Experience in user research and wireframing.",
     benefits:
       'Comprehensive health insurance, stock options, career development.',
-    tags: ['design', 'UX', 'full-time', 'Mountain View', 'tech'],
+    tags: ['design', 'UX', 'Full Time', 'Mountain View', 'tech'],
   },
   {
     id: 934,
     categoryId: 219,
     title: 'Graphic Designer',
-    type: 'Full-time',
+    type: 'Full Time',
     companyLogo:
       'https://upload.wikimedia.org/wikipedia/commons/5/51/Facebook_f_logo_%282019%29.svg',
     companyName: 'Facebook',
@@ -2820,13 +2807,13 @@ export const featuredJobs: {
     qualifications:
       "Bachelor's degree in Graphic Design or related field. Experience with Adobe Creative Suite.",
     benefits: 'Health insurance, stock options, career growth opportunities.',
-    tags: ['design', 'graphic', 'full-time', 'Menlo Park', 'tech'],
+    tags: ['design', 'graphic', 'Full Time', 'Menlo Park', 'tech'],
   },
   {
     id: 845,
     categoryId: 219,
     title: 'UI Designer',
-    type: 'Full-time',
+    type: 'Full Time',
     companyLogo:
       'https://upload.wikimedia.org/wikipedia/commons/a/a9/Amazon_logo.svg',
     companyName: 'Amazon',
@@ -2841,13 +2828,13 @@ export const featuredJobs: {
     qualifications:
       "Bachelor's degree in Design, HCI, or related field. Experience in UI design.",
     benefits: 'Health insurance, employee discounts, performance bonuses.',
-    tags: ['design', 'UI', 'full-time', 'Seattle', 'tech'],
+    tags: ['design', 'UI', 'Full Time', 'Seattle', 'tech'],
   },
   {
     id: 712,
     categoryId: 219,
     title: 'Visual Designer',
-    type: 'Full-time',
+    type: 'Full Time',
     companyLogo:
       'https://upload.wikimedia.org/wikipedia/commons/b/bd/Tesla_Motors.svg',
     companyName: 'Tesla',
@@ -2862,7 +2849,7 @@ export const featuredJobs: {
     qualifications:
       "Bachelor's degree in Visual Design or related field. Proficiency in design software.",
     benefits: 'Health insurance, stock options, flexible work hours.',
-    tags: ['design', 'visual', 'full-time', 'Austin', 'tech'],
+    tags: ['design', 'visual', 'Full Time', 'Austin', 'tech'],
   },
 
   // DevOps
@@ -2870,7 +2857,7 @@ export const featuredJobs: {
     id: 3245,
     categoryId: 321,
     title: 'DevOps Engineer',
-    type: 'Full-time',
+    type: 'Full Time',
     companyLogo:
       'https://upload.wikimedia.org/wikipedia/commons/0/08/Netflix_2015_logo.svg',
     companyName: 'Netflix',
@@ -2885,13 +2872,13 @@ export const featuredJobs: {
     qualifications:
       "Bachelor's degree in Computer Science or related field. Experience with cloud platforms and CI/CD.",
     benefits: 'Health insurance, stock options, flexible work hours.',
-    tags: ['devops', 'cloud', 'full-time', 'Los Gatos', 'tech'],
+    tags: ['devops', 'cloud', 'Full Time', 'Los Gatos', 'tech'],
   },
   {
     id: 4389,
     categoryId: 321,
     title: 'Senior DevOps Engineer',
-    type: 'Full-time',
+    type: 'Full Time',
     companyLogo:
       'https://upload.wikimedia.org/wikipedia/commons/2/2f/Google_2015_logo.svg',
     companyName: 'Google',
@@ -2907,13 +2894,13 @@ export const featuredJobs: {
       "Bachelor's degree in Computer Science or related field. Extensive experience in DevOps and cloud technologies.",
     benefits:
       'Comprehensive health insurance, stock options, career development.',
-    tags: ['devops', 'leadership', 'full-time', 'Mountain View', 'tech'],
+    tags: ['devops', 'leadership', 'Full Time', 'Mountain View', 'tech'],
   },
   {
     id: 5123,
     categoryId: 321,
     title: 'Cloud DevOps Engineer',
-    type: 'Full-time',
+    type: 'Full Time',
     companyLogo:
       'https://upload.wikimedia.org/wikipedia/commons/a/a9/Amazon_logo.svg',
     companyName: 'Amazon',
@@ -2928,13 +2915,13 @@ export const featuredJobs: {
     qualifications:
       "Bachelor's degree in Computer Science or related field. Experience with AWS and infrastructure automation.",
     benefits: 'Health insurance, employee discounts, performance bonuses.',
-    tags: ['devops', 'cloud', 'full-time', 'Seattle', 'tech'],
+    tags: ['devops', 'cloud', 'Full Time', 'Seattle', 'tech'],
   },
   {
     id: 6712,
     categoryId: 321,
     title: 'Site Reliability Engineer',
-    type: 'Full-time',
+    type: 'Full Time',
     companyLogo:
       'https://upload.wikimedia.org/wikipedia/commons/b/bd/Tesla_Motors.svg',
     companyName: 'Tesla',
@@ -2949,13 +2936,13 @@ export const featuredJobs: {
     qualifications:
       "Bachelor's degree in Computer Science or related field. Experience with system reliability and performance optimization.",
     benefits: 'Health insurance, stock options, flexible work hours.',
-    tags: ['devops', 'reliability', 'full-time', 'Austin', 'tech'],
+    tags: ['devops', 'reliability', 'Full Time', 'Austin', 'tech'],
   },
   {
     id: 8534,
     categoryId: 321,
     title: 'DevOps Specialist',
-    type: 'Full-time',
+    type: 'Full Time',
     companyLogo:
       'https://upload.wikimedia.org/wikipedia/commons/5/51/Facebook_f_logo_%282019%29.svg',
     companyName: 'Facebook',
@@ -2970,13 +2957,13 @@ export const featuredJobs: {
     qualifications:
       "Bachelor's degree in Computer Science or related field. Proficiency in automation tools and scripting.",
     benefits: 'Health insurance, stock options, career growth opportunities.',
-    tags: ['devops', 'automation', 'full-time', 'Menlo Park', 'tech'],
+    tags: ['devops', 'automation', 'Full Time', 'Menlo Park', 'tech'],
   },
   {
     id: 9123,
     categoryId: 321,
     title: 'Infrastructure DevOps Engineer',
-    type: 'Full-time',
+    type: 'Full Time',
     companyLogo:
       'https://upload.wikimedia.org/wikipedia/commons/4/44/Microsoft_logo.svg',
     companyName: 'Microsoft',
@@ -2991,13 +2978,13 @@ export const featuredJobs: {
     qualifications:
       "Bachelor's degree in Computer Science or related field. Experience with Azure and infrastructure management.",
     benefits: 'Health insurance, stock options, career development.',
-    tags: ['devops', 'infrastructure', 'full-time', 'Redmond', 'tech'],
+    tags: ['devops', 'infrastructure', 'Full Time', 'Redmond', 'tech'],
   },
   {
     id: 7845,
     categoryId: 321,
     title: 'Automation DevOps Engineer',
-    type: 'Full-time',
+    type: 'Full Time',
     companyLogo:
       'https://upload.wikimedia.org/wikipedia/commons/c/ce/X_logo_2023.svg',
     companyName: 'X (formerly Twitter)',
@@ -3012,13 +2999,13 @@ export const featuredJobs: {
     qualifications:
       "Bachelor's degree in Computer Science or related field. Experience with automation tools and CI/CD.",
     benefits: 'Health insurance, stock options, remote work flexibility.',
-    tags: ['devops', 'automation', 'full-time', 'San Francisco', 'tech'],
+    tags: ['devops', 'automation', 'Full Time', 'San Francisco', 'tech'],
   },
   {
     id: 4932,
     categoryId: 321,
     title: 'DevOps Consultant',
-    type: 'Full-time',
+    type: 'Full Time',
     companyLogo:
       'https://upload.wikimedia.org/wikipedia/commons/0/08/Netflix_2015_logo.svg',
     companyName: 'Netflix',
@@ -3033,13 +3020,13 @@ export const featuredJobs: {
     qualifications:
       "Bachelor's degree in Computer Science or related field. Extensive experience in DevOps consulting.",
     benefits: 'Health insurance, stock options, flexible work hours.',
-    tags: ['devops', 'consulting', 'full-time', 'Los Gatos', 'tech'],
+    tags: ['devops', 'consulting', 'Full Time', 'Los Gatos', 'tech'],
   },
   {
     id: 5839,
     categoryId: 321,
     title: 'DevOps Architect',
-    type: 'Full-time',
+    type: 'Full Time',
     companyLogo:
       'https://upload.wikimedia.org/wikipedia/commons/2/2f/Google_2015_logo.svg',
     companyName: 'Google',
@@ -3055,13 +3042,13 @@ export const featuredJobs: {
       "Bachelor's degree in Computer Science or related field. Extensive experience in DevOps architecture.",
     benefits:
       'Comprehensive health insurance, stock options, career development.',
-    tags: ['devops', 'architecture', 'full-time', 'Mountain View', 'tech'],
+    tags: ['devops', 'architecture', 'Full Time', 'Mountain View', 'tech'],
   },
   {
     id: 7345,
     categoryId: 321,
     title: 'Continuous Integration Engineer',
-    type: 'Full-time',
+    type: 'Full Time',
     companyLogo:
       'https://upload.wikimedia.org/wikipedia/commons/5/51/Facebook_f_logo_%282019%29.svg',
     companyName: 'Facebook',
@@ -3076,13 +3063,13 @@ export const featuredJobs: {
     qualifications:
       "Bachelor's degree in Computer Science or related field. Experience with CI tools and automation.",
     benefits: 'Health insurance, stock options, career growth opportunities.',
-    tags: ['devops', 'CI', 'full-time', 'Menlo Park', 'tech'],
+    tags: ['devops', 'CI', 'Full Time', 'Menlo Park', 'tech'],
   },
   {
     id: 6721,
     categoryId: 321,
     title: 'DevOps Automation Engineer',
-    type: 'Full-time',
+    type: 'Full Time',
     companyLogo:
       'https://upload.wikimedia.org/wikipedia/commons/b/bd/Tesla_Motors.svg',
     companyName: 'Tesla',
@@ -3097,13 +3084,13 @@ export const featuredJobs: {
     qualifications:
       "Bachelor's degree in Computer Science or related field. Proficiency in automation tools.",
     benefits: 'Health insurance, stock options, flexible work hours.',
-    tags: ['devops', 'automation', 'full-time', 'Austin', 'tech'],
+    tags: ['devops', 'automation', 'Full Time', 'Austin', 'tech'],
   },
   {
     id: 8192,
     categoryId: 321,
     title: 'Cloud Operations Engineer',
-    type: 'Full-time',
+    type: 'Full Time',
     companyLogo:
       'https://upload.wikimedia.org/wikipedia/commons/a/a9/Amazon_logo.svg',
     companyName: 'Amazon',
@@ -3118,32 +3105,16 @@ export const featuredJobs: {
     qualifications:
       "Bachelor's degree in Computer Science or related field. Experience with cloud platforms and monitoring.",
     benefits: 'Health insurance, employee discounts, performance bonuses.',
-    tags: ['devops', 'cloud', 'full-time', 'Seattle', 'tech'],
+    tags: ['devops', 'cloud', 'Full Time', 'Seattle', 'tech'],
   },
 ];
 
-export const latestJobs: {
-  id: number;
-  categoryId: number;
-  title: string;
-  type: string;
-  companyLogo: string;
-  companyName: string;
-  location: string;
-  salary: string;
-  gender: string;
-  experience: string;
-  description: string;
-  responsibilities: string;
-  qualifications: string;
-  benefits: string;
-  tags: string[];
-}[] = [
+export const latestJobs: Job[] = [
   {
     id: 2837,
     categoryId: 205,
     title: 'Business Intelligence Analyst',
-    type: 'Full-time',
+    type: 'Full Time',
     companyLogo:
       'https://upload.wikimedia.org/wikipedia/commons/5/51/IBM_logo.svg',
     companyName: 'IBM',
@@ -3161,7 +3132,7 @@ export const latestJobs: {
     tags: [
       'data science',
       'business intelligence',
-      'full-time',
+      'Full Time',
       'Seattle',
       'BI',
     ],
@@ -3170,7 +3141,7 @@ export const latestJobs: {
     id: 5812,
     categoryId: 205,
     title: 'Data Engineer',
-    type: 'Full-time',
+    type: 'Full Time',
     companyLogo:
       'https://upload.wikimedia.org/wikipedia/commons/a/a9/Amazon_logo.svg',
     companyName: 'Amazon',
@@ -3185,13 +3156,13 @@ export const latestJobs: {
     qualifications:
       "Bachelor's degree in Computer Science or related field. Experience with SQL and cloud platforms.",
     benefits: 'Health insurance, stock options, remote work options.',
-    tags: ['data science', 'data engineer', 'full-time', 'Austin', 'tech'],
+    tags: ['data science', 'data engineer', 'Full Time', 'Austin', 'tech'],
   },
   {
     id: 5812,
     categoryId: 205,
     title: 'Machine Learning Engineer',
-    type: 'Full-time',
+    type: 'Full Time',
     companyLogo:
       'https://upload.wikimedia.org/wikipedia/commons/b/bd/Tesla_Motors.svg',
     companyName: 'Tesla',
@@ -3206,7 +3177,7 @@ export const latestJobs: {
     qualifications:
       "Master's degree in Data Science, Computer Science, or related field. Strong programming skills in Python and TensorFlow.",
     benefits: 'Health insurance, 401(k) matching, flexible hours.',
-    tags: ['data science', 'machine learning', 'full-time', 'Boston', 'AI'],
+    tags: ['data science', 'machine learning', 'Full Time', 'Boston', 'AI'],
   },
   {
     id: 6412,
@@ -3226,14 +3197,14 @@ export const latestJobs: {
       'Assist in data collection, preprocessing, and analysis. Support data scientists in various projects.',
     qualifications:
       'Currently pursuing a degree in Data Science, Computer Science, or related field. Basic knowledge of Python and SQL.',
-    benefits: 'Flexible hours, mentorship, opportunity for full-time offer.',
+    benefits: 'Flexible hours, mentorship, opportunity for Full Time offer.',
     tags: ['data science', 'internship', 'remote', 'startup'],
   },
   {
     id: 5173,
     categoryId: 205,
     title: 'Senior Data Scientist',
-    type: 'Full-time',
+    type: 'Full Time',
     companyLogo:
       'https://upload.wikimedia.org/wikipedia/commons/2/2f/Google_2015_logo.svg',
     companyName: 'Google',
@@ -3249,13 +3220,13 @@ export const latestJobs: {
       "Master's degree in Data Science or related field. Extensive experience with machine learning algorithms.",
     benefits:
       'Comprehensive health insurance, stock options, flexible work hours.',
-    tags: ['data science', 'senior', 'full-time', 'San Francisco', 'tech'],
+    tags: ['data science', 'senior', 'Full Time', 'San Francisco', 'tech'],
   },
   {
     id: 7156,
     categoryId: 205,
     title: 'Machine Learning Engineer',
-    type: 'Full-time',
+    type: 'Full Time',
     companyLogo:
       'https://upload.wikimedia.org/wikipedia/commons/b/bd/Tesla_Motors.svg',
     companyName: 'Tesla',
@@ -3270,13 +3241,13 @@ export const latestJobs: {
     qualifications:
       "Master's degree in Data Science, Computer Science, or related field. Strong programming skills in Python and TensorFlow.",
     benefits: 'Health insurance, 401(k) matching, flexible hours.',
-    tags: ['data science', 'machine learning', 'full-time', 'Boston', 'AI'],
+    tags: ['data science', 'machine learning', 'Full Time', 'Boston', 'AI'],
   },
   {
     id: 3948,
     categoryId: 205,
     title: 'Data Analyst',
-    type: 'Full-time',
+    type: 'Full Time',
     companyLogo:
       'https://upload.wikimedia.org/wikipedia/commons/5/51/Facebook_f_logo_%282019%29.svg',
     companyName: 'Facebook',
@@ -3294,7 +3265,7 @@ export const latestJobs: {
     tags: [
       'data science',
       'data analyst',
-      'full-time',
+      'Full Time',
       'Chicago',
       'market research',
     ],
@@ -3303,7 +3274,7 @@ export const latestJobs: {
     id: 2837,
     categoryId: 205,
     title: 'Business Intelligence Analyst',
-    type: 'Full-time',
+    type: 'Full Time',
     companyLogo:
       'https://upload.wikimedia.org/wikipedia/commons/5/51/IBM_logo.svg',
     companyName: 'IBM',
@@ -3321,7 +3292,7 @@ export const latestJobs: {
     tags: [
       'data science',
       'business intelligence',
-      'full-time',
+      'Full Time',
       'Seattle',
       'BI',
     ],
@@ -3330,7 +3301,7 @@ export const latestJobs: {
     id: 7156,
     categoryId: 205,
     title: 'Machine Learning Engineer',
-    type: 'Full-time',
+    type: 'Full Time',
     companyLogo:
       'https://upload.wikimedia.org/wikipedia/commons/b/bd/Tesla_Motors.svg',
     companyName: 'Tesla',
@@ -3345,7 +3316,7 @@ export const latestJobs: {
     qualifications:
       "Master's degree in Data Science, Computer Science, or related field. Strong programming skills in Python and TensorFlow.",
     benefits: 'Health insurance, 401(k) matching, flexible hours.',
-    tags: ['data science', 'machine learning', 'full-time', 'Boston', 'AI'],
+    tags: ['data science', 'machine learning', 'Full Time', 'Boston', 'AI'],
   },
   {
     id: 6412,
@@ -3365,14 +3336,14 @@ export const latestJobs: {
       'Assist in data collection, preprocessing, and analysis. Support data scientists in various projects.',
     qualifications:
       'Currently pursuing a degree in Data Science, Computer Science, or related field. Basic knowledge of Python and SQL.',
-    benefits: 'Flexible hours, mentorship, opportunity for full-time offer.',
+    benefits: 'Flexible hours, mentorship, opportunity for Full Time offer.',
     tags: ['data science', 'internship', 'remote', 'startup'],
   },
   {
     id: 3948,
     categoryId: 205,
     title: 'Data Analyst',
-    type: 'Full-time',
+    type: 'Full Time',
     companyLogo:
       'https://upload.wikimedia.org/wikipedia/commons/5/51/Facebook_f_logo_%282019%29.svg',
     companyName: 'Facebook',
@@ -3390,7 +3361,7 @@ export const latestJobs: {
     tags: [
       'data science',
       'data analyst',
-      'full-time',
+      'Full Time',
       'Chicago',
       'market research',
     ],
@@ -3399,7 +3370,7 @@ export const latestJobs: {
     id: 3839,
     categoryId: 205,
     title: 'Lead Data Scientist',
-    type: 'Full-time',
+    type: 'Full Time',
     companyLogo:
       'https://upload.wikimedia.org/wikipedia/commons/4/44/Microsoft_logo.svg',
     companyName: 'Microsoft',
@@ -3414,13 +3385,13 @@ export const latestJobs: {
     qualifications:
       'PhD in Data Science, Mathematics, or related field. Extensive experience in data analysis and machine learning.',
     benefits: 'Health insurance, pension plan, flexible work environment.',
-    tags: ['data science', 'lead', 'full-time', 'London', 'tech'],
+    tags: ['data science', 'lead', 'Full Time', 'London', 'tech'],
   },
   {
     id: 5512,
     categoryId: 205,
     title: 'Junior Data Scientist',
-    type: 'Full-time',
+    type: 'Full Time',
     companyLogo:
       'https://upload.wikimedia.org/wikipedia/commons/0/08/Netflix_2015_logo.svg',
     companyName: 'Netflix',
@@ -3436,13 +3407,13 @@ export const latestJobs: {
       "Bachelor's degree in Data Science, Mathematics, or related field. Knowledge of Python and SQL.",
     benefits:
       'Health insurance, 401(k), professional development opportunities.',
-    tags: ['data science', 'junior', 'full-time', 'New York', 'tech'],
+    tags: ['data science', 'junior', 'Full Time', 'New York', 'tech'],
   },
   {
     id: 8831,
     categoryId: 205,
     title: 'Machine Learning Engineer',
-    type: 'Full-time',
+    type: 'Full Time',
     companyLogo:
       'https://upload.wikimedia.org/wikipedia/commons/b/bd/Tesla_Motors.svg',
     companyName: 'Tesla',
@@ -3457,13 +3428,13 @@ export const latestJobs: {
     qualifications:
       "Master's degree in Data Science, Computer Science, or related field. Strong programming skills in Python and TensorFlow.",
     benefits: 'Health insurance, 401(k) matching, flexible hours.',
-    tags: ['data science', 'machine learning', 'full-time', 'Boston', 'AI'],
+    tags: ['data science', 'machine learning', 'Full Time', 'Boston', 'AI'],
   },
   {
     id: 5234,
     categoryId: 205,
     title: 'Data Analyst',
-    type: 'Full-time',
+    type: 'Full Time',
     companyLogo:
       'https://upload.wikimedia.org/wikipedia/commons/5/51/Facebook_f_logo_%282019%29.svg',
     companyName: 'Facebook',
@@ -3481,7 +3452,7 @@ export const latestJobs: {
     tags: [
       'data science',
       'data analyst',
-      'full-time',
+      'Full Time',
       'Chicago',
       'market research',
     ],
@@ -3504,7 +3475,7 @@ export const latestJobs: {
       'Assist in data collection, preprocessing, and analysis. Support data scientists in various projects.',
     qualifications:
       'Currently pursuing a degree in Data Science, Computer Science, or related field. Basic knowledge of Python and SQL.',
-    benefits: 'Flexible hours, mentorship, opportunity for full-time offer.',
+    benefits: 'Flexible hours, mentorship, opportunity for Full Time offer.',
     tags: ['data science', 'internship', 'remote', 'startup'],
   },
 ];
