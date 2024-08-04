@@ -4,27 +4,36 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Size;
 
 import java.sql.Timestamp;
-@Entity
+import java.time.LocalDate;
+
+@Entity(name = "company")
 public class Company {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
+    @NotBlank(message = "Name is required")
     private String name;
+
+    @Email(message = "Email should be valid")
     private String email;
+
+    @NotBlank(message = "Username is required")
     private String username;
+
+    @NotBlank(message = "Password is required")
     private String password;
     private String description;
     private String location;
     private String industry;
    // private byte[] logo;
-   // private byte[] banner;
-    private Timestamp createdAt;
-    private Timestamp updatedAt;
+    private LocalDate createdAt;
 public Company(){}
-    public Company(String name, String email, String username, String password, String description, String location, String industry, Timestamp createdAt, Timestamp updatedAt) {
+    public Company(String name, String email, String username, String password, String description, String location, String industry, LocalDate createdAt) {
         this.name = name;
         this.email = email;
         this.username = username;
@@ -33,7 +42,6 @@ public Company(){}
         this.location = location;
         this.industry = industry;
         this.createdAt = createdAt;
-        this.updatedAt = updatedAt;
     }
 
     public Long getId() {
@@ -102,19 +110,13 @@ public Company(){}
         this.industry = industry;
     }
 
-    public Timestamp getCreatedAt() {
+    public LocalDate getCreatedAt() {
         return createdAt;
     }
 
-    public void setCreatedAt(Timestamp createdAt) {
+    public void setCreatedAt(LocalDate createdAt) {
         this.createdAt = createdAt;
     }
 
-    public Timestamp getUpdatedAt() {
-        return updatedAt;
-    }
 
-    public void setUpdatedAt(Timestamp updatedAt) {
-        this.updatedAt = updatedAt;
-    }
 }

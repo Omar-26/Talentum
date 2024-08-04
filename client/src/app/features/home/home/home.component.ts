@@ -1,5 +1,9 @@
 import { Component } from '@angular/core';
-import { categories, featuredJobs, latestJobs } from '../../../../testing-data';
+import { Category } from '@core/models/category';
+import { Job } from '@core/models/job';
+import { CategoryService, JobService } from '@core/services';
+import { switchMap } from 'rxjs';
+import { latestJobs } from '../../../../testing-data';
 
 @Component({
   selector: 'app-home',
@@ -11,20 +15,35 @@ export class HomeComponent {
   buttonIcon: string = 'pi-arrow-right';
   selectedCardIndex: number | null = null;
   showAllCategories: boolean = false;
-  categories = categories;
-  featuredJobs = featuredJobs;
+  categories: Category[] = [];
+  featuredJobs!: Job[];
   latestJobs = latestJobs;
-  filteredJobs!: any[];
 
+  constructor(
+    private categoryService: CategoryService,
+    private jobService: JobService
+  ) {}
   ngOnInit(): void {
-    this.filterJobsByCategory(this.categories.at(0)!.id, 0);
+    // To make the Jobs Fetching wait till the category fetching is done
+    this.categoryService
+      .getAllCategories()
+      .pipe(
+        switchMap((categories) => {
+          this.categories = categories;
+          return this.jobService.getFeaturedJobs(categories[0].id);
+        })
+      )
+      .subscribe((jobs) => {
+        this.featuredJobs = jobs;
+      });
+    this.selectedCardIndex = 0;
   }
 
-  filterJobsByCategory(categoryId: number, index: number) {
+  onCategorySelected(categoryId: number, index: number) {
     this.selectedCardIndex = index;
-    this.filteredJobs = this.featuredJobs.filter(
-      (job) => job.categoryId === categoryId
-    );
+    this.jobService.getFeaturedJobs(categoryId).subscribe((jobs) => {
+      this.featuredJobs = jobs;
+    });
   }
 
   showAll(): void {

@@ -1,103 +1,63 @@
 package com.Talentum.TalentumApplication.Controller.User;
 
 import com.Talentum.TalentumApplication.Exception.ResourceNotFoundException;
-import com.Talentum.TalentumApplication.Model.*;
-import com.Talentum.TalentumApplication.Repository.*;
+import com.Talentum.TalentumApplication.Model.Job;
+import com.Talentum.TalentumApplication.Model.User;
+import com.Talentum.TalentumApplication.Services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.Objects;
-import java.util.Optional;
-import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/api/v1/user")
 public class User_controller {
 
-    @Autowired
-    CompanyRepository companyReprosity ;
-    @Autowired
-    UserRepository userRepository;
-    @Autowired
-    JobRepository jobRepository;
-    @Autowired
-    CategoryRepository categoryRepo;
-    @Autowired
-    savedJobRepository savedJobRepository;
+    private final UserService userService;
 
-    @GetMapping("/jobs")
-    public ResponseEntity<List<Job>> getAllJob() {
-        try {
-            List<Job> jobs = jobRepository.findAll();
-            return ResponseEntity.ok(jobs);
-        } catch (Exception e) {
-            // Log the exception
-            e.printStackTrace();
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
-        }
-    }
-
-    @GetMapping("/jobs/{id}")
-    public Job getJob(@PathVariable Long id){
-        return jobRepository.findById(id)
-                .orElseThrow(()-> new ResourceNotFoundException("job not found"));
-
+    public User_controller(UserService userService) {
+        this.userService = userService;
     }
 
     @PostMapping("/save_job/{userId}/{jobId}")
     public ResponseEntity<String> saveJob(@PathVariable Long userId, @PathVariable Long jobId) {
-        // Fetch the user and job entities
-        var user = userRepository.findById(userId)
-                .orElseThrow(() -> new ResourceNotFoundException("User not found"));
-        var job = jobRepository.findById(jobId)
-                .orElseThrow(() -> new ResourceNotFoundException("Job not found"));
-
-        // Create and save the saved_jobEntity
-        SavedJob savedJob = new SavedJob();
-        savedJob.setUser(user);
-        savedJob.setJob(job);
-
-        savedJobRepository.save(savedJob);
-
+        userService.saveJob(userId, jobId);
         return ResponseEntity.status(HttpStatus.CREATED).body("Job saved successfully.");
     }
 
-    @GetMapping("/saved-jobs/{user_id}")
-    public ResponseEntity<List<Job>> getAllSavedJobs(@PathVariable("user_id") Long userId) {
-        Optional<User> user = userRepository.findById(userId);
-        if (user.isEmpty()) {
+    @GetMapping("/saved-jobs/{userId}")
+    public ResponseEntity<List<Job>> getAllSavedJobs(@PathVariable("userId") Long userId) {
+        try {
+            List<Job> jobs = userService.getAllSavedJobs(userId);
+            if (jobs.isEmpty()) {
+                return ResponseEntity.noContent().build();
+            }
+            return ResponseEntity.ok(jobs);
+        } catch (ResourceNotFoundException e) {
             return ResponseEntity.notFound().build();
         }
-
-        List<SavedJob> savedJobs = savedJobRepository.findByUserId(user.get().getId());
-        if (savedJobs.isEmpty()) {
-            return ResponseEntity.noContent().build();
-        }
-
-        List<Job> jobs = savedJobs.stream()
-                .map(savedJob -> savedJob.getJob())
-                .filter(Objects::nonNull)
-                .collect(Collectors.toList());
-
-        return ResponseEntity.ok(jobs);
     }
+
     @GetMapping("/profile/{id}")
-    public User GetProfile(@PathVariable Long id){
-         return  userRepository.findById(id)
-                 .orElseThrow(()->new RuntimeException(" the user with this id is not found ")) ;
+    public ResponseEntity<User> getProfile(@PathVariable Long id) {
+        try {
+            User user = userService.getProfile(id);
+            return ResponseEntity.ok(user);
+        } catch (ResourceNotFoundException e) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);
+        }
+    }
 
+    @DeleteMapping("/saved-jobs/{job_id}")
+    public ResponseEntity<String> deleteSavedJob(@PathVariable Long job_id) {
+        try {
+            userService.deleteSavedJob(job_id);
+            return ResponseEntity.ok("Deleted Successfully");
+        } catch (ResourceNotFoundException e) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Saved job not found");
+        }
     }
-    @DeleteMapping("saved-jobs/{id}")
-    public String deleteSavedJob (@PathVariable Long id){
-        savedJobRepository.findById(id)
-                .orElseThrow(()-> new RuntimeException("The saved job is not found "));
-        return "Deleted Successfully";
-    }
-    @GetMapping("/cat-jobs/{cat_id}")
-    public List<Job> getAllJobByCategory(@PathVariable Long cat_id){
-        return jobRepository.findByCategoryId(cat_id);
-    }
+
 }

@@ -4,7 +4,7 @@ import jakarta.persistence.*;
 
 import java.security.Timestamp;
 
-@Entity
+@Entity(name = "JobApplication")
 public class JobApplication {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

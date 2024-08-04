@@ -118,7 +118,7 @@
           let index = index
         "
         [category]="category"
-        (onSelect)="filterJobsByCategory(category.id, index)"
+        (onSelect)="onCategorySelected(category.id, index)"
         [isSelected]="selectedCardIndex === index"
       ></app-category-card>
     </div>
@@ -142,7 +142,7 @@
     <!-- Featured Jobs -->
     <div class="gridView-4">
       <app-job-card
-        *ngFor="let job of filteredJobs | slice : 0 : 12; let index = index"
+        *ngFor="let job of featuredJobs | slice : 0 : 12; let index = index"
         [isVertical]="true"
         [job]="job"
       ></app-job-card>

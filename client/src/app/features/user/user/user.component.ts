@@ -37,5 +37,3 @@ function formatDateToDayMonYear(date: Date): string {
 
 const dateOfBirth = new Date('1990-05-15');
 const formattedDateOfBirth = formatDateToDayMonYear(dateOfBirth);
-
-console.log('Formatted dateOfBirth:', formattedDateOfBirth); // Example output: "15-May-1990"

@@ -18,8 +18,8 @@ public class Job {
 
         @ManyToOne
         @JoinColumn(name = "category_id", nullable = false)
-        private Category category;
 
+        private Category category;
         private String type;
         private String salary;
         private String location;

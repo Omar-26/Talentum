@@ -3,10 +3,8 @@ import {
   AbstractControl,
   FormBuilder,
   ValidationErrors,
-  ValidatorFn,
   Validators,
 } from '@angular/forms';
-
 @Component({
   selector: 'app-signup',
   templateUrl: './signup.component.html',

@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { ApplyToJobComponent } from './pages/apply-to-job/apply-to-job.component';
 import { JobDetailsComponent } from './pages/job-details/job-details.component';
 import { JobsComponent } from './pages/jobs/jobs.component';
 
@@ -11,6 +12,10 @@ const routes: Routes = [
   {
     path: 'job-details',
     component: JobDetailsComponent,
+  },
+  {
+    path: 'apply-to-job',
+    component: ApplyToJobComponent,
   },
 ];
 

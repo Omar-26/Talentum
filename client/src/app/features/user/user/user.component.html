@@ -1,4 +1,4 @@
-<div class="pageHeader" [style.overflow]="'visible'">
+<div class="pageHeading">
   <!-- user profile picture -->
   <div class="full-center userProfilePic">
     <img class="image" src="assets\images\user.svg" />
@@ -6,7 +6,7 @@
 </div>
 <div class="userDeclaration">
   <h1 class="userName">{{ user.firstName }} {{ user.lastName }}</h1>
-  <h3 *ngIf="user.jobTitle" class="title">{{ user.jobTitle }}</h3>
+  <h3 class="title">{{ user.jobTitle }}</h3>
 </div>
 
 <div class="content">

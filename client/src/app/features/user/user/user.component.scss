@@ -1,21 +1,28 @@
-@import "../../../core/components/page-header/page-header.component.scss";
-.userProfilePic {
-  border: 5px solid var(--dark-accent-color);
-  border-radius: 15rem;
-  box-shadow: 1rem 2rem 3rem 0.5rem var(--dark-accent-color);
-  background-color: white;
-  width: 15rem;
-  height: 15rem;
-  display: flex;
-  position: relative;
-  overflow: hidden;
-  z-index: 1;
-  left: 5rem;
-  top: 4rem;
-  .image {
+.pageHeading {
+  width: 100%;
+  height: 11.2rem;
+  background: url("../../../../assets/images/hero-pattern.svg") no-repeat;
+  background-color: var(--accent-color);
+  background-position-x: 155%;
+
+  .userProfilePic {
+    border: 5px solid var(--dark-accent-color);
+    border-radius: 15rem;
+    box-shadow: 1rem 2rem 3rem 0.5rem var(--dark-accent-color);
+    background-color: white;
+    width: 15rem;
+    height: 15rem;
+    display: flex;
+    position: relative;
+    overflow: hidden;
+    z-index: 1;
+    left: 5rem;
+    top: 4rem;
     width: 100%;
-    height: 100%;
-    object-fit: cover;
+    .image {
+      height: 100%;
+      object-fit: cover;
+    }
   }
 }
 
