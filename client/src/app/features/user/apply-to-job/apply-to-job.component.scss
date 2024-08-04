@@ -1,0 +1,77 @@
+label {
+  color: #4640de;
+  font-size: 18px;
+  display: block;
+}
+
+input {
+  border-color: #4640de;
+  background-color: #f8f8fd;
+  padding: 12px 15px;
+  margin: 8px 0;
+  width: 100%;
+  border-radius: 8px;
+}
+
+form {
+  background-color: #f8f8fd;
+  padding: 60px;
+  display: grid;
+  grid-template-columns: auto auto;
+  column-gap: 60px;
+  row-gap: 25px;
+  border-radius: 10px;
+}
+
+.Employment-status {
+  font-size: 18px;
+  grid-column-start: 1;
+  grid-column-end: 3;
+}
+
+p {
+  font-weight: bolder;
+}
+
+input[type="radio"] {
+  margin-inline-start: 70px;
+  right: 19%;
+  position: absolute;
+  display: inline-block;
+}
+
+p {
+  color: #4640de;
+  font-size: 18px;
+}
+
+button {
+  display: block;
+  margin: auto;
+  border-radius: 20px;
+  border: 1px solid #4640de;
+  background-color: #4640de;
+  color: #ffffff;
+  font-size: 12px;
+  font-weight: bold;
+  padding: 12px 15px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  transition: transform 80ms ease-in;
+  grid-column-start: 1;
+  grid-column-end: 3;
+  width: 200px;
+  text-align: center;
+}
+
+.registriation-form {
+  background-color: #d6ddeb;
+}
+
+.content-wrap {
+  max-width: 800px;
+  width: 85%;
+  margin: 0 auto;
+  background-color: #f8f8fd;
+  border-radius: 30px;
+}

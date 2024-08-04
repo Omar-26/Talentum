@@ -1,4 +1,4 @@
-import { Job } from './app/shared/models/job';
+import { Job } from './app/core/models/job';
 
 export const categories: {
   id: number;

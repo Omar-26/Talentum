@@ -1,5 +1,3 @@
-/* To learn more about Typescript configuration file: https://www.typescriptlang.org/docs/handbook/tsconfig-json.html. */
-/* To learn more about Angular compiler options: https://angular.dev/reference/configs/angular-compiler-options. */
 {
   "compileOnSave": false,
   "compilerOptions": {
@@ -21,7 +19,26 @@
     "lib": [
       "ES2022",
       "dom"
-    ]
+    ],
+    "paths": {
+    // core module
+    "@core": ["./src/app/core"],
+    "@core/*": ["./src/app/core/*"],
+    "@components": ["./src/app/core/components"],
+    "@components/*": ["./src/app/core/components/*"],
+    // "@models": ["./src/app/core/models"],
+    // "@models/*": ["./src/app/core/models/*"],
+
+    // features module
+    "@features": ["./src/app/features"],
+    "@features/*": ["./src/app/features/*"],
+
+    // shared module
+    "@shared": ["./src/app/shared"],
+    "@shared/*": ["./src/app/shared/*"],
+    "@ui": ["./src/app/shared/ui"],
+    "@ui/*": ["./src/app/shared/ui/*"],
+    }
   },
   "angularCompilerOptions": {
     "enableI18nLegacyMessageIdFormat": false,

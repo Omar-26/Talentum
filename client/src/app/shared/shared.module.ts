@@ -1,10 +1,10 @@
 import { NgModule } from '@angular/core';
-import { ComponentsModule } from './components/components.module';
-import { PrimengComponentsModule } from './primeng-components/primeng-components.module';
+import { PrimeNgComponentsModule } from './primeng-components/primeng-components.module';
+import { UiModule } from './ui/ui.module';
 
 @NgModule({
   declarations: [],
-  imports: [ComponentsModule, PrimengComponentsModule],
-  exports: [ComponentsModule, PrimengComponentsModule],
+  imports: [UiModule, PrimeNgComponentsModule],
+  exports: [UiModule, PrimeNgComponentsModule],
 })
 export class SharedModule {}

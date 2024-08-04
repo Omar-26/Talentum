@@ -1,5 +1,10 @@
 import { Component, inject } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import {
+  FormBuilder,
+  FormControl,
+  FormGroup,
+  Validators,
+} from '@angular/forms';
 import { Logger } from '../../../core/services/logger/logger';
 
 @Component({
@@ -9,22 +14,35 @@ import { Logger } from '../../../core/services/logger/logger';
 })
 export class LoginComponent {
   type: string = 'password';
-  eyeIcon: string = 'pi-eye-slash';
+  passwordIcon: string = 'pi-eye-slash';
   submitted = false;
+  loginForm: any;
 
-  constructor() {}
+  constructor(private fb: FormBuilder) {
+    this.loginForm = this.fb.group({
+      email: ['', [Validators.required, Validators.email]],
+      password: [
+        '',
+        [
+          Validators.required,
+          Validators.minLength(8),
+          Validators.pattern('^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d).+$'),
+        ],
+      ],
+    });
+  }
 
-  loginForm = new FormGroup({
-    email: new FormControl('', [Validators.required, Validators.email]),
-    password: new FormControl('', [Validators.required]),
-    remember: new FormControl(false),
-  });
+  get loginFormControls() {
+    return this.loginForm.controls;
+  }
+
+  showPassword: boolean = false;
 
   logger = inject(Logger);
-
   submitApplication() {
     this.submitted = true;
     if (this.loginForm.invalid) {
+      this.loginForm.markAllAsTouched();
       return;
     }
     this.logger.submitApplication(
@@ -37,10 +55,10 @@ export class LoginComponent {
   hideShowPass() {
     if (this.type === 'password') {
       this.type = 'text';
-      this.eyeIcon = 'pi-eye';
+      this.passwordIcon = 'pi-eye';
     } else {
       this.type = 'password';
-      this.eyeIcon = 'pi-eye-slash';
+      this.passwordIcon = 'pi-eye-slash';
     }
   }
 }

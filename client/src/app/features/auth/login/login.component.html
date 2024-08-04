@@ -8,49 +8,79 @@
 
     <form [formGroup]="loginForm" (submit)="submitApplication()">
       <div class="login-form">
-        <label for="email">Email</label>
-        <input
-          type="email"
-          id="email"
-          formControlName="email"
-          placeholder="Email Address"
-          required
+        <!-- Email  -->
+        <div
+          class="floatingLabelContent"
           [ngClass]="{
-            'is-invalid': submitted && loginForm.controls.email.errors
+            inputError:
+              loginFormControls['email'].invalid &&
+              (loginFormControls['email'].dirty ||
+                loginFormControls['email'].touched)
           }"
-        />
-        <div *ngIf="submitted && loginForm.controls.email.errors">
-          <small
-            class="invalid"
-            *ngIf="loginForm.controls.email.errors['required']"
-            >*Email is required.</small
+        >
+          <input
+            class="floatingLabelInput"
+            type="email"
+            formControlName="email"
+            [placeholder]="
+              loginFormControls['email'].touched &&
+              loginFormControls['email'].errors?.required
+                ? 'Email Address is required'
+                : ''
+            "
+          />
+          <label class="floatingLabel">Email Address</label>
+          <div
+            *ngIf="
+              loginFormControls['email'].invalid &&
+              loginFormControls['email'].dirty
+            "
+            class="errorMessage"
           >
-          <small
-            class="invalid"
-            *ngIf="loginForm.controls.email.errors['email']"
-            >*Please enter a valid email address</small
-          >
+            <small *ngIf="loginFormControls['email'].invalid"
+              >*Please enter a valid email address</small
+            >
+          </div>
         </div>
-
-        <label for="password">Password</label>
-        <input
-          [type]="type"
-          id="password"
-          formControlName="password"
-          placeholder="Password"
-          required
+        <!-- Password -->
+        <div
+          class="floatingLabelContent"
           [ngClass]="{
-            'is-invalid': submitted && loginForm.controls.password.errors
+            inputError:
+              loginFormControls['password'].invalid &&
+              (loginFormControls['password'].dirty ||
+                loginFormControls['password'].touched)
           }"
-        />
-
-        <i class="pi {{ eyeIcon }} pass-icon" (click)="hideShowPass()"></i>
-        <div *ngIf="submitted && loginForm.controls.password.errors">
-          <small class="invalid" *ngIf="loginForm.controls.password.errors"
-            >*Password is required.</small
+        >
+          <input
+            class="floatingLabelInput"
+            [type]="showPassword ? 'text' : 'password'"
+            formControlName="password"
+            [placeholder]="
+              loginFormControls['password'].touched &&
+              loginFormControls['password'].errors?.required
+                ? 'Password is required'
+                : ''
+            "
+          />
+          <label class="floatingLabel">Password</label>
+          <span class="toggleIcon" (click)="hideShowPass()">
+            <i class="pi {{ passwordIcon }}"></i>
+          </span>
+          <div
+            *ngIf="
+              loginFormControls['password'].invalid &&
+              (loginFormControls['password'].dirty ||
+                loginFormControls['password'].touched)
+            "
+            class="errorMessage"
           >
+            <small *ngIf="loginFormControls['password'].dirty"
+              >*Please enter a valid Password</small
+            >
+          </div>
         </div>
-
+        <!-- remember me and forgot password-->
         <div class="row mt-15 space-between">
           <div class="row">
             <input id="remember" type="checkbox" formControlName="remember" />
@@ -62,8 +92,9 @@
           </div>
           <a href="#">Forgot Password ?</a>
         </div>
+        <!-- Login Button -->
         <div class="mt-15">
-          <app-button
+          <app-animated-button
             label="Log in"
             width="100%"
             height="3.5rem"
@@ -71,55 +102,37 @@
             fontSize="1.2rem"
             fontWeight="900"
             type="submit"
-          ></app-button>
+          ></app-animated-button>
         </div>
       </div>
     </form>
   </div>
 </div>
 
-<!--
-<div class="card flex justify-content-center mt-15">
-  <p-floatLabel>
-    <input
-      type="email"
-      id="email"
-      pInputText
-      formControlName="email"
-      required
-      [ngClass]="{
-        'is-invalid': submitted && loginForm.controls.email.errors
-      }"
-    />
-    <label for="email">Email</label>
-  </p-floatLabel>
-</div>
+<!-- <label for="email">Email</label>
+<input
+  type="email"
+  formControlName="email"
+  placeholder="Email Address"
+  [ngClass]="{
+    invalid: submitted && loginForm.controls.email.errors
+  }"
+/>
 
-<div *ngIf="submitted && loginForm.controls.email.errors">
-  <small
-    class="invalid"
-    *ngIf="loginForm.controls.email.errors['required']"
-    >*Email is required.</small
-  >
-  <small
-    class="invalid"
-    *ngIf="loginForm.controls.email.errors['email']"
-    >*Please enter a valid email address</small
-  >
-</div>
+<label for="password">Password</label>
+<input
+  [type]="type"
+  formControlName="password"
+  placeholder="Password"
+  required
+  [ngClass]="{
+    'is-invalid': submitted && loginForm.controls.password.errors
+  }"
+/>
 
-<div class="card flex justify-content-center mt-15">
-  <p-floatLabel>
-    <input
-      type="password"
-      id="password"
-      pInputText
-      formControlName="password"
-      required
-      [ngClass]="{
-        'is-invalid': submitted && loginForm.controls.password.errors
-      }"
-    />
-    <label for="password">Password</label>
-  </p-floatLabel>
+<i class="pi {{ eyeIcon }} pass-icon" (click)="hideShowPass()"></i>
+<div *ngIf="submitted && loginForm.controls.password.errors">
+  <small class="invalid" *ngIf="loginForm.controls.password.errors"
+    >*Password is required.</small
+  >
 </div> -->

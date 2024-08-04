@@ -1,1 +1,96 @@
-<p>user works!</p>
+<div class="pageHeader" [style.overflow]="'visible'">
+  <!-- user profile picture -->
+  <div class="full-center userProfilePic">
+    <img class="image" src="assets\images\user.svg" />
+  </div>
+</div>
+<div class="userDeclaration">
+  <h1 class="userName">{{ user.firstName }} {{ user.lastName }}</h1>
+  <h3 *ngIf="user.jobTitle" class="title">{{ user.jobTitle }}</h3>
+</div>
+
+<div class="content">
+  <!-- Details and Job Overview -->
+  <div class="row userInfo mt-15">
+    <!-- Left Column: User Details -->
+    <div class="column gap-1 basicInfo">
+      <div class="row gap-1 sectionTitle">
+        <i class="pi pi-user"></i>
+        <span>Basic Information</span>
+      </div>
+      <div class="infoGrid">
+        <!-- Username -->
+        <div class="infoItem">
+          <span class="title">
+            <i class="pi pi-at"></i>
+            <span>Username</span>
+          </span>
+          <span class="subTitle">&#64;{{ user.username }}</span>
+        </div>
+        <!-- Email Address -->
+        <div class="infoItem">
+          <span class="title">
+            <i class="pi pi-envelope"></i>
+            <span>Email Address</span>
+          </span>
+          <span class="subTitle">{{ user.email }}</span>
+        </div>
+        <!-- Phone Number -->
+        <div class="infoItem">
+          <span class="title">
+            <i class="pi pi-mobile"></i>
+            <span>Phone Number</span>
+          </span>
+          <span class="subTitle">{{ user.phoneNumber }}</span>
+        </div>
+        <!-- Date of Birth -->
+        <div class="infoItem">
+          <span class="title">
+            <i class="pi pi-mars"></i>
+            <span>Date of Birth</span>
+          </span>
+          <span class="subTitle">{{ dob }}</span>
+        </div>
+        <!-- Gender -->
+        <!-- <div class="infoItem">
+          <span class="title">
+            <i class="pi pi-mars"></i>
+            <span>Gender</span>
+          </span>
+          <span class="subTitle">{{ user.gender }}</span>
+        </div> -->
+      </div>
+    </div>
+  </div>
+
+  <!-- Right Column: User Navigation -->
+  <div class="userNav">
+    <div class="column gap-1 userNavCard">
+      <div
+        class="navTile"
+        style="border-top-right-radius: 1.5rem; border-top-left-radius: 1.5rem"
+      >
+        <i class="pi pi-pencil"></i>
+        <span>Edit Profile</span>
+      </div>
+      <div class="navTile">
+        <i class="pi pi-address-book"></i>
+        <span>Basic Information</span>
+      </div>
+      <div class="navTile">
+        <i class="pi pi-bookmark"></i>
+        <span>Saved Jobs</span>
+      </div>
+      <div
+        class="navTile"
+        style="
+          border-bottom-right-radius: 1.5rem;
+          border-bottom-left-radius: 1.5rem;
+        "
+      >
+        <i class="pi pi-pencil"></i>
+        <span>Edit Profile</span>
+      </div>
+    </div>
+  </div>
+</div>
