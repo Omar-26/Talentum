@@ -200,11 +200,12 @@
 
         <p-editor
           [(ngModel)]="editorText"
+          [ngModelOptions]="{ standalone: true }"
+          (ngModelChange)="onEditorContentChange($event)"
           [style]="{
             height: '4rem',
             fontFamily: 'var(--font-red-hat)',
           }"
-          placeholder="Add Company Description"
         >
           <ng-template pTemplate="header">
             <span class="ql-formats">

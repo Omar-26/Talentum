@@ -5,7 +5,7 @@ import {
   FormGroup,
   Validators,
 } from '@angular/forms';
-import { Logger } from '../../../core/services/logger/logger';
+import { Logger } from '../../../core/services/auth/logger/logger';
 
 @Component({
   selector: 'app-login',

@@ -4,7 +4,6 @@ import com.Talentum.TalentumApplication.Exception.ResourceNotFoundException;
 import com.Talentum.TalentumApplication.Model.Job;
 import com.Talentum.TalentumApplication.Model.User;
 import com.Talentum.TalentumApplication.Services.UserService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -21,6 +20,7 @@ public class User_controller {
         this.userService = userService;
     }
 
+    // Save Job
     @PostMapping("/save_job/{userId}/{jobId}")
     public ResponseEntity<String> saveJob(@PathVariable Long userId, @PathVariable Long jobId) {
         userService.saveJob(userId, jobId);
@@ -60,4 +60,10 @@ public class User_controller {
         }
     }
 
+
+    @GetMapping("/cat-jobs/{catId}")
+    public ResponseEntity<List<Job>> getAllJobsByCategory(@PathVariable Long catId) {
+        List<Job> jobs = userService.getAllJobsByCategory(catId);
+        return ResponseEntity.ok(jobs);
+    }
 }

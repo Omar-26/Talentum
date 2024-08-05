@@ -4,7 +4,6 @@ import com.Talentum.TalentumApplication.Exception.ResourceNotFoundException;
 import com.Talentum.TalentumApplication.Model.Category;
 import com.Talentum.TalentumApplication.Model.Job;
 import com.Talentum.TalentumApplication.Services.PublicService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -15,15 +14,20 @@ import java.util.List;
 @RequestMapping("/api/v1/")
 public class All_actor {
 
-    @Autowired
-    private PublicService publicService;
+    private final PublicService publicService;
 
+    public All_actor(PublicService publicService) {
+        this.publicService = publicService;
+    }
+
+    // Add Category
     @PostMapping("/addCategory")
     public ResponseEntity<Category> addCategory(@RequestBody Category category) {
         Category savedCategory = publicService.addCategory(category);
         return new ResponseEntity<>(savedCategory, HttpStatus.CREATED);
     }
 
+    // Get Job
     @GetMapping("/jobs/{id}")
     public ResponseEntity<Job> getJob(@PathVariable Long id) {
         try {
@@ -34,17 +38,19 @@ public class All_actor {
         }
     }
 
+    // Get all jobs
     @GetMapping("/jobs")
     public ResponseEntity<List<Job>> getAllJobs() {
         try {
             List<Job> jobs = publicService.getAllJobs();
             return ResponseEntity.ok(jobs);
         } catch (Exception e) {
-            e.printStackTrace(); // Log the exception
+            e.printStackTrace();
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
         }
     }
 
+    // Get all Categories
     @GetMapping("/allcategory")
     public ResponseEntity<List<Category>> getAllCategories() {
         List<Category> allCategories = publicService.getAllCategories();

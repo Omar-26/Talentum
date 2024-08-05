@@ -21,9 +21,13 @@ import java.util.Map;
 @RequestMapping("/api/v1")
 public class Authentication {
 
-    @Autowired
-    private AuthService authenticationService;
+    private final AuthService authenticationService;
 
+    public Authentication(AuthService authenticationService) {
+        this.authenticationService = authenticationService;
+    }
+
+    // Register User
     @PostMapping("/register-user")
     public ResponseEntity<?> addUser(@RequestBody @Validated User user) {
         try {

@@ -45,14 +45,14 @@ public class AuthService {
         }
 
         User newUser = new User();
-        newUser.setCreatedAt(LocalDate.now());
-        newUser.setDateOfBirth(user.getDateOfBirth());
-        newUser.setEmail(user.getEmail());
-        newUser.setPassword(passwordEncoder.encode(user.getPassword()));
         newUser.setFirstName(user.getFirstName());
         newUser.setLastName(user.getLastName());
-        newUser.setPhoneNumber(user.getPhoneNumber());
         newUser.setUsername(user.getUsername());
+        newUser.setEmail(user.getEmail());
+        newUser.setPassword(passwordEncoder.encode(user.getPassword()));
+        newUser.setPhoneNumber(user.getPhoneNumber());
+        newUser.setDateOfBirth(user.getDateOfBirth());
+        newUser.setCreatedAt(LocalDate.now());
         userRepository.save(newUser);
         return newUser;
     }
@@ -73,7 +73,7 @@ public class AuthService {
         newCompany.setLocation(company.getLocation());
         newCompany.setName(company.getName());
         newCompany.setPassword(passwordEncoder.encode(company.getPassword()));
-        newCompany.setUsername(company.getUsername());
+//        newCompany.setUsername(company.getUsername());
         companyRepository.save(newCompany);
         return newCompany;
     }

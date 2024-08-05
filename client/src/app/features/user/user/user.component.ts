@@ -8,17 +8,17 @@ import { User } from '../../../core/models/user';
 })
 export class UserComponent {
   user: User = {
-    id: 1,
+    // id: 1,
     firstName: 'Jake',
     lastName: 'Smith',
-    jobTitle: 'Software Engineer',
-    gender: 'male',
+    // jobTitle: 'Software Engineer',
+    // gender: 'male',
     username: 'jake74',
     email: 'jake@Talentum.com',
     password: 'P@assW0rd',
     phoneNumber: '+20 0111-844-7335',
     dateOfBirth: new Date('1990-05-15'),
-    createdAt: new Date('2024-08-03T00:02:34.000Z'),
+    // createdAt: new Date('2024-08-03T00:02:34.000Z'),
   };
   dob!: string;
   ngOnInit() {

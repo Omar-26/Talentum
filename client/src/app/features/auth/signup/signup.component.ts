@@ -5,6 +5,9 @@ import {
   ValidationErrors,
   Validators,
 } from '@angular/forms';
+import { Company } from '@core/models/company';
+import { User } from '@core/models/user';
+import { RegisterService } from '@core/services/auth/signup/register.service';
 @Component({
   selector: 'app-signup',
   templateUrl: './signup.component.html',
@@ -16,11 +19,13 @@ export class SignupComponent {
   showConfirmPassword = false;
   passwordIcon: string = 'pi-eye-slash';
   confirmPasswordIcon: string = 'pi-eye-slash';
-  editorText: string = 'Add Description';
-
+  editorText: string = 'Add Company Description';
   userSignupForm: any;
   companySignupForm: any;
-  constructor(private fb: FormBuilder) {
+  constructor(
+    private fb: FormBuilder,
+    private registerService: RegisterService
+  ) {
     this.userSignupForm = this.fb.group(
       {
         firstName: [
@@ -78,6 +83,7 @@ export class SignupComponent {
           ],
         ],
         confirmPassword: ['', [Validators.required]],
+        description: ['', [Validators.required]],
       },
       { validators: confirmPasswordValidator('password', 'confirmPassword') }
     );
@@ -119,20 +125,46 @@ export class SignupComponent {
   onRegisterUser() {
     this.isRightPanelActive = false;
   }
+  onEditorContentChange(content: string) {
+    this.editorText = content;
+  }
   onSignup(type: string) {
-    console.log(this.editorText);
     if (type === 'user') {
       if (this.userSignupForm.invalid) {
         this.userSignupForm.markAllAsTouched();
         return;
       }
-      console.log('User registered:');
+      const user: User = {
+        firstName: this.userFormControls['firstName'].value,
+        lastName: this.userFormControls['lastName'].value,
+        username: this.userFormControls['username'].value,
+        email: this.userFormControls['email'].value,
+        password: this.userFormControls['password'].value,
+        phoneNumber: this.userFormControls['phoneNumber'].value,
+        dateOfBirth: this.userFormControls['dateOfBirth'].value,
+      };
+      this.registerService
+        .registerUser(user)
+        .subscribe((user) => (user = user));
     } else if (type === 'company') {
-      if (this.companySignupForm.invalid) {
-        this.companySignupForm.markAllAsTouched();
-        return;
-      }
-      console.log('Company registered');
+      //   if (this.companySignupForm.invalid) {
+      //     this.companySignupForm.markAllAsTouched();
+      //     return;
+      //   }
+      const company: Company = {
+        name: this.companyFormControls['companyName'].value,
+        email: this.companyFormControls['email'].value,
+        website: this.companyFormControls['website'].value,
+        location: this.companyFormControls['address'].value,
+        industry: this.companyFormControls['industry'].value,
+        password: 'ejada@123123',
+        description: this.editorText,
+      };
+      this.registerService
+        .registerCompany(company)
+        .subscribe(
+          (company) => ((company = company), console.log(company.name, 'saved'))
+        );
     }
   }
 }
