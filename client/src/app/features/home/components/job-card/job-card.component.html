@@ -2,11 +2,12 @@
   class="card"
   [ngClass]="{ 'vertical column': isVertical, 'horizontal row': !isVertical }"
   [style.background-color]="backgroundColor"
+  (click)="onClicked(job.id)"
 >
   <div class="row space-between align-center">
     <!-- Company Logo -->
     <div class="full-center companyLogoContainer">
-      <img src="{{ job.companyLogo }}" alt="Company" />
+      <img src="{{ job.company?.logo }}" alt="Company" />
     </div>
     <!-- Job Type Tag -->
     <span class="jobType" *ngIf="isVertical">Full Time</span>
@@ -21,7 +22,7 @@
       <!-- Company Name -->
       <div class="row gap-025 company align-center">
         <i class="pi pi-verified"></i>
-        <span>{{ job.companyName }}</span>
+        <span>{{ job.company?.name }}</span>
       </div>
       <!-- Location -->
       <div class="row gap-025 location align-center">

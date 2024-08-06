@@ -13,7 +13,14 @@ export class CategoryService {
   // Get all Categories
   getAllCategories(): Observable<Category[]> {
     return this.http
-      .get<Category[]>(`${this.apiUrl}/allcategory`)
+      .get<Category[]>(`${this.apiUrl}/all-categories`)
+      .pipe(catchError(ErrorHandler.handleError));
+  }
+
+  // Get Number of jobs per category
+  getNumberOfJobsPerCategory(categoryId: number): Observable<number> {
+    return this.http
+      .get<number>(`${this.apiUrl}/category/jobs-count/${categoryId}`)
       .pipe(catchError(ErrorHandler.handleError));
   }
 }

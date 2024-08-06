@@ -10,10 +10,24 @@ export class JobService {
 
   constructor(private http: HttpClient) {}
 
-  //  Get Featured Jobs
-  getFeaturedJobs(id: number): Observable<Job[]> {
+  //  Get All Jobs
+  getAllJobs(): Observable<Job[]> {
     return this.http
-      .get<Job[]>(`${this.apiUrl}/user/cat-jobs/${id}`)
+      .get<Job[]>(`${this.apiUrl}/jobs`)
+      .pipe(catchError(ErrorHandler.handleError));
+  }
+
+  //  get job by id
+  getJobById(id: string | null): Observable<Job> {
+    return this.http
+      .get<Job>(`${this.apiUrl}/jobs/${id}`)
+      .pipe(catchError(ErrorHandler.handleError));
+  }
+
+  //  Get Featured Jobs
+  getAllJobsPerCategory(id: number): Observable<Job[]> {
+    return this.http
+      .get<Job[]>(`${this.apiUrl}/category/category-jobs/${id}`)
       .pipe(catchError(ErrorHandler.handleError));
   }
 }

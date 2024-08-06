@@ -63,7 +63,7 @@
             >
           </label>
         </div>
-        <p class="full-center countTag">10</p>
+        <p class="full-center countTag">{{ numOfJobsPerCategory }}</p>
       </div>
 
       <!-- Experience Level -->
@@ -128,15 +128,16 @@
   <div class="column gap-2 jobsSection">
     <div class="countTag">
       <p class="darkText">
-        Showing {{ paginatedJobs.length }} - {{ rows }} of
-        {{ filteredJobs.length }}
+        Showing {{ jobs.length }} - {{ rows }} of
+        {{ jobs.length }}
       </p>
     </div>
     <app-full-job-card
-      *ngFor="let job of paginatedJobs"
+      *ngFor="let job of jobs"
       [job]="job"
-      [category]="getCategoryById(job.categoryId!)"
+      [category]="job.category"
     ></app-full-job-card>
+    <!-- [category]="job.category" -->
     <div class="card flex justify-content-center">
       <!-- <p-paginator
         (onPageChange)="onPageChange($event)"

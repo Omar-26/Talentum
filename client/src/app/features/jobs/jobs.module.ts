@@ -1,5 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
+import { RouterLink, RouterModule } from '@angular/router';
 import { CoreModule } from '@core';
 import { SharedModule } from '@shared';
 import { FullJobCardComponent } from './components/full-job-card/full-job-card.component';
@@ -15,7 +16,14 @@ import { JobsComponent } from './pages/jobs/jobs.component';
     ApplyToJobComponent,
     FullJobCardComponent,
   ],
-  imports: [CommonModule, JobsRoutingModule, SharedModule, CoreModule],
+  imports: [
+    CommonModule,
+    JobsRoutingModule,
+    RouterModule,
+    RouterLink,
+    SharedModule,
+    CoreModule,
+  ],
   exports: [],
 })
 export class JobsModule {}

@@ -147,10 +147,10 @@ export class SignupComponent {
         .registerUser(user)
         .subscribe((user) => (user = user));
     } else if (type === 'company') {
-      //   if (this.companySignupForm.invalid) {
-      //     this.companySignupForm.markAllAsTouched();
-      //     return;
-      //   }
+        if (this.companySignupForm.invalid) {
+          this.companySignupForm.markAllAsTouched();
+          return;
+        }
       const company: Company = {
         name: this.companyFormControls['companyName'].value,
         email: this.companyFormControls['email'].value,

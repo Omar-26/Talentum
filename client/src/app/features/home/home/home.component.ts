@@ -3,7 +3,6 @@ import { Category } from '@core/models/category';
 import { Job } from '@core/models/job';
 import { CategoryService, JobService } from '@core/services';
 import { switchMap } from 'rxjs';
-import { latestJobs } from '../../../../testing-data';
 
 @Component({
   selector: 'app-home',
@@ -17,7 +16,7 @@ export class HomeComponent {
   showAllCategories: boolean = false;
   categories: Category[] = [];
   featuredJobs!: Job[];
-  latestJobs = latestJobs;
+  latestJobs!: Job[];
 
   constructor(
     private categoryService: CategoryService,
@@ -30,7 +29,7 @@ export class HomeComponent {
       .pipe(
         switchMap((categories) => {
           this.categories = categories;
-          return this.jobService.getFeaturedJobs(categories[0].id);
+          return this.jobService.getAllJobsPerCategory(categories[0].id!);
         })
       )
       .subscribe((jobs) => {
@@ -41,7 +40,7 @@ export class HomeComponent {
 
   onCategorySelected(categoryId: number, index: number) {
     this.selectedCardIndex = index;
-    this.jobService.getFeaturedJobs(categoryId).subscribe((jobs) => {
+    this.jobService.getAllJobsPerCategory(categoryId).subscribe((jobs) => {
       this.featuredJobs = jobs;
     });
   }

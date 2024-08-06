@@ -1,4 +1,6 @@
 import { Component, Input } from '@angular/core';
+import { Router } from '@angular/router';
+
 import { Job } from '@core/models/job';
 
 @Component({
@@ -11,6 +13,12 @@ export class JobCardComponent {
   @Input() job!: Job;
   @Input() isVertical: boolean = true;
   @Input() isChecked!: boolean;
+  constructor(private router: Router) {}
+
+  onClicked(id: number): void {
+    this.router.navigate(['/job-details', id]);
+    console.log('Job ID:', id);
+  }
 
   onSaveJob(): void {
     this.isChecked

@@ -24,4 +24,6 @@ export class RegisterService {
       .post<Company>(`${this.apiUrl}/register-company`, company)
       .pipe(catchError(ErrorHandler.handleError));
   }
+
+  // Login
 }

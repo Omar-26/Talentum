@@ -18,7 +18,7 @@
     <div class="row gap-2">
       <!-- Company Logo -->
       <div class="companyLogoContainer">
-        <img src="{{ job.companyLogo }}" alt="Company" />
+        <img src="{{ job.company?.logo }}" alt="Company" />
       </div>
 
       <!-- company data -->
@@ -29,7 +29,7 @@
         <!-- Company Name -->
         <div class="row gap-025 align-center company">
           <i class="pi pi-verified"></i>
-          <span>{{ job.companyName }}</span>
+          <span>{{ job.company?.name }}</span>
         </div>
       </div>
     </div>
@@ -39,8 +39,8 @@
       <div class="row jobData">
         <!-- Category -->
         <div class="data">
-          <i class="pi {{ getCategoryById(job.categoryId).icon }}"></i>
-          <span>{{ getCategoryById(job.categoryId).name }}</span>
+          <i class="pi pi-wallet"></i>
+          <span>{{ job.category!.name }}</span>
         </div>
         <!-- Job Type -->
         <div class="data">
@@ -147,7 +147,6 @@
           <app-full-job-card
             *ngFor="let job of relatedJobs | slice : 0 : 3"
             [job]="job"
-            [category]="getCategoryById(job.categoryId)"
           >
           </app-full-job-card>
         </div>
@@ -170,12 +169,12 @@
 
         <!-- Category -->
         <div class="overViewItem">
-          <i class="pi {{ getCategoryById(job.categoryId).icon }} icon"></i>
+          <i class="pi pi-wallet icon"></i>
           <div class="column">
             <span class="title">Category</span>
-            <span class="subTitle">{{
-              getCategoryById(job.categoryId).name
-            }}</span>
+            <span class="subTitle">
+              {{ job.category!.name }}
+            </span>
           </div>
         </div>
 

@@ -118,7 +118,7 @@
           let index = index
         "
         [category]="category"
-        (onSelect)="onCategorySelected(category.id, index)"
+        (onSelect)="onCategorySelected(category.id!, index)"
         [isSelected]="selectedCardIndex === index"
       ></app-category-card>
     </div>

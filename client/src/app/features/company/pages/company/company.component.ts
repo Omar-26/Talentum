@@ -27,34 +27,4 @@ export class CompanyComponent {
       banner: [''],
     });
   }
-
-  ngOnInit(): void {
-    this.loadCompanyProfile();
-  }
-
-  // Load company profile from the service
-  loadCompanyProfile(): void {
-    this.companyService.getCompanyProfile().subscribe((profile: any) => {
-      // Specify type if known
-      this.companyProfile = profile;
-      this.companyProfileForm.patchValue(profile);
-    });
-  }
-
-  // Toggle between edit and view mode
-  toggleEdit(): void {
-    this.isEditing = !this.isEditing;
-  }
-
-  // Save the updated profile
-  saveProfile(): void {
-    if (this.companyProfileForm.valid) {
-      this.companyService
-        .updateCompanyProfile(this.companyProfileForm.value)
-        .subscribe(() => {
-          this.loadCompanyProfile();
-          this.toggleEdit();
-        });
-    }
-  }
 }

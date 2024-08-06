@@ -14,7 +14,7 @@
   <div class="row gap-2">
     <!-- Company Logo -->
     <div class="companyLogoContainer">
-      <img src="{{ job.companyLogo }}" alt="Company" />
+      <img src="{{ job.company?.logo }}" alt="Company" />
     </div>
 
     <!-- company data -->
@@ -25,7 +25,7 @@
       <!-- Company Name -->
       <div class="row gap-025 align-center company">
         <i class="pi pi-verified"></i>
-        <span>{{ job.companyName }}</span>
+        <span>{{ job.company?.name }}</span>
       </div>
     </div>
   </div>

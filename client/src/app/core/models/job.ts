@@ -1,3 +1,6 @@
+import { Category } from './category';
+import { Company } from './company';
+
 export interface Job {
   id: number;
   title: string;
@@ -14,6 +17,6 @@ export interface Job {
   createdAt?: Date;
   categoryId?: number;
   companyId?: number;
-  companyLogo?: string;
-  companyName?: string;
+  company: Company;
+  category: Category;
 }

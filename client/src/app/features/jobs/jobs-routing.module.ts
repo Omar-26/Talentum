@@ -10,7 +10,7 @@ const routes: Routes = [
     component: JobsComponent,
   },
   {
-    path: 'job-details',
+    path: 'job-details/:id',
     component: JobDetailsComponent,
   },
   {
