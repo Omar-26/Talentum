@@ -1,6 +1,6 @@
-package com.Talentum.TalentumApplication.Repository;
+package com.Talentum.TalentumApplication.repository;
 
-import com.Talentum.TalentumApplication.Model.User;
+import com.Talentum.TalentumApplication.model.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface UserRepository extends JpaRepository<User,Long> {

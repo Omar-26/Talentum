@@ -1,13 +1,10 @@
-package com.Talentum.TalentumApplication.JwtToken;
+package com.Talentum.TalentumApplication.utils;
 
 
 import org.springframework.stereotype.Component;
 
-import java.util.Base64;
-import java.util.Date;
-
 @Component
-public class JWT_Utility {
+public class JWTUtil {
 /*
     private String secretKey = "Abdelrahman secret Strong key"; // Use a strong secret key
 

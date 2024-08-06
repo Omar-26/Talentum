@@ -1,4 +1,4 @@
-package com.Talentum.TalentumApplication.Model;
+package com.Talentum.TalentumApplication.model;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -9,11 +9,10 @@ import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
 import lombok.Getter;
 import lombok.Setter;
-import org.springframework.cglib.core.Local;
 
 import java.sql.Timestamp;
 import java.time.LocalDate;
-import java.util.Date;
+
 @Setter
 @Getter
 @Entity(name = "user")
@@ -31,9 +30,10 @@ public class User {
     @NotBlank(message = "Email is required")
     private String email;
     @NotBlank(message = "Phone number is required")
+    @Size(min = 11,max = 11, message = "Phone number must be 11 Numbers Long")
     private String phoneNumber;
     @NotBlank(message = "Password is required")
-    @Size(min = 6, message = "Password must be at least 6 characters long")
+    @Size(min = 8, message = "Password must be at least 8 characters long")
     private String password;
     private Timestamp dateOfBirth;
     private LocalDate createdAt;
@@ -52,5 +52,4 @@ public class User {
         this.dateOfBirth = dateOfBirth;
         this.createdAt = createdAt;
     }
-
 }

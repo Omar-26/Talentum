@@ -1,4 +1,4 @@
-package com.Talentum.TalentumApplication.Config;
+package com.Talentum.TalentumApplication.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

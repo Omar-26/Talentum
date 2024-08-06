@@ -1,7 +1,5 @@
-package com.Talentum.TalentumApplication.Model;
+package com.Talentum.TalentumApplication.model;
 
-import jakarta.persistence.Entity;
-import jakarta.validation.constraints.Email;
 import lombok.Getter;
 import lombok.Setter;
 

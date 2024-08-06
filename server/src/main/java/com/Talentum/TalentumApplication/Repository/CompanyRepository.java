@@ -1,11 +1,11 @@
-package com.Talentum.TalentumApplication.Repository;
+package com.Talentum.TalentumApplication.repository;
 
-import com.Talentum.TalentumApplication.Model.Company;
-import com.Talentum.TalentumApplication.Model.SavedJob;
+import com.Talentum.TalentumApplication.model.Company;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface CompanyRepository extends JpaRepository<Company, Long> {
-     boolean existsByEmail(String email);
-     Company findByEmail(String email);
+    boolean existsByEmail(String email);
+    boolean existsByName(String companyName);
+    Company findByEmail(String email);
 
 }

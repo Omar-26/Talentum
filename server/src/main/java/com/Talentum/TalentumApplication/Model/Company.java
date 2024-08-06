@@ -1,16 +1,12 @@
-package com.Talentum.TalentumApplication.Model;
+package com.Talentum.TalentumApplication.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
 import lombok.Getter;
 import lombok.Setter;
 
-import java.sql.Timestamp;
 import java.time.LocalDate;
 
 @Setter
@@ -22,25 +18,29 @@ public class Company {
     private Long id;
     @NotBlank(message = "Name is required")
     private String name;
-
     @Email(message = "Email should be valid")
     private String email;
-
-//    @NotBlank(message = "Username is required")
-//    private String username;
-
-    @NotBlank(message = "Password is required")
-    private String password;
-    private String description;
+    @NotBlank(message = "Location is required")
     private String location;
+    @NotBlank(message = "Industry is required")
     private String industry;
-   // private byte[] logo;
+    @NotBlank(message = "Password is required")
+    @Size(min = 8, message = "Password must be at least 8 characters long")
+    private String password;
+    @NotBlank(message = "Description is required")
+    private String description;
+    @Lob
+    @Column(columnDefinition = "LONGBLOB")
+    private byte[] logo;
     private LocalDate createdAt;
-public Company(){}
-    public Company(String name, String email, String username, String password, String description, String location, String industry, LocalDate createdAt) {
+
+    public Company() {
+    }
+
+    public Company(String name, byte[] logo, String email, String password, String description, String location, String industry, LocalDate createdAt) {
         this.name = name;
+        this.logo = logo;
         this.email = email;
-//        this.username = username;
         this.password = password;
         this.description = description;
         this.location = location;

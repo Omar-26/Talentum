@@ -1,4 +1,4 @@
-package com.Talentum.TalentumApplication.Model;
+package com.Talentum.TalentumApplication.model;
 
 import jakarta.persistence.*;
 

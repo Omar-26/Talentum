@@ -1,12 +1,9 @@
-package com.Talentum.TalentumApplication.Controller.Auth;
+package com.Talentum.TalentumApplication.controller;
 
-import com.Talentum.TalentumApplication.Model.Admin;
-import com.Talentum.TalentumApplication.Model.Company;
-import com.Talentum.TalentumApplication.Model.LoginRequest;
-import com.Talentum.TalentumApplication.Model.User;
-import com.Talentum.TalentumApplication.Services.AdminService;
-import com.Talentum.TalentumApplication.Services.AuthService;
-import org.springframework.beans.factory.annotation.Autowired;
+import com.Talentum.TalentumApplication.model.Company;
+import com.Talentum.TalentumApplication.model.LoginRequest;
+import com.Talentum.TalentumApplication.model.User;
+import com.Talentum.TalentumApplication.service.AuthService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
@@ -18,15 +15,16 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.Map;
 
 @RestController
-@RequestMapping("/api/v1")
-public class Authentication {
+@RequestMapping("/api/auth")
+public class AuthController {
 
     private final AuthService authenticationService;
 
-    public Authentication(AuthService authenticationService) {
+    public AuthController(AuthService authenticationService) {
         this.authenticationService = authenticationService;
     }
 
+    // Register
     // Register User
     @PostMapping("/register-user")
     public ResponseEntity<?> addUser(@RequestBody @Validated User user) {
@@ -38,6 +36,7 @@ public class Authentication {
         }
     }
 
+    // Register Company
     @PostMapping("/register-company")
     public ResponseEntity<?> registerCompany(@RequestBody @Validated Company company) {
         try {
@@ -48,6 +47,8 @@ public class Authentication {
         }
     }
 
+    // Login
+    // Login User or Company
     @PostMapping("/login")
     public ResponseEntity<?> loginForm(@RequestBody LoginRequest data) {
         try {

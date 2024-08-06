@@ -1,6 +1,6 @@
-package com.Talentum.TalentumApplication.Repository;
+package com.Talentum.TalentumApplication.repository;
 
-import com.Talentum.TalentumApplication.Model.SavedJob;
+import com.Talentum.TalentumApplication.model.SavedJob;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.List;

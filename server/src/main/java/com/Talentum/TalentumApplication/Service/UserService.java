@@ -1,10 +1,68 @@
-package com.Talentum.TalentumApplication.Service;
+package com.Talentum.TalentumApplication.service;
 
-import com.Talentum.TalentumApplication.payload.LoginDto;
-import com.Talentum.TalentumApplication.payload.UserDTO;
-import com.Talentum.TalentumApplication.Service.LoginMesage;
+import com.Talentum.TalentumApplication.exception.ResourceNotFoundException;
+import com.Talentum.TalentumApplication.model.Job;
+import com.Talentum.TalentumApplication.model.SavedJob;
+import com.Talentum.TalentumApplication.model.User;
+import com.Talentum.TalentumApplication.repository.JobRepository;
+import com.Talentum.TalentumApplication.repository.UserRepository;
+import com.Talentum.TalentumApplication.repository.savedJobRepository;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
-public interface UserService {
-    String addUser(UserDTO  userDTO);
-    LoginMesage loginUser(LoginDto loginDTO);
+import java.util.List;
+import java.util.Objects;
+import java.util.stream.Collectors;
+
+@Service
+public class UserService {
+
+    private final UserRepository userRepository;
+    private final JobRepository jobRepository;
+    private final savedJobRepository savedJobRepository;
+
+    public UserService(UserRepository userRepository, JobRepository jobRepository, savedJobRepository savedJobRepository) {
+        this.userRepository = userRepository;
+        this.jobRepository = jobRepository;
+        this.savedJobRepository = savedJobRepository;
+    }
+
+    // Saved Jobs
+    // Save Job
+    public void saveJob(Long userId, Long jobId) {
+        User user = userRepository.findById(userId)
+                .orElseThrow(() -> new ResourceNotFoundException("User not found"));
+        Job job = jobRepository.findById(jobId)
+                .orElseThrow(() -> new ResourceNotFoundException("Job not found"));
+
+        SavedJob savedJob = new SavedJob();
+        savedJob.setUser(user);
+        savedJob.setJob(job);
+        savedJobRepository.save(savedJob);
+    }
+
+    // Un-Save Job
+    @Transactional
+    public void deleteSavedJob(Long id) {
+        savedJobRepository.deleteByjobId(id); // Delete by jobId
+    }
+
+    // Get Saved Jobs
+    public List<Job> getAllSavedJobs(Long userId) {
+        User user = userRepository.findById(userId)
+                .orElseThrow(() -> new ResourceNotFoundException("User not found"));
+
+        List<SavedJob> savedJobs = savedJobRepository.findByUserId(user.getId());
+        return savedJobs.stream()
+                .map(SavedJob::getJob)
+                .filter(Objects::nonNull)
+                .collect(Collectors.toList());
+    }
+
+    // User
+    // Get Profile
+    public User getProfile(Long id) {
+        return userRepository.findById(id)
+                .orElseThrow(() -> new ResourceNotFoundException("User not found"));
+    }
 }
