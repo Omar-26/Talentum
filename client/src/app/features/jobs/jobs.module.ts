@@ -1,5 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
+import { FormsModule } from '@angular/forms';
 import { RouterLink, RouterModule } from '@angular/router';
 import { CoreModule } from '@core';
 import { SharedModule } from '@shared';
@@ -21,6 +22,7 @@ import { JobsComponent } from './pages/jobs/jobs.component';
     JobsRoutingModule,
     RouterModule,
     RouterLink,
+    FormsModule,
     SharedModule,
     CoreModule,
   ],

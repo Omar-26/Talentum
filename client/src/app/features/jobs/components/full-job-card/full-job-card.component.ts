@@ -1,4 +1,5 @@
 import { Component, Input } from '@angular/core';
+import { Router } from '@angular/router';
 import { Job } from '@core/models/job';
 
 @Component({
@@ -9,13 +10,17 @@ import { Job } from '@core/models/job';
 export class FullJobCardComponent {
   @Input() backgroundColor: string = 'var(--accent-color)';
   @Input() job!: Job;
-  @Input() category!: { name: string; icon: string };
   @Input() isChecked!: boolean;
+
+  constructor(private router: Router) {}
 
   onSaveJob(): void {
     this.isChecked
       ? console.log('Job Status:', 'Saved')
       : console.log('Job Status:', 'Removed');
+  }
+  onClicked(jobId: number): void {
+    this.router.navigate(['/job-details', jobId]);
   }
 }
 

@@ -25,6 +25,7 @@ export interface Category {
   id: number;
   name: string;
   icon: string;
+  numOfJobs?: number;
   createdAt?: Date;
   updatedAt?: Date;
 }

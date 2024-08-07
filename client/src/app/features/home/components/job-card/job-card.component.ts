@@ -15,9 +15,8 @@ export class JobCardComponent {
   @Input() isChecked!: boolean;
   constructor(private router: Router) {}
 
-  onClicked(id: number): void {
-    this.router.navigate(['/job-details', id]);
-    console.log('Job ID:', id);
+  onClicked(jobId: number): void {
+    this.router.navigate(['/job-details', jobId]);
   }
 
   onSaveJob(): void {

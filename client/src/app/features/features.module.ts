@@ -3,6 +3,7 @@ import { CoreModule } from '@core';
 import { JobService } from '@core/services';
 import { RegisterService } from '@core/services/auth/signup/register.service';
 import { CategoryService } from '@core/services/category/category.service';
+import { UserService } from '@core/services/user/user.service';
 import { SharedModule } from '@shared';
 import { AuthModule } from './auth/auth.module';
 import { CompanyModule } from './company/company.module';
@@ -21,6 +22,6 @@ import { UserModule } from './user/user.module';
     CompanyModule,
   ],
   exports: [AuthModule, HomeModule, JobsModule, UserModule, CompanyModule],
-  providers: [CategoryService, JobService, RegisterService],
+  providers: [CategoryService, JobService, RegisterService, UserService],
 })
 export class FeaturesModule {}

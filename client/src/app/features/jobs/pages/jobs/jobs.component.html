@@ -11,6 +11,7 @@
       <p class="filterHeader">Location</p>
       <input type="text" class="searchBar" placeholder="Choose City" />
 
+      <!-- Category -->
       <p class="filterHeader">Category</p>
       <div
         *ngFor="
@@ -21,9 +22,10 @@
       >
         <div class="row">
           <input
-            type="checkbox"
             id="{{ category.name }}"
-            (click)="onCategoryChange(category.id)"
+            value="{{ category.id }}"
+            type="checkbox"
+            (click)="onChange($event)"
           />
           <label for="{{ category.name }}">
             <span></span>
@@ -34,9 +36,29 @@
           </label>
         </div>
         <p class="full-center countTag">
-          {{ filterJobsByCategory(category.id).length }}
+          {{ getJobsCountPerCategory(category.id) }}
         </p>
       </div>
+
+      <!-- <div
+      *ngFor="
+        let category of categories
+          | slice : 0 : (showAllCategories ? categories.length : 6);
+        let index = index
+      "
+      class="row space-between field-checkbox"
+    >
+      <p-checkbox
+        [(ngModel)]="selectedCategories"
+        name="categories"
+        [value]="category"
+        [label]="category.id.toString() + ' ' + category.name"
+        (onChange)="onChange($event)"
+      />
+      <p class="full-center countTag">
+        {{ getJobsCountPerCategory(category.id) }}
+      </p>
+    </div> -->
       <app-animated-button
         label="{{ showAllCategoriesText }} all categories"
         width="100%"
@@ -63,7 +85,7 @@
             >
           </label>
         </div>
-        <p class="full-center countTag">{{ numOfJobsPerCategory }}</p>
+        <p class="full-center countTag">11</p>
       </div>
 
       <!-- Experience Level -->
@@ -128,16 +150,15 @@
   <div class="column gap-2 jobsSection">
     <div class="countTag">
       <p class="darkText">
-        Showing {{ jobs.length }} - {{ rows }} of
-        {{ jobs.length }}
+        Showing
+        {{ filteredJobs.length ? filteredJobs.length : jobs.length }} -
+        {{ 6 }} of {{ jobs.length }}
       </p>
     </div>
     <app-full-job-card
-      *ngFor="let job of jobs"
+      *ngFor="let job of filteredJobs.length ? filteredJobs : jobs"
       [job]="job"
-      [category]="job.category"
     ></app-full-job-card>
-    <!-- [category]="job.category" -->
     <div class="card flex justify-content-center">
       <!-- <p-paginator
         (onPageChange)="onPageChange($event)"

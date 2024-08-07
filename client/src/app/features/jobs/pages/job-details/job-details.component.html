@@ -18,7 +18,7 @@
     <div class="row gap-2">
       <!-- Company Logo -->
       <div class="companyLogoContainer">
-        <img src="{{ job.company?.logo }}" alt="Company" />
+        <img src="{{ job.company.logo }}" alt="Company" />
       </div>
 
       <!-- company data -->
@@ -29,7 +29,7 @@
         <!-- Company Name -->
         <div class="row gap-025 align-center company">
           <i class="pi pi-verified"></i>
-          <span>{{ job.company?.name }}</span>
+          <span>{{ job.company.name }}</span>
         </div>
       </div>
     </div>
@@ -40,7 +40,7 @@
         <!-- Category -->
         <div class="data">
           <i class="pi pi-wallet"></i>
-          <span>{{ job.category!.name }}</span>
+          <span>{{ job.category.name }}</span>
         </div>
         <!-- Job Type -->
         <div class="data">

@@ -3,6 +3,7 @@
   height: 11.2rem;
   background: url("../../../../assets/images/hero-pattern.svg") no-repeat;
   background-color: var(--accent-color);
+//   background-color: red;
   background-position-x: 155%;
 
   .userProfilePic {
@@ -18,7 +19,6 @@
     z-index: 1;
     left: 5rem;
     top: 4rem;
-    width: 100%;
     .image {
       height: 100%;
       object-fit: cover;

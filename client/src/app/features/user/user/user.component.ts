@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+import { UserService } from '@core/services/user/user.service';
 import { User } from '../../../core/models/user';
 
 @Component({
@@ -7,22 +9,21 @@ import { User } from '../../../core/models/user';
   styleUrl: './user.component.scss',
 })
 export class UserComponent {
-  user: User = {
-    // id: 1,
-    firstName: 'Jake',
-    lastName: 'Smith',
-    // jobTitle: 'Software Engineer',
-    // gender: 'male',
-    username: 'jake74',
-    email: 'jake@Talentum.com',
-    password: 'P@assW0rd',
-    phoneNumber: '+20 0111-844-7335',
-    dateOfBirth: new Date('1990-05-15'),
-    // createdAt: new Date('2024-08-03T00:02:34.000Z'),
-  };
+  userId!: any;
+  user!: User;
   dob!: string;
+
+  constructor(
+    private userService: UserService,
+    private route: ActivatedRoute
+  ) {}
+
   ngOnInit() {
-    this.dob = formatDateToDayMonYear(this.user!.dateOfBirth);
+    this.userId = this.route.snapshot.paramMap.get('user-id');
+    this.userService.getUserProfile(this.userId).subscribe((user) => {
+      this.user = user;
+      this.dob = formatDateToDayMonYear(user.dateOfBirth);
+    });
   }
 }
 
@@ -32,8 +33,8 @@ function formatDateToDayMonYear(date: Date): string {
     month: 'short',
     year: 'numeric',
   };
+  if (typeof date === 'string') {
+    date = new Date(date);
+  }
   return date.toLocaleDateString('en-GB', options);
 }
-
-const dateOfBirth = new Date('1990-05-15');
-const formattedDateOfBirth = formatDateToDayMonYear(dateOfBirth);

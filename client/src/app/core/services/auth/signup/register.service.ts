@@ -14,14 +14,14 @@ export class RegisterService {
   // Register User
   registerUser(user: User): Observable<User> {
     return this.http
-      .post<User>(`${this.apiUrl}/register-user`, user)
+      .post<User>(`${this.apiUrl}/auth/register-user`, user)
       .pipe(catchError(ErrorHandler.handleError));
   }
 
   // Register Company
   registerCompany(company: Company): Observable<Company> {
     return this.http
-      .post<Company>(`${this.apiUrl}/register-company`, company)
+      .post<Company>(`${this.apiUrl}/auth/register-company`, company)
       .pipe(catchError(ErrorHandler.handleError));
   }
 

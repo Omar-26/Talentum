@@ -7,10 +7,10 @@
   <div class="row space-between align-center">
     <!-- Company Logo -->
     <div class="full-center companyLogoContainer">
-      <img src="{{ job.company?.logo }}" alt="Company" />
+      <img src="{{ job.company.logo }}" alt="Company" />
     </div>
     <!-- Job Type Tag -->
-    <span class="jobType" *ngIf="isVertical">Full Time</span>
+    <span class="jobType" *ngIf="isVertical">{{ job.type }}</span>
   </div>
 
   <!-- Job meta data -->
@@ -22,7 +22,7 @@
       <!-- Company Name -->
       <div class="row gap-025 company align-center">
         <i class="pi pi-verified"></i>
-        <span>{{ job.company?.name }}</span>
+        <span>{{ job.company.name }}</span>
       </div>
       <!-- Location -->
       <div class="row gap-025 location align-center">

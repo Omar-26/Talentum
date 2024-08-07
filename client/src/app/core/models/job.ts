@@ -12,11 +12,11 @@ export interface Job {
   description: string;
   responsibilities: string;
   qualifications: string;
-  benefits?: string;
-  tags: string[];
-  createdAt?: Date;
-  categoryId?: number;
-  companyId?: number;
-  company: Company;
+  categoryId: number;
+  companyId: number;
   category: Category;
+  company: Company;
+  benefits?: string;
+  createdAt?: Date;
+  tags?: string[];
 }

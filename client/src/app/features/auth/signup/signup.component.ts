@@ -5,9 +5,12 @@ import {
   ValidationErrors,
   Validators,
 } from '@angular/forms';
+import { Router } from '@angular/router';
 import { Company } from '@core/models/company';
 import { User } from '@core/models/user';
 import { RegisterService } from '@core/services/auth/signup/register.service';
+
+
 @Component({
   selector: 'app-signup',
   templateUrl: './signup.component.html',
@@ -24,7 +27,8 @@ export class SignupComponent {
   companySignupForm: any;
   constructor(
     private fb: FormBuilder,
-    private registerService: RegisterService
+    private registerService: RegisterService,
+    private router: Router
   ) {
     this.userSignupForm = this.fb.group(
       {
@@ -143,14 +147,14 @@ export class SignupComponent {
         phoneNumber: this.userFormControls['phoneNumber'].value,
         dateOfBirth: this.userFormControls['dateOfBirth'].value,
       };
-      this.registerService
-        .registerUser(user)
-        .subscribe((user) => (user = user));
+      this.registerService.registerUser(user).subscribe((user: User) => {
+        this.router.navigate(['/user', user.id]).then();
+      });
     } else if (type === 'company') {
-        if (this.companySignupForm.invalid) {
-          this.companySignupForm.markAllAsTouched();
-          return;
-        }
+      if (this.companySignupForm.invalid) {
+        this.companySignupForm.markAllAsTouched();
+        return;
+      }
       const company: Company = {
         name: this.companyFormControls['companyName'].value,
         email: this.companyFormControls['email'].value,
