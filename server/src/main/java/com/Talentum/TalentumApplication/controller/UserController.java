@@ -22,10 +22,17 @@ public class UserController {
 
     // Saved Jobs
     // Save Jobs
-    @PostMapping("/save_job/{userId}/{jobId}")
+    @PostMapping("/save-job/{userId}/{jobId}")
     public ResponseEntity<String> saveJob(@PathVariable Long userId, @PathVariable Long jobId) {
         userService.saveJob(userId, jobId);
         return ResponseEntity.status(HttpStatus.CREATED).body("Job saved successfully.");
+    }
+
+    // Check if Job is Saved
+    @GetMapping("/is-job-saved/{userId}/{jobId}")
+    public ResponseEntity<Boolean> isJobSaved(@PathVariable Long userId, @PathVariable Long jobId) {
+        boolean isJobSaved = userService.isJobSaved(userId, jobId);
+        return ResponseEntity.ok(isJobSaved);
     }
 
     // Un-Save Job

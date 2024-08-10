@@ -17,6 +17,15 @@ export class JobService {
       .pipe(catchError(ErrorHandler.handleError));
   }
 
+  //  Get Paginated Jobs
+  getPaginatedJobs(): Observable<{ jobs: Job[]; totalRecords: number }> {
+    return this.http
+      .get<{ jobs: Job[]; totalRecords: number }>(
+        `${this.apiUrl}/jobs/paginated`
+      )
+      .pipe(catchError(ErrorHandler.handleError));
+  }
+
   //  get job by id
   getJobById(id: string | null): Observable<Job> {
     return this.http

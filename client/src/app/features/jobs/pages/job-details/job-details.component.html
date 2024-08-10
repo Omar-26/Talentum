@@ -5,13 +5,14 @@
   <div class="jobHeader">
     <!-- Time and save button -->
     <div class="row space-between timeAndSave">
-      <!-- added at -->
-      <!-- <div class="darkText">{{ job.addedAt }}</div> -->
       <div class="darkText timeAdded">15 mins ago</div>
 
       <!-- bookmark button-->
-      <div class="saveButton">
-        <app-save-button></app-save-button>
+      <div *ngIf="!(role === 'company')" class="saveButton">
+        <app-save-button
+          (click)="onSaveJob()"
+          [isChecked]="isBookmarked"
+        ></app-save-button>
       </div>
     </div>
     <!-- company and Job Title -->
@@ -39,7 +40,7 @@
       <div class="row jobData">
         <!-- Category -->
         <div class="data">
-          <i class="pi pi-wallet"></i>
+          <i class="pi {{ job.category.icon }}"></i>
           <span>{{ job.category.name }}</span>
         </div>
         <!-- Job Type -->
@@ -144,10 +145,7 @@
       <div class="relatedJobs">
         <div class="title">Related Jobs</div>
         <div class="column gap-1">
-          <app-full-job-card
-            *ngFor="let job of relatedJobs | slice : 0 : 3"
-            [job]="job"
-          >
+          <app-full-job-card *ngFor="let job of relatedJobs" [job]="job">
           </app-full-job-card>
         </div>
       </div>

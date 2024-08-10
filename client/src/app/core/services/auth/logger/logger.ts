@@ -1,12 +1,16 @@
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { ErrorHandler } from '@core/services/error-handling';
+import { environment } from '@environments';
+import { catchError, Observable } from 'rxjs';
 
 @Injectable()
 export class Logger {
-  constructor() {}
+  apiUrl = environment.apiUrl;
+  constructor(private http: HttpClient) {}
 
-  submitApplication(email: string, password: string, remember: boolean) {
-    console.log(
-      `Email: ${email}, Password: ${password}, Remember: ${remember}`
-    );
+  login(email: string, password: string): Observable<any> {
+    const body = { email, password };
+    return this.http.post<Observable<any>>(`${this.apiUrl}/auth/login`, body);
   }
 }

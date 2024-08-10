@@ -1,12 +1,12 @@
 import { NgModule } from '@angular/core';
 import { SharedModule } from '@shared';
+import { PrimeNgComponentsModule } from '@shared/primeng-components/primeng-components.module';
 import { ComponentsModule } from './components';
-import { Logger } from './services/auth/logger/logger';
 
 @NgModule({
   declarations: [],
   imports: [SharedModule],
-  exports: [ComponentsModule],
+  exports: [ComponentsModule, PrimeNgComponentsModule],
   providers: [],
 })
 export class CoreModule {}

@@ -7,9 +7,7 @@ import java.util.List;
 
 public interface savedJobRepository extends JpaRepository<SavedJob,Long> {
     List<SavedJob> findByUserId(Long userId);
-    SavedJob findByjobId(Long jobId);
-    void deleteByjobId(Long jobId); // Add this method
-
-
-
+    SavedJob findByJobId(Long jobId);
+    void deleteByJobId(Long jobId);
+    boolean existsByUserIdAndJobId(Long userId, Long jobId);
 }

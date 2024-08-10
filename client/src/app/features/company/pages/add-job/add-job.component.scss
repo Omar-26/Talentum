@@ -1,0 +1,55 @@
+label {
+    color: #4640DE;
+    font-size: 18px;
+    display: block;
+  }
+
+  input, select, textarea {
+    border-color: #4640DE;
+    background-color: #F8F8FD;
+    padding: 12px 15px;
+    margin: 8px 0;
+    width: 100%;
+    border-radius: 8px;
+  }
+
+  form {
+    background-color: #F8F8FD;
+    padding: 60px;
+    display: grid;
+    grid-template-columns: auto auto;
+    column-gap: 60px;
+    row-gap: 25px;
+    border-radius: 10px;
+  }
+
+  button {
+    display: block;
+    margin: auto;
+    border-radius: 20px;
+    border: 1px solid #4640DE;
+    background-color: #4640DE;
+    color: #FFFFFF;
+    font-size: 12px;
+    font-weight: bold;
+    padding: 12px 15px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    transition: transform 80ms ease-in;
+    grid-column-start: 1;
+    grid-column-end: 3;
+    width: 200px;
+    text-align: center;
+  }
+
+  .addJob-form {
+    background-color: #D6DDEB;
+  }
+
+  .content-wrap {
+    max-width: 800px;
+    width: 85%;
+    margin: 0 auto;
+    background-color: #F8F8FD;
+    border-radius: 30px;
+  }

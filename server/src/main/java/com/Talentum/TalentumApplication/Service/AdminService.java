@@ -52,6 +52,17 @@ public class AdminService {
         return companyRepository.findAll();
     }
 
+    public Company getCompanyById(Long companyId) {
+        return companyRepository.findById(companyId)
+                .orElseThrow(() -> new RuntimeException("Company not found"));
+    }
+
+    public byte[] getCompanyLogo(Long companyId) {
+        Company company = companyRepository.findById(companyId)
+                .orElseThrow(() -> new RuntimeException("Company not found"));
+        return company.getLogo();
+    }
+
     // Delete Company
     public void deleteCompany(Long companyId) {
         Company company = companyRepository.findById(companyId)

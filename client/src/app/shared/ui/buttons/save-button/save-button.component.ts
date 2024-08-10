@@ -1,4 +1,4 @@
-import { Component, Output } from '@angular/core';
+import { Component, Input } from '@angular/core';
 
 @Component({
   selector: 'app-save-button',
@@ -6,10 +6,5 @@ import { Component, Output } from '@angular/core';
   styleUrl: './save-button.component.scss',
 })
 export class SaveButtonComponent {
-  @Output() isChecked!: boolean;
-  iconSize: string = '24px';
-
-  onClicked() {
-    this.isChecked = !this.isChecked;
-  }
+  @Input() isChecked!: boolean;
 }

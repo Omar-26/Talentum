@@ -17,7 +17,7 @@
           <option value="au">Australia</option>
         </select>
       </div>
-      <button class="button search-button" routerLink="/apply-to-job">
+      <button class="button search-button" routerLink="/company">
         <p>Search</p>
       </button>
     </div>
@@ -118,6 +118,7 @@
           let index = index
         "
         [category]="category"
+        (click)="scrollToElement('featuredJobs')"
         (onSelect)="onCategorySelected(category.id!, index)"
         [isSelected]="selectedCardIndex === index"
       ></app-category-card>
@@ -125,7 +126,7 @@
   </section>
 
   <!-- Featured Jobs Section  -->
-  <section class="featuredJobs">
+  <section class="featuredJobs" id="featuredJobs">
     <div class="row space-between align-center sectionHeading">
       <!-- Title -->
       <div class="row gap-1 sectionTitle">
@@ -169,7 +170,7 @@
     <!-- Latest Jobs -->
     <div class="gridView-2">
       <app-job-card
-        *ngFor="let job of latestJobs | slice : 0 : 8; let index = index"
+        *ngFor="let job of featuredJobs | slice : 0 : 8; let index = index"
         [isVertical]="false"
         [job]="job"
         backgroundColor="white"

@@ -6,7 +6,7 @@
       Enter to get unlimited access to jobs and opportunities
     </h2>
 
-    <form [formGroup]="loginForm" (submit)="submitApplication()">
+    <form [formGroup]="loginForm" (submit)="login()">
       <div class="login-form">
         <!-- Email  -->
         <div
@@ -83,7 +83,7 @@
         <!-- remember me and forgot password-->
         <div class="row mt-15 space-between">
           <div class="row">
-            <input id="remember" type="checkbox" formControlName="remember" />
+            <input id="remember" type="checkbox" />
             <label for="remember" class="remember-me">
               <span></span>
               Remember me

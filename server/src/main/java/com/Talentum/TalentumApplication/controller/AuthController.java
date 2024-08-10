@@ -7,11 +7,10 @@ import com.Talentum.TalentumApplication.service.AuthService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.io.IOException;
 import java.util.Map;
 
 @RestController
@@ -38,10 +37,14 @@ public class AuthController {
 
     // Register Company
     @PostMapping("/register-company")
-    public ResponseEntity<?> registerCompany(@RequestBody @Validated Company company) {
+    public ResponseEntity<?> registerCompany(
+            @RequestPart("company") @Validated Company company,
+            @RequestPart("logo") MultipartFile logo) {
         try {
-            Company newCompany = authenticationService.registerCompany(company);
+            Company newCompany = authenticationService.registerCompany(company, logo);
             return new ResponseEntity<>(newCompany, HttpStatus.CREATED);
+        } catch (IOException e) {
+            return new ResponseEntity<>(e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
         } catch (RuntimeException e) {
             return new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
         }
@@ -55,6 +58,11 @@ public class AuthController {
             Map<String, Object> response = authenticationService.login(data);
             return ResponseEntity.ok(response);
         } catch (RuntimeException e) {
+            if (e.getMessage().equals("Email not found")) {
+                return ResponseEntity.status(HttpStatus.NOT_FOUND).body(e.getMessage());
+            } else if (e.getMessage().equals("Incorrect password")) {
+                return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(e.getMessage());
+            }
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(e.getMessage());
         }
     }

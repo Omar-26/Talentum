@@ -1,0 +1,121 @@
+<div class="pageHeading">
+  <!-- company profile picture -->
+  <div class="full-center companyProfilePic">
+    <img class="image" src="{{ logoUrl }}" />
+  </div>
+</div>
+
+<div style="padding: 0 3rem 0 0" class="row space-between align-center">
+  <div class="companyDeclaration">
+    <div class="companyName">
+      {{ company ? company.name : "" }}
+      <i class="pi pi-verified icon"></i>
+    </div>
+    <h3 class="title gap-025">&#64; {{ company ? company.name : "" }}</h3>
+  </div>
+  <app-animated-button
+    *ngIf="role === 'company'"
+    label="Add Job"
+    width="21.75rem"
+    height="2.8rem"
+    backgroundColor="var(--primary-color)"
+    fontSize="1.1rem"
+    fontWeight="700"
+    routerLink="add-job"
+  ></app-animated-button>
+</div>
+
+<div class="content">
+  <!-- Details and Job Overview -->
+  <div class="column companyInfo mt-15">
+    <!-- Left Column: company Details -->
+    <div class="column gap-1 basicInfo" id="basicInfo">
+      <div class="row gap-1 sectionTitle">
+        <i class="pi pi-building-columns"></i>
+        <span>Basic Information</span>
+      </div>
+      <div class="infoGrid">
+        <!-- company website -->
+        <div class="infoItem">
+          <span class="title">
+            <i class="pi pi-globe"></i>
+            <span>Website</span>
+          </span>
+          <span class="subTitle">{{ company ? company.website : "" }}</span>
+        </div>
+        <!-- Email Address -->
+        <div class="infoItem">
+          <span class="title">
+            <i class="pi pi-envelope"></i>
+            <span>Email Address</span>
+          </span>
+          <span class="subTitle">{{ company ? company.email : "" }}</span>
+        </div>
+        <!-- Phone Number -->
+        <div class="infoItem">
+          <span class="title">
+            <i class="pi pi-building"></i>
+            <span>Industry</span>
+          </span>
+          <span class="subTitle">{{ company ? company.industry : "" }}</span>
+        </div>
+        <!-- Date of Birth -->
+        <div class="infoItem">
+          <span class="title">
+            <i class="pi pi-map-marker"></i>
+            <span>Headquarters</span>
+          </span>
+          <span class="subTitle">{{ company ? company.location : "" }}</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Created Jobs -->
+    <!-- <div class="createdJobs" id="savedJobs">
+      <div class="title">Saved Jobs</div>
+      <div class="column gap-1">
+        <app-full-job-card
+          *ngFor="let job of savedJobs"
+          [job]="job"
+        ></app-full-job-card>
+      </div>
+      <div *ngIf="savedJobs.length == 0" class="noSavedJobs">
+        <span>No Saved Jobs</span>
+        <i class="pi pi-bookmark"></i>
+      </div>
+    </div> -->
+  </div>
+
+  <!-- Right Column: company Navigation -->
+  <div class="companyNav">
+    <div class="column gap-1 companyNavCard">
+      <!-- maybe we add it here -->
+      <!-- <div
+          class="navTile"
+          style="border-top-right-radius: 1.5rem; border-top-left-radius: 1.5rem"
+        >
+          <i class="pi pi-pencil"></i>
+          <span>Edit Profile</span>
+        </div> -->
+      <div
+        class="navTile"
+        (click)="goTo('basicInfo')"
+        style="border-top-right-radius: 1.5rem; border-top-left-radius: 1.5rem"
+      >
+        <i class="pi pi-address-book"></i>
+        <span>Basic Information</span>
+      </div>
+      <div
+        class="navTile"
+        (click)="goTo('createdJobs')"
+        style="
+          border-bottom-right-radius: 1.5rem;
+          border-bottom-left-radius: 1.5rem;
+        "
+      >
+        <i class="pi pi-bookmark"></i>
+        <span>Created Jobs</span>
+      </div>
+    </div>
+  </div>
+</div>

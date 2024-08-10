@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { Job } from '@core/models/tempCodeRunnerFile';
 import { UserService } from '@core/services/user/user.service';
 import { User } from '../../../core/models/user';
 
@@ -9,24 +9,36 @@ import { User } from '../../../core/models/user';
   styleUrl: './user.component.scss',
 })
 export class UserComponent {
-  userId!: any;
+  userId = localStorage.getItem('id') || '0';
   user!: User;
+  savedJobs: Job[] = [];
   dob!: string;
 
-  constructor(
-    private userService: UserService,
-    private route: ActivatedRoute
-  ) {}
+  constructor(private userService: UserService) {}
 
   ngOnInit() {
-    this.userId = this.route.snapshot.paramMap.get('user-id');
     this.userService.getUserProfile(this.userId).subscribe((user) => {
       this.user = user;
       this.dob = formatDateToDayMonYear(user.dateOfBirth);
+      this.loadSavedJobs();
     });
   }
-}
+  loadSavedJobs() {
+    if (this.user) {
+      this.userService.getSavedJobs(this.userId).subscribe((jobs) => {
+        this.savedJobs = jobs;
+      });
+    }
+  }
 
+  goTo(id: string) {
+    const element = document.getElementById(id);
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth' });
+    }
+  }
+}
+// should be in another file
 function formatDateToDayMonYear(date: Date): string {
   const options: Intl.DateTimeFormatOptions = {
     day: '2-digit',

@@ -1,23 +1,22 @@
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { Router } from '@angular/router';
-
+import { categoryIcons } from '@core/models/category';
 import { Job } from '@core/models/job';
 import { LocalStorageService } from '@core/services/local-storage/local-storage.service';
 import { UserService } from '@core/services/user/user.service';
 
 @Component({
-  selector: 'app-job-card',
-  templateUrl: './job-card.component.html',
-  styleUrl: './job-card.component.scss',
+  selector: 'app-full-job-card',
+  templateUrl: './full-job-card.component.html',
+  styleUrl: './full-job-card.component.scss',
 })
-export class JobCardComponent {
+export class FullJobCardComponent {
   isBookmarked!: boolean;
   userId!: string;
   role!: string;
   @Input() backgroundColor: string = 'var(--accent-color)';
   @Input() job!: Job;
-  @Input() isVertical: boolean = true;
-  @Input() isChecked!: boolean;
+
   constructor(
     private router: Router,
     private storage: LocalStorageService,
@@ -25,14 +24,10 @@ export class JobCardComponent {
   ) {}
 
   ngOnInit(): void {
-    this.userId = this.storage.getUserId();
     this.role = this.storage.getRole();
+    this.userId = this.storage.getUserId();
+    this.job.category.icon = categoryIcons[this.job.category.name];
     this.isInSavedJobsList(this.userId);
-  }
-
-  onClicked(jobId: number): void {
-    this.router.navigate(['/job-details', jobId]);
-    window.scrollTo({ top: 0, behavior: 'smooth' });
   }
 
   onSaveJob(): void {
@@ -45,12 +40,22 @@ export class JobCardComponent {
   }
 
   isInSavedJobsList(userId: string): void {
-    if (this.userId) {
+    if (localStorage.getItem('id')) {
       this.userService
         .isInSavedJobs(userId, this.job.id)
         .subscribe((res: boolean) => {
           this.isBookmarked = res;
         });
     }
+  }
+
+  // On Job Details Button CLicked
+  onClicked(jobId: number): void {
+    this.router.navigateByUrl('/', { skipLocationChange: true }).then(() => {
+      if (this.router.url !== `/job-details/${jobId}`) {
+        this.router.navigate(['/job-details', jobId]);
+      }
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
   }
 }

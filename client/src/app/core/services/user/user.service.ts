@@ -11,9 +11,40 @@ export class UserService {
   constructor(private http: HttpClient) {}
 
   // Get User Profile
-  getUserProfile(userId: number): Observable<User> {
+  getUserProfile(userId: number | string): Observable<User> {
     return this.http
       .get<User>(`${this.apiUrl}/user/profile/${userId}`)
       .pipe(catchError(ErrorHandler.handleError));
+  }
+
+  // Get Saved Jobs
+  getSavedJobs(userId: number | string): Observable<any> {
+    return this.http
+      .get<any>(`${this.apiUrl}/user/saved-jobs/${userId}`)
+      .pipe(catchError(ErrorHandler.handleError));
+  }
+
+  // Save Job
+  //
+  saveJob(userId: string | number, jobId: string | number): Observable<any> {
+    return this.http
+      .post<any>(`${this.apiUrl}/user/save-job/${userId}/${jobId}`, {})
+      .pipe(catchError(ErrorHandler.handleError));
+  }
+
+  // UnSave Job
+  unSaveJob(jobId: string | number): Observable<any> {
+    return this.http
+      .delete<any>(`${this.apiUrl}/user/saved-jobs/${jobId}`)
+      .pipe(catchError(ErrorHandler.handleError));
+  }
+
+  isInSavedJobs(
+    userId: string | number,
+    jobId: string | number
+  ): Observable<boolean> {
+    return this.http.get<boolean>(
+      `${this.apiUrl}/user/is-job-saved/${userId}/${jobId}`
+    );
   }
 }

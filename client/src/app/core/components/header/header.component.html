@@ -13,14 +13,13 @@
       [routerLinkActiveOptions]="{ exact: true }"
       >Home</a
     >
+    <a (click)="goToCategories()" [style.cursor]="'pointer'">Categories</a>
     <a routerLink="/jobs" routerLinkActive="active">Jobs</a>
-    <a routerLink="/home/categories">Categories</a>
-    <!-- <a [routerLink]="['/home', 'categories']">Categories</a> -->
-    <a routerLink="/user" routerLinkActive="active">Companies</a>
+    <a  routerLinkActive="active">Companies</a>
   </div>
 
   <!-- Buttons -->
-  <div class="row gap-1">
+  <div *ngIf="!isLoggedIn" class="row gap-1">
     <!-- Login Button -->
     <button class="login-button" routerLink="/login">
       <p>Log in</p>
@@ -35,5 +34,20 @@
       fontWeight="800"
       routerLink="/signup"
     ></app-animated-button>
+  </div>
+  <div *ngIf="isLoggedIn" class="row align-center profileButton">
+    <!-- user profile implementation-->
+    <img
+      [src]="logoUrl"
+      class="profilePicture"
+      alt="profile picture"
+      (click)="openProfile()"
+    />
+    <!-- User Name -->
+    <p class="name" (click)="openProfile()">
+      {{ loggedInEntity?.firstName || loggedInEntity?.name }}
+    </p>
+    <!-- arrow down -->
+    <i (click)="logout()" class="pi pi-angle-down"></i>
   </div>
 </header>

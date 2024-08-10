@@ -14,6 +14,7 @@
 .content-wrap {
   width: 85%;
   margin: 0 auto;
+  height: 100rem;
   padding: 3.75rem;
   background-color: white;
   position: relative;
@@ -234,9 +235,7 @@ form {
 //
 
 .floatingLabelContent {
-  position: relative;
-  //   background-color: red;
-}
+  position: relative;}
 .floatingLabel {
   position: absolute;
   font-family: var(--font-red-hat);

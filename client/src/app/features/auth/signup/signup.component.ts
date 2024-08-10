@@ -6,15 +6,13 @@ import {
   Validators,
 } from '@angular/forms';
 import { Router } from '@angular/router';
-import { Company } from '@core/models/company';
-import { User } from '@core/models/user';
 import { RegisterService } from '@core/services/auth/signup/register.service';
-
+import { MessageService } from 'primeng/api';
 
 @Component({
   selector: 'app-signup',
   templateUrl: './signup.component.html',
-  styleUrl: './signup.component.scss',
+  styleUrls: ['./signup.component.scss'],
 })
 export class SignupComponent {
   isRightPanelActive = false;
@@ -25,10 +23,13 @@ export class SignupComponent {
   editorText: string = 'Add Company Description';
   userSignupForm: any;
   companySignupForm: any;
+  date2: Date | undefined;
+
   constructor(
     private fb: FormBuilder,
     private registerService: RegisterService,
-    private router: Router
+    private router: Router,
+    private messageService: MessageService
   ) {
     this.userSignupForm = this.fb.group(
       {
@@ -83,30 +84,35 @@ export class SignupComponent {
           [
             Validators.required,
             Validators.minLength(8),
-            Validators.pattern('^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d).+$'),
+            // Validators.pattern('^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d).+$'),
           ],
         ],
         confirmPassword: ['', [Validators.required]],
         description: ['', [Validators.required]],
+        logo: [null, Validators.required],
       },
       { validators: confirmPasswordValidator('password', 'confirmPassword') }
     );
   }
+
   minDateValidator(minDate: Date) {
     return (control: AbstractControl): ValidationErrors | null => {
       const value = new Date(control.value);
       return value >= minDate ? null : { minDate: true };
     };
   }
+
   maxDateValidator(maxDate: Date) {
     return (control: AbstractControl): ValidationErrors | null => {
       const value = new Date(control.value);
       return value <= maxDate ? null : { maxDate: true };
     };
   }
+
   get userFormControls() {
     return this.userSignupForm.controls;
   }
+
   get companyFormControls() {
     return this.companySignupForm.controls;
   }
@@ -126,49 +132,77 @@ export class SignupComponent {
   onRegisterCompany() {
     this.isRightPanelActive = true;
   }
+
   onRegisterUser() {
     this.isRightPanelActive = false;
   }
+
   onEditorContentChange(content: string) {
     this.editorText = content;
   }
+
+  onFileChange(event: any) {
+    if (event.target.files.length > 0) {
+      const file = event.target.files[0];
+      this.companySignupForm.patchValue({
+        logo: file,
+      });
+    }
+  }
+
   onSignup(type: string) {
     if (type === 'user') {
       if (this.userSignupForm.invalid) {
         this.userSignupForm.markAllAsTouched();
         return;
       }
-      const user: User = {
-        firstName: this.userFormControls['firstName'].value,
-        lastName: this.userFormControls['lastName'].value,
-        username: this.userFormControls['username'].value,
-        email: this.userFormControls['email'].value,
-        password: this.userFormControls['password'].value,
-        phoneNumber: this.userFormControls['phoneNumber'].value,
-        dateOfBirth: this.userFormControls['dateOfBirth'].value,
-      };
-      this.registerService.registerUser(user).subscribe((user: User) => {
-        this.router.navigate(['/user', user.id]).then();
+      const user = { ...this.userSignupForm.value };
+      delete user.confirmPassword;
+      this.messageService.add({
+        icon: 'pi pi-check',
+        summary: 'Success',
+        detail: 'Account Registered Successfully',
+        life: 2500,
       });
+      setTimeout(() => {
+        this.router.navigate(['/login']);
+      }, 3000);
+      this.registerService.registerUser(user).subscribe();
     } else if (type === 'company') {
-      if (this.companySignupForm.invalid) {
-        this.companySignupForm.markAllAsTouched();
-        return;
-      }
-      const company: Company = {
-        name: this.companyFormControls['companyName'].value,
-        email: this.companyFormControls['email'].value,
-        website: this.companyFormControls['website'].value,
-        location: this.companyFormControls['address'].value,
-        industry: this.companyFormControls['industry'].value,
-        password: 'ejada@123123',
-        description: this.editorText,
-      };
-      this.registerService
-        .registerCompany(company)
-        .subscribe(
-          (company) => ((company = company), console.log(company.name, 'saved'))
-        );
+      //   if (this.companySignupForm.invalid) {
+      //     this.companySignupForm.markAllAsTouched();
+      //     return;
+      //   }
+      const formData = new FormData();
+      formData.append(
+        'company',
+        new Blob(
+          [
+            JSON.stringify({
+              name: this.companyFormControls['companyName'].value,
+              email: this.companyFormControls['email'].value,
+              website: this.companyFormControls['website'].value,
+              location: this.companyFormControls['address'].value,
+              industry: this.companyFormControls['industry'].value,
+              password: this.companyFormControls['password'].value,
+              description: this.editorText,
+            }),
+          ],
+          { type: 'application/json' }
+        )
+      );
+      formData.append('logo', this.companyFormControls['logo'].value);
+      this.registerService.registerCompany(formData).subscribe((company) => {
+        this.messageService.add({
+          icon: 'pi pi-check',
+          summary: 'Success',
+          detail: 'Company Registered Successfully',
+          life: 2500,
+        });
+        setTimeout(() => {
+          this.router.navigate(['/login']);
+        }, 3000);
+      });
     }
   }
 }

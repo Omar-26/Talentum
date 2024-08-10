@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
-import { Category } from '@core/models/category';
+import { Category, categoryIcons } from '@core/models/category';
 import { CategoryService } from '@core/services';
 
 @Component({
@@ -9,7 +9,7 @@ import { CategoryService } from '@core/services';
 })
 export class CategoryCardComponent {
   @Input() category!: Category;
-  @Input() isSelected: boolean = false;
+  @Input() isSelected!: boolean;
   @Output() onSelect = new EventEmitter<void>();
   jobCountPerCategory!: number;
 
@@ -17,6 +17,7 @@ export class CategoryCardComponent {
 
   ngOnInit() {
     this.getJobsCountPerCategory();
+    this.category.icon = categoryIcons[this.category.name];
   }
 
   getJobsCountPerCategory() {

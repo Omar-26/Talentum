@@ -69,7 +69,7 @@ public class CompanyService {
     // Delete Job
     public String deleteJobById(Long jobId) {
         try {
-            SavedJob savedJob = savedJobRepository.findByjobId(jobId);
+            SavedJob savedJob = savedJobRepository.findByJobId(jobId);
             if (savedJob != null) {
                 savedJobRepository.delete(savedJob);
             }
@@ -77,7 +77,7 @@ public class CompanyService {
             System.out.println(e);
         }
         try {
-            SavedJob savedJob = savedJobRepository.findByjobId(jobId);
+            SavedJob savedJob = savedJobRepository.findByJobId(jobId);
             if (savedJob != null) {
                 savedJobRepository.delete(savedJob);
             }

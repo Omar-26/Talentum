@@ -1,7 +1,10 @@
 import { Component, Input } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { categoryIcons } from '@core/models/category';
 import { Job } from '@core/models/job';
 import { CategoryService, JobService } from '@core/services';
+import { LocalStorageService } from '@core/services/local-storage/local-storage.service';
+import { UserService } from '@core/services/user/user.service';
 
 @Component({
   selector: 'app-job-details',
@@ -9,8 +12,11 @@ import { CategoryService, JobService } from '@core/services';
   styleUrl: './job-details.component.scss',
 })
 export class JobDetailsComponent {
-  @Input() jobId!: string | null;
+  @Input() jobId!: string | number;
+  role!: string;
   job!: Job;
+  isBookmarked!: boolean;
+  userId = localStorage.getItem('id') || '0';
   relatedJobs!: Job[];
   responsibilities!: string[];
   qualifications!: string[];
@@ -18,11 +24,14 @@ export class JobDetailsComponent {
 
   constructor(
     private categoryService: CategoryService,
+    private userService: UserService,
     private jobService: JobService,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private storage: LocalStorageService
   ) {}
 
   ngOnInit() {
+    this.role = this.storage.getRole();
     this.loadJobDetails();
   }
   // add to utils
@@ -35,12 +44,14 @@ export class JobDetailsComponent {
 
   // Get Page Data
   loadJobDetails(): void {
-    this.jobId = this.route.snapshot.paramMap.get('job-id');
+    this.jobId = this.route.snapshot.paramMap.get('job-id') || '0';
     this.jobService.getJobById(this.jobId).subscribe((job) => {
       this.job = job;
+      this.job.category.icon = categoryIcons[this.job.category.name];
       this.responsibilities = this.formatToList(job.responsibilities);
       this.qualifications = this.formatToList(job.qualifications);
       job.benefits ? (this.benefits = this.formatToList(job.benefits)) : null;
+      this.isInSavedJobsList(this.userId);
       this.getRelatedJobs();
     });
   }
@@ -49,13 +60,27 @@ export class JobDetailsComponent {
   getRelatedJobs(): void {
     this.categoryService
       .getJobsByCategory(this.job.category.id)
-      .subscribe((jobs) => (this.relatedJobs = jobs));
+      .subscribe(
+        (jobs) =>
+          (this.relatedJobs = jobs.sort(() => 0.5 - Math.random()).slice(0, 3))
+      );
   }
 
-  // Save Job
-  //   onSaveJob(): void {
-  //     this.jobService.saveJob(this.jobId).subscribe((job) => {
-  //       this.job = job;
-  //     });
-  //   }
+  onSaveJob(): void {
+    this.isBookmarked = !this.isBookmarked;
+    if (this.isBookmarked) {
+      this.userService.saveJob(this.userId, this.jobId).subscribe();
+    } else {
+      this.userService.unSaveJob(this.jobId).subscribe();
+    }
+  }
+  isInSavedJobsList(userId: string): void {
+    if (localStorage.getItem('id')) {
+      this.userService
+        .isInSavedJobs(userId, this.jobId)
+        .subscribe((res: boolean) => {
+          this.isBookmarked = res;
+        });
+    }
+  }
 }

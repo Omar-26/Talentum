@@ -37,10 +37,6 @@
             class="errorMessage"
           >
             <!-- required validation -->
-            <!-- <small *ngIf="companyFormControls['companyName'].errors.required"
-                >First Name is required</small
-              > -->
-            <!--  -->
           </div>
         </div>
 
@@ -75,10 +71,79 @@
             class="errorMessage"
           >
             <!-- required validation -->
-            <!-- <small *ngIf="companyFormControls['email'].errors.required"
-                  >Email is required</small
-                > -->
-            <!--  -->
+          </div>
+        </div>
+
+        <!-- Password -->
+        <div
+          class="floatingLabelContent"
+          [ngClass]="{
+            inputError:
+              companyFormControls['password'].invalid &&
+              (companyFormControls['password'].dirty ||
+                companyFormControls['password'].touched)
+          }"
+        >
+          <input
+            class="floatingLabelInput"
+            [type]="showPassword ? 'text' : 'password'"
+            formControlName="password"
+            [placeholder]="
+              companyFormControls['password'].touched &&
+              companyFormControls['password'].errors?.required
+                ? 'Password is required'
+                : ''
+            "
+          />
+          <label class="floatingLabel">Password</label>
+          <span class="toggleIcon" (click)="togglePassword()">
+            <i class="pi {{ passwordIcon }}"></i>
+          </span>
+          <div
+            *ngIf="
+              companyFormControls['password'].invalid &&
+              (companyFormControls['password'].dirty ||
+                companyFormControls['password'].touched)
+            "
+            class="errorMessage"
+          >
+            <!-- required validation -->
+          </div>
+        </div>
+        <!-- Confirm Password -->
+        <div
+          class="floatingLabelContent"
+          [ngClass]="{
+            inputError:
+              companyFormControls['confirmPassword'].invalid &&
+              (companyFormControls['confirmPassword'].dirty ||
+                companyFormControls['confirmPassword'].touched)
+          }"
+        >
+          <input
+            class="floatingLabelInput"
+            [type]="showConfirmPassword ? 'text' : 'password'"
+            formControlName="confirmPassword"
+            [placeholder]="
+              companyFormControls['confirmPassword'].touched &&
+              companyFormControls['confirmPassword'].errors?.required
+                ? 'Password is required'
+                : ''
+            "
+          />
+          <label class="floatingLabel">Confirm Password</label>
+          <span class="toggleIcon" (click)="toggleConfirmPassword()">
+            <i class="pi {{ confirmPasswordIcon }}"></i>
+          </span>
+          <div
+            *ngIf="
+              companyFormControls['confirmPassword'].invalid &&
+              (companyFormControls['confirmPassword'].dirty ||
+                companyFormControls['confirmPassword'].touched)
+            "
+            class="errorMessage"
+          >
+            <!-- required validation -->
           </div>
         </div>
 
@@ -113,10 +178,6 @@
             class="errorMessage"
           >
             <!-- required validation -->
-            <!-- <small *ngIf="companyFormControls['website'].errors.required"
-              >First Name is required</small
-            > -->
-            <!--  -->
           </div>
         </div>
 
@@ -153,10 +214,6 @@
               class="errorMessage"
             >
               <!-- required validation -->
-              <!-- <small *ngIf="companyFormControls['address'].errors.required"
-                      >First Name is required</small
-                    > -->
-              <!--  -->
             </div>
           </div>
           <!-- Industry -->
@@ -190,10 +247,6 @@
               class="errorMessage"
             >
               <!-- required validation -->
-              <!-- <small *ngIf="companyFormControls['industry'].errors.required"
-                      >Last Name is required</small
-                    > -->
-              <!--  -->
             </div>
           </div>
         </div>
@@ -203,9 +256,9 @@
           [ngModelOptions]="{ standalone: true }"
           (ngModelChange)="onEditorContentChange($event)"
           [style]="{
-            height: '4rem',
-            fontFamily: 'var(--font-red-hat)',
-          }"
+              height: '4rem',
+              fontFamily: 'var(--font-red-hat)',
+            }"
         >
           <ng-template pTemplate="header">
             <span class="ql-formats">
@@ -223,6 +276,10 @@
             </span>
           </ng-template>
         </p-editor>
+
+        <!-- Logo Upload -->
+        <input type="file" (change)="onFileChange($event)" required />
+        <label class="floatingLabel">Upload Logo</label>
 
         <app-animated-button
           label="Register"
@@ -275,10 +332,6 @@
               class="errorMessage"
             >
               <!-- required validation -->
-              <!-- <small *ngIf="userFormControls['firstName'].errors.required"
-                >First Name is required</small
-              > -->
-              <!--  -->
             </div>
           </div>
           <!-- Last Name -->
@@ -312,10 +365,6 @@
               class="errorMessage"
             >
               <!-- required validation -->
-              <!-- <small *ngIf="userFormControls['lastName'].errors.required"
-                >Last Name is required</small
-              > -->
-              <!--  -->
             </div>
           </div>
         </div>
@@ -350,10 +399,6 @@
             class="errorMessage"
           >
             <!-- required validation -->
-            <!-- <small *ngIf="userFormControls['username'].errors.required"
-              >Username is required</small
-            > -->
-            <!--  -->
           </div>
         </div>
         <!-- DOB and Phone Number -->
@@ -389,9 +434,9 @@
               <small *ngIf="userFormControls['dateOfBirth'].errors.required"
                 >Birth Date is required</small
               >
-              <!--  -->
             </div>
           </div>
+
           <!-- Phone Number -->
           <div
             class="floatingLabelContent"
@@ -423,10 +468,6 @@
               class="errorMessage"
             >
               <!-- required validation -->
-              <!-- <small *ngIf="userFormControls['phoneNumber'].errors.required"
-                >Phone Number is required</small
-              > -->
-              <!--  -->
             </div>
           </div>
         </div>
@@ -461,10 +502,6 @@
             class="errorMessage"
           >
             <!-- required validation -->
-            <!-- <small *ngIf="userFormControls['email'].errors.required"
-              >Email is required</small
-            > -->
-            <!--  -->
           </div>
         </div>
         <!-- Password -->
@@ -501,10 +538,6 @@
             class="errorMessage"
           >
             <!-- required validation -->
-            <!-- <small *ngIf="userFormControls['password'].errors.required"
-              >Password is required</small
-            > -->
-            <!-- this field must match the password field -->
           </div>
         </div>
         <!-- Confirm Password -->
@@ -541,10 +574,6 @@
             class="errorMessage"
           >
             <!-- required validation -->
-            <!-- <small *ngIf="userFormControls['confirmPassword'].errors.required"
-              >Password is required</small
-            > -->
-            <!-- this field must match the password field -->
           </div>
         </div>
         <!-- Register Button -->

@@ -1,14 +1,9 @@
 import { Component } from '@angular/core';
+import { FormBuilder } from '@angular/forms';
 import { Category } from '@core/models/category';
 import { Job } from '@core/models/job';
 import { CategoryService, JobService } from '@core/services';
-import { Observable } from 'rxjs';
-// interface PageEvent {
-//   first: number | undefined;
-//   rows: number | undefined;
-//   page: number | undefined;
-//   pageCount: number | undefined;
-// }
+import { ScrollService } from '@core/services/scroll/scroll.service';
 
 @Component({
   selector: 'app-jobs',
@@ -18,13 +13,11 @@ import { Observable } from 'rxjs';
 export class JobsComponent {
   jobs!: Job[];
   filteredJobs: Job[] = [];
+  paginatedJobs: Job[] = [];
   categories!: Category[];
-
+  form: any;
   // Filters
-
   jobTypes: string[] = [];
-
-  //   jobTypes = ['Full Time', 'Part Time', 'Freelance', 'Internship'];
   experiences = ['No Experience', 'Entry Level', 'Mid Level', 'Senior Level'];
   datePosted = [
     'Last hour',
@@ -35,13 +28,15 @@ export class JobsComponent {
   ];
   rangeValues: number[] = [0, 500000];
 
-  // I want to collect the unique job types from the loaded jobs from the data base
-  // and display them in the filter
-
   constructor(
     private categoryService: CategoryService,
-    private jobService: JobService
-  ) {}
+    private jobService: JobService,
+    private fb: FormBuilder
+  ) {
+    this.form = this.fb.group({
+      search: [''],
+    });
+  }
 
   ngOnInit() {
     this.loadCategories();
@@ -50,9 +45,12 @@ export class JobsComponent {
 
   loadJobs() {
     this.jobService.getAllJobs().subscribe((jobs) => {
-      this.jobs = jobs.sort(() => 0.5 - Math.random());
+      //   this.jobs = jobs.sort(() => 0.5 - Math.random());
+      this.jobs = jobs;
       const existingJobTypes = this.jobs.map((job) => job.type);
       this.jobTypes = Array.from(new Set(existingJobTypes));
+      this.totalRecords = this.jobs.length;
+      this.updatePaginatedJobs();
     });
   }
   loadCategories() {
@@ -61,14 +59,35 @@ export class JobsComponent {
     });
   }
   getJobsCountPerCategory(categoryId: number): number {
-    return this.jobs.filter((job) => job.category.id === categoryId).length;
+    return this.jobs?.filter((job) => job.category.id === categoryId).length;
   }
 
-  onChange(event: any) {
+  // Client Side Pagination
+  first = 0;
+  rows = 6;
+  pageCount!: number;
+  totalRecords!: number;
+  onPageChange(event: any) {
+    this.first = event.first;
+    this.updatePaginatedJobs();
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+  updatePaginatedJobs() {
+    const start = this.first;
+    const end = this.first + this.rows;
+    this.paginatedJobs = (
+      this.filteredJobs.length != 0 ? this.filteredJobs : this.jobs
+    ).slice(start, end);
+    this.totalRecords =
+      this.filteredJobs.length != 0
+        ? this.filteredJobs.length
+        : this.jobs.length;
+  }
+
+  filterByCategory(event: any) {
     let temporaryList: Job[] = [];
     let isCategoryChecked = event.target.checked;
     let checkedCategoryId = event.target.value;
-
     if (isCategoryChecked) {
       temporaryList = this.jobs.filter(
         (job) => job.category.id == checkedCategoryId
@@ -81,27 +100,8 @@ export class JobsComponent {
       this.filteredJobs = [];
       this.filteredJobs.push(...temporaryList);
     }
+    this.updatePaginatedJobs();
   }
-
-  //   onCategoryChange(index: number) {
-  //     this.filterJobsByCategory(this.selectedCategories[index].id).subscribe(
-  //       (jobs) => {
-  //         this.filteredJobs.push(...jobs);
-  //         // console.log('selected Category:', this.selectedCategories);
-  //         console.log('Selected Category IDs:', this.getSelectedCategoryIds());
-  //       }
-  //     );
-  //   }
-
-  filterJobsByCategory(categoryId: number) {
-    this.categoryService.getJobsByCategory(categoryId).subscribe((jobs) => {
-      this.filteredJobs.push(...jobs);
-    });
-  }
-
-  //   filterJobsByType(type: string) {
-  //     return this.jobs.filter((job) => job.type === type);
-  //   }
 
   //   Show all categories
   showAllCategories: boolean = false;
@@ -111,17 +111,3 @@ export class JobsComponent {
     this.showAllCategoriesText = this.showAllCategories ? 'Hide' : 'Show';
   }
 }
-
-//   first = 0;
-//   rows = 6;
-//   onPageChange(event: any) {
-//     this.first = event.first;
-//     this.rows = event.rows;
-//     this.updatePaginatedJobs();
-//   }
-
-//   updatePaginatedJobs() {
-//     const start = this.first;
-//     const end = this.first + this.rows;
-//     this.paginatedJobs = this.jobs.slice(start, end);
-//   }

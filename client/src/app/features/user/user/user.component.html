@@ -14,9 +14,9 @@
 
 <div class="content">
   <!-- Details and Job Overview -->
-  <div class="row userInfo mt-15">
+  <div class="column userInfo mt-15">
     <!-- Left Column: User Details -->
-    <div class="column gap-1 basicInfo">
+    <div class="column gap-1 basicInfo" id="basicInfo">
       <div class="row gap-1 sectionTitle">
         <i class="pi pi-user"></i>
         <span>Basic Information</span>
@@ -56,36 +56,56 @@
         </div>
       </div>
     </div>
+
+    <!-- Saved Jobs -->
+    <div class="savedJobs" id="savedJobs">
+      <div class="title">Saved Jobs</div>
+      <div class="column gap-1">
+        <app-full-job-card
+          *ngFor="let job of savedJobs"
+          [job]="job"
+        ></app-full-job-card>
+      </div>
+      <div *ngIf="savedJobs.length == 0" class="noSavedJobs">
+        <span>No Saved Jobs</span>
+        <i class="pi pi-bookmark"></i>
+      </div>
+    </div>
   </div>
 
   <!-- Right Column: User Navigation -->
   <div class="userNav">
     <div class="column gap-1 userNavCard">
-      <div
+      <!-- <div
         class="navTile"
         style="border-top-right-radius: 1.5rem; border-top-left-radius: 1.5rem"
       >
         <i class="pi pi-pencil"></i>
         <span>Edit Profile</span>
-      </div>
-      <div class="navTile">
+      </div> -->
+      <div
+        class="navTile"
+        (click)="goTo('basicInfo')"
+        style="border-top-right-radius: 1.5rem; border-top-left-radius: 1.5rem"
+      >
         <i class="pi pi-address-book"></i>
         <span>Basic Information</span>
       </div>
-      <div class="navTile">
-        <i class="pi pi-bookmark"></i>
-        <span>Saved Jobs</span>
-      </div>
       <div
         class="navTile"
+        (click)="goTo('savedJobs')"
         style="
           border-bottom-right-radius: 1.5rem;
           border-bottom-left-radius: 1.5rem;
         "
       >
+        <i class="pi pi-bookmark"></i>
+        <span>Saved Jobs</span>
+      </div>
+      <!-- <div class="navTile">
         <i class="pi pi-pencil"></i>
         <span>Edit Profile</span>
-      </div>
+      </div> -->
     </div>
   </div>
 </div>

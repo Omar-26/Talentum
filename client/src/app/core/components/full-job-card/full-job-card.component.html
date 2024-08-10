@@ -7,7 +7,11 @@
 
     <!-- bookmark button-->
     <div class="saveButton">
-      <app-save-button (click)="onSaveJob()"></app-save-button>
+      <app-save-button
+        *ngIf="!(role === 'company')"
+        (click)="onSaveJob()"
+        [isChecked]="isBookmarked"
+      ></app-save-button>
     </div>
   </div>
   <!-- company and Job Title -->

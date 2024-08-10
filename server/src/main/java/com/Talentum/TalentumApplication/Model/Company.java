@@ -20,6 +20,8 @@ public class Company {
     private String name;
     @Email(message = "Email should be valid")
     private String email;
+    @NotBlank(message = "Website is required")
+    private String website;
     @NotBlank(message = "Location is required")
     private String location;
     @NotBlank(message = "Industry is required")
@@ -37,16 +39,15 @@ public class Company {
     public Company() {
     }
 
-    public Company(String name, byte[] logo, String email, String password, String description, String location, String industry, LocalDate createdAt) {
+    public Company(String name, byte[] logo, String email, String website, String password, String description, String location, String industry, LocalDate createdAt) {
         this.name = name;
         this.logo = logo;
         this.email = email;
+        this.website = website;
         this.password = password;
         this.description = description;
         this.location = location;
         this.industry = industry;
         this.createdAt = createdAt;
     }
-
-
 }

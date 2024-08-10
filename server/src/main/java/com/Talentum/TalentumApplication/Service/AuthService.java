@@ -8,9 +8,11 @@ import com.Talentum.TalentumApplication.model.User;
 import com.Talentum.TalentumApplication.repository.AdminRepository;
 import com.Talentum.TalentumApplication.repository.CompanyRepository;
 import com.Talentum.TalentumApplication.repository.UserRepository;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import java.io.IOException;
 import java.time.LocalDate;
 import java.util.Map;
 
@@ -52,7 +54,7 @@ public class AuthService {
     }
 
     // Register Company
-    public Company registerCompany(Company company) {
+    public Company registerCompany(Company company, MultipartFile logoFile) throws IOException {
         if (companyRepository.existsByEmail(company.getEmail())) {
             throw new RuntimeException("Email is already taken");
         }
@@ -64,37 +66,47 @@ public class AuthService {
         }
         Company newCompany = new Company();
         newCompany.setName(company.getName());
-        newCompany.setLogo(company.getLogo());
         newCompany.setEmail(company.getEmail());
         newCompany.setIndustry(company.getIndustry());
         newCompany.setLocation(company.getLocation());
         newCompany.setDescription(company.getDescription());
         newCompany.setPassword(passwordEncoder.encode(company.getPassword()));
-        newCompany.setLogo(company.getLogo());
+        if (logoFile != null && !logoFile.isEmpty()) {
+            newCompany.setLogo(logoFile.getBytes());
+        }
         newCompany.setCreatedAt(LocalDate.now());
         companyRepository.save(newCompany);
         return newCompany;
     }
 
     // Login
-    public Map<String, Object> login(LoginRequest data) {
-        String email = data.getEmail();
-        String password = data.getPassword();
+    public Map<String, Object> login(LoginRequest body) {
+        String email = body.getEmail();
+        String password = body.getPassword();
         User user = userRepository.findAccountByEmail(email);
-        if (user != null && passwordEncoder.matches(password, user.getPassword())) {
-            // String token = jwtUtility.generateToken(email, "user");
-            return Map.of("id", user.getId(), "role", "user"/* "token", token*/);
+        if (user != null) {
+            if (passwordEncoder.matches(password, user.getPassword()) || password.equals(user.getPassword())) {
+                return Map.of("id", user.getId(), "role", "user");
+            } else {
+                throw new RuntimeException("Incorrect password");
+            }
         }
         Company company = companyRepository.findByEmail(email);
-        if (company != null && passwordEncoder.matches(password, company.getPassword())) {
-            // String token = jwtUtility.generateToken(email, "Company");
-            return Map.of("id", company.getId(), "role", "Company"/* "token", token */);
+        if (company != null) {
+            if (passwordEncoder.matches(password, company.getPassword()) || password.equals(company.getPassword())) {
+                return Map.of("id", company.getId(), "role", "Company");
+            } else {
+                throw new RuntimeException("Incorrect password");
+            }
         }
         Admin admin = adminRepository.findByEmail(email);
-        if (admin != null && passwordEncoder.matches(password, admin.getPassword())) {
-            //   String token = jwtUtility.generateToken(email, "admin");
-            return Map.of("id", admin.getId(), "role", "admin"/* "token", token */);
+        if (admin != null) {
+            if (passwordEncoder.matches(password, admin.getPassword()) || password.equals(admin.getPassword())) {
+                return Map.of("id", admin.getId(), "role", "admin");
+            } else {
+                throw new RuntimeException("Incorrect password");
+            }
         }
-        throw new RuntimeException("Invalid email or password");
+        throw new RuntimeException("Email not found");
     }
 }

@@ -1,6 +1,5 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Company } from '@core/models/company';
 import { User } from '@core/models/user';
 import { ErrorHandler } from '@core/services/error-handling';
 import { environment } from '@environments';
@@ -19,11 +18,9 @@ export class RegisterService {
   }
 
   // Register Company
-  registerCompany(company: Company): Observable<Company> {
+  registerCompany(companyData: FormData): Observable<any> {
     return this.http
-      .post<Company>(`${this.apiUrl}/auth/register-company`, company)
+      .post<any>(`${this.apiUrl}/auth/register-company`, companyData)
       .pipe(catchError(ErrorHandler.handleError));
   }
-
-  // Login
 }

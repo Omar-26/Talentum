@@ -4,9 +4,9 @@ import { AddJobComponent } from './pages/add-job/add-job.component';
 import { CompanyComponent } from './pages/company/company.component';
 
 const routes: Routes = [
-  { path: '', component: CompanyComponent },
+  { path: ':company-id', component: CompanyComponent },
   {
-    path: 'add-job',
+    path: ':company-id/add-job',
     component: AddJobComponent,
   },
 ];

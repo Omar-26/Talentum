@@ -35,16 +35,26 @@ public class UserService {
         Job job = jobRepository.findById(jobId)
                 .orElseThrow(() -> new ResourceNotFoundException("Job not found"));
 
+        boolean isJobAlreadySaved = savedJobRepository.existsByUserIdAndJobId(userId, jobId);
+        if (isJobAlreadySaved) {
+            throw new IllegalStateException("Job is already saved.");
+        }
+
         SavedJob savedJob = new SavedJob();
         savedJob.setUser(user);
         savedJob.setJob(job);
         savedJobRepository.save(savedJob);
     }
 
+    // Check if Job is Saved
+    public boolean isJobSaved(Long userId, Long jobId) {
+        return savedJobRepository.existsByUserIdAndJobId(userId, jobId);
+    }
+
     // Un-Save Job
     @Transactional
     public void deleteSavedJob(Long id) {
-        savedJobRepository.deleteByjobId(id); // Delete by jobId
+        savedJobRepository.deleteByJobId(id);
     }
 
     // Get Saved Jobs
