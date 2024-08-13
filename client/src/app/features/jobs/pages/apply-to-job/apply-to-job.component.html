@@ -1,77 +1,137 @@
-<section class="registration-form">
-  <div class="content-wrap">
-    <form>
-      <div>
-        <label>First Name</label>
-        <input placeholder="First Name" />
+<div class="background">
+  <div class="cardContent column gap-2">
+    <h1 class="welcome">Apply to Job</h1>
+    <form [formGroup]="applyToJobForm">
+      <!--  Inputs -->
+      <div class="inputs">
+        <!-- First Name -->
+        <div class="floatingLabelContent">
+          <input
+            formControlName="firstName"
+            class="floatingLabelInput"
+            type="text"
+            placeholder=""
+            pInputText
+          />
+          <label class="floatingLabel">First Name</label>
+        </div>
+
+        <!-- Last Name -->
+        <div class="floatingLabelContent">
+          <input
+            formControlName="lastName"
+            class="floatingLabelInput"
+            type="text"
+            placeholder=""
+            pInputText
+          />
+          <label class="floatingLabel">Last Name</label>
+        </div>
+
+        <!-- Email -->
+        <div class="floatingLabelContent">
+          <input
+            formControlName="email"
+            class="floatingLabelInput"
+            type="text"
+            placeholder=""
+            pInputText
+          />
+          <label class="floatingLabel">Email</label>
+        </div>
+
+        <!-- Phone Number -->
+        <div class="floatingLabelContent">
+          <input
+            formControlName="phoneNumber"
+            class="floatingLabelInput"
+            type="text"
+            placeholder=""
+            pInputText
+          />
+          <label class="floatingLabel">Phone Number</label>
+        </div>
+
+        <!-- Country -->
+        <div class="floatingLabelContent">
+          <input
+            formControlName="country"
+            class="floatingLabelInput"
+            type="text"
+            placeholder=""
+            pInputText
+          />
+          <label class="floatingLabel">Country</label>
+        </div>
+
+        <!-- availableStartDate -->
+        <div class="floatingLabelContent">
+          <input
+            formControlName="availableStartDate"
+            class="floatingLabelInput"
+            type="date"
+            placeholder=""
+          />
+          <label class="floatingLabel">Available Start Date</label>
+        </div>
       </div>
+      <!-- Text Areas -->
+      <div class="textAreas">
+        <!-- Reason Of Hire -->
+        <div class="floatingLabelContent">
+          <textarea
+            formControlName="reasonOfHire"
+            class="floatingLabelInput"
+            type="text"
+            placeholder=""
+          ></textarea>
+          <label class="floatingLabel">Why Should We Hire You</label>
+        </div>
 
-      <div>
-        <label>Last Name</label>
-        <input placeholder="Last Name" />
+        <!-- Qualifications -->
+        <div class="floatingLabelContent">
+          <textarea
+            formControlName="reasonOfHire"
+            class="floatingLabelInput"
+            type="text"
+            placeholder=""
+          ></textarea>
+          <label class="floatingLabel">Tell Us About Your Qualifications</label>
+        </div>
+        <!-- LinkedIn -->
+        <div class="floatingLabelContent">
+          <input
+            formControlName="linkedIn"
+            class="floatingLabelInput"
+            type="text"
+            placeholder=""
+            pInputText
+          />
+          <label class="floatingLabel">LinkedIn</label>
+        </div>
+
+        <!-- Github -->
+        <div class="floatingLabelContent">
+          <input
+            formControlName="github"
+            class="floatingLabelInput"
+            type="text"
+            placeholder=""
+            pInputText
+          />
+          <label class="floatingLabel">Github</label>
+        </div>
       </div>
-
-      <div>
-        <label>Email</label>
-        <input type="email" placeholder="ex: myname@example.com" />
-      </div>
-
-      <div>
-        <label>Country</label>
-        <input type="text" placeholder="ex: Egypt" />
-      </div>
-
-      <div>
-        <label>Phone Number</label>
-        <input type="tel" placeholder="(000) 000 000" />
-      </div>
-
-      <div>
-        <label>Available start date</label>
-        <input type="date" placeholder="MM-DD-YY" />
-      </div>
-
-      <div class="Employment-status">
-        <p>What is your current employment status?</p>
-
-        <input
-          type="radio"
-          id="Employed"
-          name="Employment-status"
-          value="Employed"
-        />
-        <label for="contactChoice1">Employed</label>
-        <br />
-
-        <input
-          type="radio"
-          id="Unemplyed"
-          name="Employment-status"
-          value="Unemployed"
-        />
-        <label for="contactChoice2">Unemployed</label>
-        <br />
-
-        <input
-          type="radio"
-          id="Self-Employed"
-          name="status?"
-          value="Self-Employed"
-        />
-        <label for="contactChoice3">Self-Employed</label>
-        <br />
-
-        <input
-          type="radio"
-          id="contactChoice4"
-          name="status?"
-          value="Student"
-        />
-        <label for="contactChoice4">Student</label>
-        <br />
-      </div>
-
-      <button>Submit</button>
     </form>
+    <app-animated-button
+      label="Apply"
+      type="submit"
+      width="100%"
+      height="2.8rem"
+      backgroundColor="var(--primary-color)"
+      fontSize="1.1rem"
+      fontWeight="700"
+      (click)="onApplyToJob()"
+    ></app-animated-button>
   </div>
-</section>
+</div>

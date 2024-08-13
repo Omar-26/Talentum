@@ -1,6 +1,5 @@
 package com.Talentum.TalentumApplication.service;
 
-
 import com.Talentum.TalentumApplication.model.Admin;
 import com.Talentum.TalentumApplication.model.Company;
 import com.Talentum.TalentumApplication.model.LoginRequest;
@@ -8,10 +7,12 @@ import com.Talentum.TalentumApplication.model.User;
 import com.Talentum.TalentumApplication.repository.AdminRepository;
 import com.Talentum.TalentumApplication.repository.CompanyRepository;
 import com.Talentum.TalentumApplication.repository.UserRepository;
-import org.springframework.web.multipart.MultipartFile;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
-
+import org.springframework.web.multipart.MultipartFile;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import java.io.IOException;
 import java.time.LocalDate;
 import java.util.Map;
@@ -23,6 +24,7 @@ public class AuthService {
     private final UserRepository userRepository;
     private final AdminRepository adminRepository;
     private final PasswordEncoder passwordEncoder;
+    private static final Logger logger = LoggerFactory.getLogger(AuthService.class);
 
     public AuthService(CompanyRepository companyRepository, UserRepository userRepository, AdminRepository adminRepository, PasswordEncoder passwordEncoder) {
         this.companyRepository = companyRepository;
@@ -31,7 +33,6 @@ public class AuthService {
         this.passwordEncoder = passwordEncoder;
     }
 
-    // Register
     // Register User
     public User registerUser(User user) {
         if (userRepository.existsByEmail(user.getEmail())) {
@@ -54,29 +55,26 @@ public class AuthService {
     }
 
     // Register Company
-    public Company registerCompany(Company company, MultipartFile logoFile) throws IOException {
-        if (companyRepository.existsByEmail(company.getEmail())) {
-            throw new RuntimeException("Email is already taken");
+    public Company registerCompany(Company company, byte[] logoBytes) throws IOException {
+        try {
+            if (companyRepository.existsByEmail(company.getEmail())) {
+                throw new RuntimeException("Email is already taken");
+            }
+            if (companyRepository.existsByName(company.getName())) {
+                throw new RuntimeException("Company name is already taken");
+            }
+            if (company.getPassword().length() < 8) {
+                throw new RuntimeException("Password must be at least 8 characters long");
+            }
+            company.setPassword(passwordEncoder.encode(company.getPassword()));
+            company.setLogo(logoBytes);
+            company.setCreatedAt(LocalDate.now());
+            companyRepository.save(company);
+            return company;
+        } catch (Exception e) {
+            logger.error("Error registering company", e);
+            throw e;
         }
-        if (companyRepository.existsByName(company.getName())) {
-            throw new RuntimeException("Company name is already taken");
-        }
-        if (company.getPassword().length() < 8) {
-            throw new RuntimeException("Password must be at least 8 characters long");
-        }
-        Company newCompany = new Company();
-        newCompany.setName(company.getName());
-        newCompany.setEmail(company.getEmail());
-        newCompany.setIndustry(company.getIndustry());
-        newCompany.setLocation(company.getLocation());
-        newCompany.setDescription(company.getDescription());
-        newCompany.setPassword(passwordEncoder.encode(company.getPassword()));
-        if (logoFile != null && !logoFile.isEmpty()) {
-            newCompany.setLogo(logoFile.getBytes());
-        }
-        newCompany.setCreatedAt(LocalDate.now());
-        companyRepository.save(newCompany);
-        return newCompany;
     }
 
     // Login

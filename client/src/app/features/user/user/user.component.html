@@ -58,17 +58,38 @@
     </div>
 
     <!-- Saved Jobs -->
-    <div class="savedJobs" id="savedJobs">
+    <div *ngIf="userId === storage.getUserId()" id="savedJobs">
       <div class="title">Saved Jobs</div>
-      <div class="column gap-1">
+      <div class="column gap-1 jobs">
         <app-full-job-card
           *ngFor="let job of savedJobs"
           [job]="job"
         ></app-full-job-card>
       </div>
-      <div *ngIf="savedJobs.length == 0" class="noSavedJobs">
-        <span>No Saved Jobs</span>
-        <i class="pi pi-bookmark"></i>
+
+      <div
+        *ngIf="savedJobs ? savedJobs.length == 0 : true"
+        class="column full-center gap-2 noSavedJobsCard"
+      >
+        <div class="column full-center gap-2 noSavedJobsContent">
+          <div class="row gap-1 full-center sentence">
+            <i class="pi pi-times-circle"></i>
+            <span *ngIf="userId === storage.getUserId()"
+              >You Haven't Saved Any Jobs!</span
+            >
+          </div>
+          <img src="assets/images/No-Added.svg" />
+          <app-animated-button
+            *ngIf="userId === storage.getUserId()"
+            label="Explore Jobs Now!"
+            width="21.75rem"
+            height="2.8rem"
+            backgroundColor="var(--primary-color)"
+            fontSize="1.1rem"
+            fontWeight="700"
+            routerLink="../../jobs"
+          ></app-animated-button>
+        </div>
       </div>
     </div>
   </div>

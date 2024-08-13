@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 import { Company } from '@core/models/company';
 import { Job } from '@core/models/job';
 import { AdminService } from '@core/services/admin/admin.service';
+import { CompanyService } from '@core/services/company/company.service';
 import { LocalStorageService } from '@core/services/local-storage/local-storage.service';
 
 @Component({
@@ -17,14 +19,17 @@ export class CompanyComponent implements OnInit {
   createdJobs!: Job[];
 
   constructor(
-    private storage: LocalStorageService,
-    private adminService: AdminService
+    private route: ActivatedRoute,
+    public storage: LocalStorageService,
+    private adminService: AdminService,
+    private companyService: CompanyService
   ) {}
 
   ngOnInit() {
-    this.companyId = this.storage.getCompanyId();
+    this.companyId = this.route.snapshot.paramMap.get('company-id') || '0';
     this.role = this.storage.getRole();
     this.getCompany();
+    this.getCreatedJobs();
   }
 
   getCompany() {
@@ -42,6 +47,11 @@ export class CompanyComponent implements OnInit {
     });
   }
 
+  getCreatedJobs() {
+    this.companyService
+      .getCompanyJobs(this.companyId)
+      .subscribe((jobs: Job[]) => (this.createdJobs = jobs.slice(0, 4)));
+  }
   goTo(id: string) {
     const element = document.getElementById(id);
     if (element) {

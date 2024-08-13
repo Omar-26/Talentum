@@ -41,13 +41,13 @@ public class Company {
 
     public Company(String name, byte[] logo, String email, String website, String password, String description, String location, String industry, LocalDate createdAt) {
         this.name = name;
-        this.logo = logo;
         this.email = email;
+        this.logo = logo;
         this.website = website;
-        this.password = password;
-        this.description = description;
         this.location = location;
         this.industry = industry;
+        this.description = description;
+        this.password = password;
         this.createdAt = createdAt;
     }
 }

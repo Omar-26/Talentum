@@ -13,6 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
 
+import java.sql.Timestamp;
 import java.util.List;
 
 @Service
@@ -39,6 +40,7 @@ public class CompanyService {
                 .orElseThrow(() -> new ResourceNotFoundException("Category not found"));
         job.setCompany(company);
         job.setCategory(category);
+        job.setCreatedAt(new Timestamp(System.currentTimeMillis()));
         return jobRepository.save(job);
     }
 

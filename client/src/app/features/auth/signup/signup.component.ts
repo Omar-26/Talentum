@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import {
   AbstractControl,
   FormBuilder,
+  FormGroup,
   ValidationErrors,
   Validators,
 } from '@angular/forms';
@@ -16,14 +17,11 @@ import { MessageService } from 'primeng/api';
 })
 export class SignupComponent {
   isRightPanelActive = false;
-  showPassword = false;
-  showConfirmPassword = false;
+  show = false;
   passwordIcon: string = 'pi-eye-slash';
-  confirmPasswordIcon: string = 'pi-eye-slash';
   editorText: string = 'Add Company Description';
-  userSignupForm: any;
-  companySignupForm: any;
-  date2: Date | undefined;
+  userSignupForm: FormGroup;
+  companySignupForm: FormGroup;
 
   constructor(
     private fb: FormBuilder,
@@ -117,16 +115,9 @@ export class SignupComponent {
     return this.companySignupForm.controls;
   }
 
-  togglePassword(): void {
-    this.showPassword = !this.showPassword;
-    this.passwordIcon = this.showPassword ? 'pi-eye' : 'pi-eye-slash';
-  }
-
-  toggleConfirmPassword(): void {
-    this.showConfirmPassword = !this.showConfirmPassword;
-    this.confirmPasswordIcon = this.showConfirmPassword
-      ? 'pi-eye'
-      : 'pi-eye-slash';
+  showPassword(): void {
+    this.show = !this.show;
+    this.passwordIcon = this.show ? 'pi-eye' : 'pi-eye-slash';
   }
 
   onRegisterCompany() {
@@ -150,63 +141,81 @@ export class SignupComponent {
     }
   }
 
-  onSignup(type: string) {
-    if (type === 'user') {
-      if (this.userSignupForm.invalid) {
-        this.userSignupForm.markAllAsTouched();
-        return;
-      }
-      const user = { ...this.userSignupForm.value };
-      delete user.confirmPassword;
-      this.messageService.add({
-        icon: 'pi pi-check',
-        summary: 'Success',
-        detail: 'Account Registered Successfully',
-        life: 2500,
-      });
-      setTimeout(() => {
-        this.router.navigate(['/login']);
-      }, 3000);
-      this.registerService.registerUser(user).subscribe();
-    } else if (type === 'company') {
-      //   if (this.companySignupForm.invalid) {
-      //     this.companySignupForm.markAllAsTouched();
-      //     return;
-      //   }
-      const formData = new FormData();
-      formData.append(
-        'company',
-        new Blob(
-          [
-            JSON.stringify({
-              name: this.companyFormControls['companyName'].value,
-              email: this.companyFormControls['email'].value,
-              website: this.companyFormControls['website'].value,
-              location: this.companyFormControls['address'].value,
-              industry: this.companyFormControls['industry'].value,
-              password: this.companyFormControls['password'].value,
-              description: this.editorText,
-            }),
-          ],
-          { type: 'application/json' }
-        )
-      );
-      formData.append('logo', this.companyFormControls['logo'].value);
-      this.registerService.registerCompany(formData).subscribe((company) => {
-        this.messageService.add({
-          icon: 'pi pi-check',
-          summary: 'Success',
-          detail: 'Company Registered Successfully',
-          life: 2500,
-        });
-        setTimeout(() => {
-          this.router.navigate(['/login']);
-        }, 3000);
-      });
+  registerUser() {
+    if (this.userSignupForm.invalid) {
+      this.userSignupForm.markAllAsTouched();
+      return;
+    }
+    const user = { ...this.userSignupForm.value };
+    delete user.confirmPassword;
+    this.messageService.add({
+      icon: 'pi pi-check',
+      summary: 'Success',
+      detail: 'Account Registered Successfully',
+      life: 2500,
+    });
+    setTimeout(() => {
+      this.router.navigate(['/login']);
+    }, 3000);
+    this.registerService.registerUser(user).subscribe();
+  }
+
+  registerCompany() {
+    const formData = new FormData();
+    const companyData = JSON.stringify({
+      name: this.companyFormControls['companyName'].value,
+      email: this.companyFormControls['email'].value,
+      website: this.companyFormControls['website'].value,
+      location: this.companyFormControls['address'].value,
+      industry: this.companyFormControls['industry'].value,
+      password: this.companyFormControls['password'].value,
+      description: this.editorText,
+    });
+
+    const logoFile = this.companyFormControls['logo'].value;
+    if (logoFile instanceof File) {
+      const reader = new FileReader();
+      reader.onload = () => {
+        const logoData = reader.result as string;
+        const combinedData = `${companyData};${logoData}`;
+        formData.append(
+          'data',
+          new Blob([combinedData], { type: 'text/plain' })
+        );
+
+        this.registerService.registerCompany(formData).subscribe(
+          (response) => {
+            this.messageService.add({
+              icon: 'pi pi-check',
+              summary: 'Success',
+              detail: response.message,
+              life: 2500,
+            });
+            setTimeout(() => {
+              this.router.navigate(['/login']);
+            }, 3000);
+          },
+          (error) => {
+            console.error('Error registering company:', error);
+            if (error.error instanceof ErrorEvent) {
+              console.error('Client-side error:', error.error.message);
+            } else {
+              console.error(
+                `Backend returned code ${error.status}, body was: ${error.error}`
+              );
+            }
+          }
+        );
+      };
+      reader.readAsText(logoFile);
+    } else {
+      console.error('Logo is not a valid file');
+      return;
     }
   }
 }
 
+// custom validator to check that two fields match add to another file
 export function confirmPasswordValidator(
   passwordKey: string,
   confirmPasswordKey: string

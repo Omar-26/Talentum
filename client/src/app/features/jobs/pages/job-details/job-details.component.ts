@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { categoryIcons } from '@core/models/category';
 import { Job } from '@core/models/job';
 import { CategoryService, JobService } from '@core/services';
@@ -27,6 +27,7 @@ export class JobDetailsComponent {
     private userService: UserService,
     private jobService: JobService,
     private route: ActivatedRoute,
+    private router : Router,
     private storage: LocalStorageService
   ) {}
 
@@ -66,6 +67,7 @@ export class JobDetailsComponent {
       );
   }
 
+  // Save Job
   onSaveJob(): void {
     this.isBookmarked = !this.isBookmarked;
     if (this.isBookmarked) {
@@ -82,5 +84,10 @@ export class JobDetailsComponent {
           this.isBookmarked = res;
         });
     }
+  }
+
+  // Apply to job
+  onApplyToJob(): void {
+    this.router.navigate([`job-details/${this.jobId}/apply-to-job`]);
   }
 }

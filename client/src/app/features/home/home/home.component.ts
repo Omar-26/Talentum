@@ -3,7 +3,6 @@ import { Category } from '@core/models/category';
 import { Company } from '@core/models/company';
 import { Job } from '@core/models/job';
 import { CategoryService, JobService } from '@core/services';
-import { AdminService } from '@core/services/admin/admin.service';
 import { switchMap } from 'rxjs';
 
 @Component({
@@ -23,9 +22,8 @@ export class HomeComponent {
 
   constructor(
     private categoryService: CategoryService,
-    private jobService: JobService
-  ) // private adminService: AdminService
-  {}
+    private jobService: JobService // private adminService: AdminService
+  ) {}
   ngOnInit(): void {
     // To make the Jobs Fetching wait till the category fetching is done
     this.categoryService

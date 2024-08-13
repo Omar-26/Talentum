@@ -4,6 +4,8 @@ import { JobService } from '@core/services';
 import { AdminService } from '@core/services/admin/admin.service';
 import { RegisterService } from '@core/services/auth/signup/register.service';
 import { CategoryService } from '@core/services/category/category.service';
+import { CompanyService } from '@core/services/company/company.service';
+import { LocalStorageService } from '@core/services/local-storage/local-storage.service';
 import { ScrollService } from '@core/services/scroll/scroll.service';
 import { UserService } from '@core/services/user/user.service';
 import { SharedModule } from '@shared';
@@ -29,10 +31,12 @@ import { UserModule } from './user/user.module';
     CategoryService,
     JobService,
     RegisterService,
+    CompanyService,
     UserService,
     AdminService,
     ScrollService,
     MessageService,
+    LocalStorageService,
   ],
 })
 export class FeaturesModule {}

@@ -56,6 +56,7 @@ public class AdminController {
         }
     }
 
+
     // Get Company Logo by ID
     @GetMapping("/company-logo/{companyId}")
     public ResponseEntity<byte[]> getCompanyLogo(@PathVariable Long companyId) {
@@ -63,7 +64,7 @@ public class AdminController {
             byte[] logo = adminService.getCompanyLogo(companyId);
             return ResponseEntity.ok().contentType(MediaType.IMAGE_JPEG).body(logo);
         } catch (RuntimeException e) {
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+            return ResponseEntity.status(404).body(null);
         }
     }
 

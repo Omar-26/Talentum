@@ -14,7 +14,7 @@ const routes: Routes = [
     component: JobDetailsComponent,
   },
   {
-    path: 'apply-to-job',
+    path: 'job-details/:job-id/apply-to-job',
     component: ApplyToJobComponent,
   },
 ];

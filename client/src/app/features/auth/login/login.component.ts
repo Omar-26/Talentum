@@ -6,6 +6,7 @@ import {
   Validators,
 } from '@angular/forms';
 import { Router } from '@angular/router';
+import { MessageService } from 'primeng/api';
 import { Logger } from '../../../core/services/auth/logger/logger';
 
 @Component({
@@ -19,7 +20,11 @@ export class LoginComponent {
   submitted = false;
   loginForm: any;
 
-  constructor(private fb: FormBuilder) {
+  constructor(
+    private fb: FormBuilder,
+    private logger: Logger,
+    private messageService: MessageService
+  ) {
     this.loginForm = this.fb.group({
       email: ['', [Validators.required, Validators.email]],
       password: [
@@ -38,10 +43,6 @@ export class LoginComponent {
   }
 
   showPassword: boolean = false;
-
-  logger = inject(Logger);
-  router = inject(Router);
-
   login() {
     this.submitted = true;
     if (this.loginForm.invalid) {
@@ -55,28 +56,37 @@ export class LoginComponent {
       )
       .subscribe({
         next: (data) => {
+          console.log(data);
           if (data.role == 'user') {
             localStorage.setItem('id', data.id);
             localStorage.setItem('role', data.role);
             localStorage.setItem('isLoggedIn', 'true');
-            window.location.href = '/';
+            this.messageService.add({
+              icon: 'pi pi-check',
+              summary: 'Success',
+              detail: 'Signed In Successfully',
+              life: 1500,
+            });
+            setTimeout(() => {
+              window.location.href = '/';
+            }, 2000);
           } else if (data.role == 'Company') {
             localStorage.setItem('id', data.id);
             localStorage.setItem('role', data.role);
             localStorage.setItem('isLoggedIn', 'true');
-            window.location.href = '/';
-          } else if (data.role === 'admin') {
+            this.messageService.add({
+              icon: 'pi pi-check',
+              summary: 'Success',
+              detail: 'Signed In Successfully',
+              life: 1500,
+            });
+            setTimeout(() => {
+              window.location.href = '/';
+            }, 2000);
+          } else if (data.role == 'admin') {
           }
         },
-        // error: (error) => {
-        //   if (error.status === 401) {
-        //     console.error('incorrect password');
-        //   } else if (error.status === 404) {
-        //     console.error('user not found');
-        //   }
-        // },
       });
-    // reload the page
   }
 
   hideShowPass() {

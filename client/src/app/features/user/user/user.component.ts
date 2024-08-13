@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 import { Job } from '@core/models/tempCodeRunnerFile';
+import { LocalStorageService } from '@core/services/local-storage/local-storage.service';
 import { UserService } from '@core/services/user/user.service';
 import { User } from '../../../core/models/user';
 
@@ -9,14 +11,21 @@ import { User } from '../../../core/models/user';
   styleUrl: './user.component.scss',
 })
 export class UserComponent {
-  userId = localStorage.getItem('id') || '0';
+  userId!: string;
   user!: User;
+  role!: string;
   savedJobs: Job[] = [];
   dob!: string;
 
-  constructor(private userService: UserService) {}
+  constructor(
+    public storage: LocalStorageService,
+    private router: ActivatedRoute,
+    private userService: UserService
+  ) {}
 
   ngOnInit() {
+    this.userId = this.router.snapshot.paramMap.get('user-id') || '0';
+    this.role = this.storage.getRole();
     this.userService.getUserProfile(this.userId).subscribe((user) => {
       this.user = user;
       this.dob = formatDateToDayMonYear(user.dateOfBirth);

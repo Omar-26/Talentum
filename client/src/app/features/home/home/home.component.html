@@ -6,20 +6,56 @@
     <span class="primaryText">5000+ Jobs</span>
     <img class="curlyLine" src="assets\images\curly-line.svg" />
     <span class="labelText mt-25">Where Talent Meets Opportunity !</span>
-    <div class="searchBar row gap-1 mt-15">
-      <input type="text" placeholder="Job Title or Keyword" />
-      <div>
-        <select>
-          <option value="" disabled selected>Florence, Italy</option>
-          <option value="us">United States</option>
-          <option value="ca">Canada</option>
-          <option value="uk">United Kingdom</option>
-          <option value="au">Australia</option>
-        </select>
+    <div class="searchBar row mt-15 align-center gap-2">
+      <div class="row align-center gap-05">
+        <i
+          class="pi pi-search"
+          style="color: var(--text-color); font-size: 1.5rem"
+        ></i>
+        <div class="floatingLabelContent">
+          <input
+            class="floatingLabelInput"
+            type="text"
+            placeholder=""
+            pInputText
+            style="padding-right: 3rem"
+          />
+          <label class="floatingLabel">Job Title or Keyword</label>
+        </div>
       </div>
-      <button class="button search-button" routerLink="/company">
-        <p>Search</p>
-      </button>
+      <div class="row align-center gap-05">
+        <i
+          class="pi pi-map-marker"
+          style="color: var(--text-color); font-size: 1.5rem"
+        ></i>
+        <div class="floatingLabelContent">
+          <select
+            class="floatingLabelInput"
+            type="text"
+            placeholder=""
+            style="padding-right: 3rem"
+          >
+            <option value="" disabled [selected]="true">Select City</option>
+            <option
+              *ngFor="let category of categories"
+              value="{{ category.id }}"
+            >
+              {{ category.name }}
+            </option>
+          </select>
+        </div>
+      </div>
+      <app-animated-button
+        label="Search my Job"
+        width="13rem"
+        height="3.6rem"
+        backgroundColor="var(--primary-color)"
+        fontSize="1.1rem"
+        fontWeight="700"
+      ></app-animated-button>
+    </div>
+    <div class="popular">
+      Popular : UI Designer, Web Developer, HR Recruiter
     </div>
   </div>
 
@@ -94,7 +130,7 @@
 </div>
 <!-- Home Content -->
 <div class="column homeContent">
-  <!-- Categories Section -->
+  <!-- Categories Section -->ح
   <section class="categories" id="categories">
     <div class="row space-between align-center sectionHeading">
       <!-- Title -->

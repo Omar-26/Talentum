@@ -19,8 +19,9 @@ export class RegisterService {
 
   // Register Company
   registerCompany(companyData: FormData): Observable<any> {
-    return this.http
-      .post<any>(`${this.apiUrl}/auth/register-company`, companyData)
-      .pipe(catchError(ErrorHandler.handleError));
+    return this.http.post<any>(
+      `${this.apiUrl}/auth/register-company`,
+      companyData
+    );
   }
 }

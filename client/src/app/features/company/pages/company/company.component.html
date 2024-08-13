@@ -14,7 +14,7 @@
     <h3 class="title gap-025">&#64; {{ company ? company.name : "" }}</h3>
   </div>
   <app-animated-button
-    *ngIf="role === 'company'"
+    *ngIf="role === 'company' && companyId === storage.getCompanyId()"
     label="Add Job"
     width="21.75rem"
     height="2.8rem"
@@ -71,19 +71,44 @@
     </div>
 
     <!-- Created Jobs -->
-    <!-- <div class="createdJobs" id="savedJobs">
-      <div class="title">Saved Jobs</div>
-      <div class="column gap-1">
+    <div id="createdJobs">
+      <div class="title">Created Jobs</div>
+      <div class="column gap-1 jobs">
         <app-full-job-card
-          *ngFor="let job of savedJobs"
+          *ngFor="let job of createdJobs"
           [job]="job"
         ></app-full-job-card>
       </div>
-      <div *ngIf="savedJobs.length == 0" class="noSavedJobs">
-        <span>No Saved Jobs</span>
-        <i class="pi pi-bookmark"></i>
+
+      <div
+        *ngIf="createdJobs.length == 0"
+        class="column full-center gap-2 noCreatedJobsCard"
+      >
+        <div class="column full-center gap-2 noCreatedJobsContent">
+          <div class="row gap-1 full-center sentence">
+            <i class="pi pi-times-circle"></i>
+            <span
+              *ngIf="role === 'company' && companyId === storage.getCompanyId()"
+              >You Haven't Posted Any Jobs Yet!</span
+            >
+            <span *ngIf="!(companyId === storage.getCompanyId())"
+              >This Company Haven't Posted Any Jobs Yet!</span
+            >
+          </div>
+          <img src="assets/images/No-Added.svg" />
+          <app-animated-button
+            *ngIf="role === 'company' && companyId === storage.getCompanyId()"
+            label="Add Job Now"
+            width="21.75rem"
+            height="2.8rem"
+            backgroundColor="var(--primary-color)"
+            fontSize="1.1rem"
+            fontWeight="700"
+            routerLink="add-job"
+          ></app-animated-button>
+        </div>
       </div>
-    </div> -->
+    </div>
   </div>
 
   <!-- Right Column: company Navigation -->

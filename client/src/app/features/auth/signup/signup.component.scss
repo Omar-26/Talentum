@@ -14,7 +14,7 @@
 .content-wrap {
   width: 85%;
   margin: 0 auto;
-  height: 100rem;
+  height: 50rem;
   padding: 3.75rem;
   background-color: white;
   position: relative;
@@ -51,19 +51,6 @@ form {
   text-align: center;
   height: 100%;
   padding: 2rem;
-}
-
-#description {
-  background-color: #eee;
-  border: none;
-  padding: 12px 15px;
-  margin: 8px 0;
-  width: 100%;
-  min-width: 100%;
-  max-width: 100%;
-  min-height: 60px;
-  max-height: 60px;
-  color: rgba(0, 0, 0, 0.7);
 }
 
 .form-container {
@@ -235,7 +222,8 @@ form {
 //
 
 .floatingLabelContent {
-  position: relative;}
+  position: relative;
+}
 .floatingLabel {
   position: absolute;
   font-family: var(--font-red-hat);
@@ -322,6 +310,5 @@ form {
 }
 
 .inputError .toggleIcon i {
-  transform: translateY(-50%);
   color: #9d3b3b;
 }

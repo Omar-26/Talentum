@@ -1,9 +1,15 @@
 package com.Talentum.TalentumApplication.model;
 
 import jakarta.persistence.*;
+import lombok.Getter;
+import lombok.Setter;
 
-import java.security.Timestamp;
+import java.sql.Timestamp;
+import java.util.Date;
 
+
+@Setter
+@Getter
 @Entity(name = "JobApplication")
 public class JobApplication {
     @Id
@@ -18,58 +24,37 @@ public class JobApplication {
     @JoinColumn(name = "job_id", nullable = false)
     private Job job;
 
+    private String firstname;
+    private String lastname;
+    private String email;
+    private String phone;
+    private String country;
+    private String qualification;
     private String status;
+    private String reasonOfHire;
+    private String linkedInLink;
+    private String githubLink;
+    private Date availableStartDate;
     private Timestamp appliedAt;
 
-    // Default constructor
-    public JobApplication() {}
+    public JobApplication() {
+    }
 
-    // Parameterized constructor
-    public JobApplication(User user, Job job, String status, Timestamp appliedAt) {
+    public JobApplication(User user, Job job, String firstname, String lastname, String email,String country, String phone, String reasonOfHire, String linkedInLink, String githubLink, String qualification, String status,Date availableStartDate,Timestamp appliedAt) {
+
         this.user = user;
         this.job = job;
+        this.firstname = firstname;
+        this.lastname = lastname;
+        this.email = email;
+        this.phone = phone;
+        this.country = country;
+        this.reasonOfHire = reasonOfHire;
+        this.availableStartDate = availableStartDate;
+        this.linkedInLink = linkedInLink;
+        this.githubLink = githubLink;
+        this.qualification = qualification;
         this.status = status;
-        this.appliedAt = appliedAt;
-    }
-
-    // Getters and Setters
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public User getUser() {
-        return user;
-    }
-
-    public void setUser(User user) {
-        this.user = user;
-    }
-
-    public Job getJob() {
-        return job;
-    }
-
-    public void setJob(Job job) {
-        this.job = job;
-    }
-
-    public String getStatus() {
-        return status;
-    }
-
-    public void setStatus(String status) {
-        this.status = status;
-    }
-
-    public Timestamp getAppliedAt() {
-        return appliedAt;
-    }
-
-    public void setAppliedAt(Timestamp appliedAt) {
         this.appliedAt = appliedAt;
     }
 }

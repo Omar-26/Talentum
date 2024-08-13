@@ -6,6 +6,11 @@
           Attract, hire, and retain the best talent.
         </h1>
         <h3 class="subHeading">Register your company</h3>
+
+        <!-- Logo Upload -->
+        <input type="file" (change)="onFileChange($event)" required />
+        <label class="floatingLabel">Upload Logo</label>
+
         <!-- Company Name -->
         <div
           class="floatingLabelContent"
@@ -22,7 +27,7 @@
             formControlName="companyName"
             [placeholder]="
               companyFormControls['companyName'].touched &&
-              companyFormControls['companyName'].errors?.required
+              companyFormControls['companyName'].errors?.['required']
                 ? 'Company Name is required'
                 : ''
             "
@@ -56,7 +61,7 @@
             formControlName="email"
             [placeholder]="
               companyFormControls['email'].touched &&
-              companyFormControls['email'].errors?.required
+              companyFormControls['email'].errors?.['required']
                 ? 'Email Address is required'
                 : ''
             "
@@ -86,17 +91,17 @@
         >
           <input
             class="floatingLabelInput"
-            [type]="showPassword ? 'text' : 'password'"
+            [type]="show ? 'text' : 'password'"
             formControlName="password"
             [placeholder]="
               companyFormControls['password'].touched &&
-              companyFormControls['password'].errors?.required
+              companyFormControls['password'].errors?.['required']
                 ? 'Password is required'
                 : ''
             "
           />
           <label class="floatingLabel">Password</label>
-          <span class="toggleIcon" (click)="togglePassword()">
+          <span class="toggleIcon" (click)="showPassword()">
             <i class="pi {{ passwordIcon }}"></i>
           </span>
           <div
@@ -122,18 +127,18 @@
         >
           <input
             class="floatingLabelInput"
-            [type]="showConfirmPassword ? 'text' : 'password'"
+            [type]="show ? 'text' : 'password'"
             formControlName="confirmPassword"
             [placeholder]="
               companyFormControls['confirmPassword'].touched &&
-              companyFormControls['confirmPassword'].errors?.required
+              companyFormControls['confirmPassword'].errors?.['required']
                 ? 'Password is required'
                 : ''
             "
           />
           <label class="floatingLabel">Confirm Password</label>
-          <span class="toggleIcon" (click)="toggleConfirmPassword()">
-            <i class="pi {{ confirmPasswordIcon }}"></i>
+          <span class="toggleIcon" (click)="showPassword()">
+            <i class="pi {{ passwordIcon }}"></i>
           </span>
           <div
             *ngIf="
@@ -163,7 +168,7 @@
             formControlName="website"
             [placeholder]="
               companyFormControls['website'].touched &&
-              companyFormControls['website'].errors?.required
+              companyFormControls['website'].errors?.['required']
                 ? 'Website is required'
                 : ''
             "
@@ -199,7 +204,7 @@
               formControlName="address"
               [placeholder]="
                 companyFormControls['address'].touched &&
-                companyFormControls['address'].errors?.required
+                companyFormControls['address'].errors?.['required']
                   ? 'Address is required'
                   : ''
               "
@@ -232,7 +237,7 @@
               formControlName="industry"
               [placeholder]="
                 companyFormControls['industry'].touched &&
-                companyFormControls['industry'].errors?.required
+                companyFormControls['industry'].errors?.['required']
                   ? 'Industry is required'
                   : ''
               "
@@ -277,10 +282,7 @@
           </ng-template>
         </p-editor>
 
-        <!-- Logo Upload -->
-        <input type="file" (change)="onFileChange($event)" required />
-        <label class="floatingLabel">Upload Logo</label>
-
+        <!-- Register Button -->
         <app-animated-button
           label="Register"
           width="100%"
@@ -289,7 +291,7 @@
           fontWeight="900"
           backgroundColor="var(--primary-color)"
           class="mt-15"
-          (click)="onSignup('company')"
+          (click)="registerCompany()"
         ></app-animated-button>
         <a href="">Already have an account?</a>
       </form>
@@ -317,7 +319,7 @@
               formControlName="firstName"
               [placeholder]="
                 userFormControls['firstName'].touched &&
-                userFormControls['firstName'].errors?.required
+                userFormControls['firstName'].errors?.['required']
                   ? 'First Name is required'
                   : ''
               "
@@ -350,7 +352,7 @@
               formControlName="lastName"
               [placeholder]="
                 userFormControls['lastName'].touched &&
-                userFormControls['lastName'].errors?.required
+                userFormControls['lastName'].errors?.['required']
                   ? 'Last Name is required'
                   : ''
               "
@@ -384,7 +386,7 @@
             formControlName="username"
             [placeholder]="
               userFormControls['username'].touched &&
-              userFormControls['username'].errors?.required
+              userFormControls['username'].errors?.['required']
                 ? 'Username is required'
                 : ''
             "
@@ -431,7 +433,8 @@
               class="errorMessage"
             >
               <!-- required validation -->
-              <small *ngIf="userFormControls['dateOfBirth'].errors.required"
+              <small
+                *ngIf="userFormControls['dateOfBirth'].errors?.['required']"
                 >Birth Date is required</small
               >
             </div>
@@ -453,7 +456,7 @@
               formControlName="phoneNumber"
               [placeholder]="
                 userFormControls['phoneNumber'].touched &&
-                userFormControls['phoneNumber'].errors?.required
+                userFormControls['phoneNumber'].errors?.['required']
                   ? 'Phone Number is required'
                   : ''
               "
@@ -487,7 +490,7 @@
             formControlName="email"
             [placeholder]="
               userFormControls['email'].touched &&
-              userFormControls['email'].errors?.required
+              userFormControls['email'].errors?.['required']
                 ? 'Email Address is required'
                 : ''
             "
@@ -516,17 +519,17 @@
         >
           <input
             class="floatingLabelInput"
-            [type]="showPassword ? 'text' : 'password'"
+            [type]="show ? 'text' : 'password'"
             formControlName="password"
             [placeholder]="
               userFormControls['password'].touched &&
-              userFormControls['password'].errors?.required
+              userFormControls['password'].errors?.['required']
                 ? 'Password is required'
                 : ''
             "
           />
           <label class="floatingLabel">Password</label>
-          <span class="toggleIcon" (click)="togglePassword()">
+          <span class="toggleIcon" (click)="showPassword()">
             <i class="pi {{ passwordIcon }}"></i>
           </span>
           <div
@@ -552,18 +555,18 @@
         >
           <input
             class="floatingLabelInput"
-            [type]="showConfirmPassword ? 'text' : 'password'"
+            [type]="show ? 'text' : 'password'"
             formControlName="confirmPassword"
             [placeholder]="
               userFormControls['confirmPassword'].touched &&
-              userFormControls['confirmPassword'].errors?.required
+              userFormControls['confirmPassword'].errors?.['required']
                 ? 'Password is required'
                 : ''
             "
           />
           <label class="floatingLabel">Confirm Password</label>
-          <span class="toggleIcon" (click)="toggleConfirmPassword()">
-            <i class="pi {{ confirmPasswordIcon }}"></i>
+          <span class="toggleIcon" (click)="showPassword()">
+            <i class="pi {{ passwordIcon }}"></i>
           </span>
           <div
             *ngIf="
@@ -586,7 +589,7 @@
           backgroundColor="var(--primary-color)"
           class="mt-15 full-center"
           style="display: flex"
-          (click)="onSignup('user')"
+          (click)="registerUser()"
         ></app-animated-button>
         <!-- Sign in Button -->
         <a href="">Already have an account?</a>

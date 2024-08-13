@@ -21,12 +21,13 @@ public class CompanyController {
 
     // Jobs
     // Add Job
-    // Not working yet
-    @PostMapping("/add-job/category/{categoryId}/company/{companyId}")
+    @PostMapping("{companyId}/add-job/category/{categoryId}")
     public ResponseEntity<Job> createJob(@RequestBody Job job, @PathVariable Long categoryId, @PathVariable Long companyId) {
         Job newJob = companyService.createJob(job, categoryId, companyId);
         return ResponseEntity.status(HttpStatus.CREATED).body(newJob);
     }
+
+
 
     // Update Job
     @PutMapping("/jobs/{jobId}")

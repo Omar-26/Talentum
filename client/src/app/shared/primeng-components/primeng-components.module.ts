@@ -5,6 +5,7 @@ import { CalendarModule } from 'primeng/calendar';
 import { CheckboxModule } from 'primeng/checkbox';
 import { EditorModule } from 'primeng/editor';
 import { FloatLabelModule } from 'primeng/floatlabel';
+import { KeyFilterModule } from 'primeng/keyfilter';
 import { PaginatorModule } from 'primeng/paginator';
 import { SliderModule } from 'primeng/slider';
 import { ToastModule } from 'primeng/toast';
@@ -31,6 +32,7 @@ import { ToastModule } from 'primeng/toast';
     CalendarModule,
     ToastModule,
     AvatarModule,
+    KeyFilterModule,
   ],
 })
 export class PrimeNgComponentsModule {}

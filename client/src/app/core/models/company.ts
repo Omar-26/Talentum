@@ -1,5 +1,5 @@
 export class Company {
-  id?: number = 0;
+  id?: number | string = 0;
   name: string = '';
   email: string = '';
   website: string = '';

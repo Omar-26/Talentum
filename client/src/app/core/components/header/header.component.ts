@@ -24,16 +24,13 @@ export class HeaderComponent {
     private adminService: AdminService
   ) {
     this.role = this.storage.getRole();
-    this.id =
-      this.storage.getUserId() === '0'
-        ? this.storage.getCompanyId()
-        : this.storage.getUserId();
     this.isLoggedIn = this.storage.isLoggedIn();
-
     if (this.isLoggedIn) {
       if (this.role == 'user') {
+        this.id = this.storage.getUserId();
         this.getUser();
       } else if (this.role == 'company') {
+        this.id = this.storage.getCompanyId();
         this.getCompany();
       }
     }
@@ -63,8 +60,9 @@ export class HeaderComponent {
 
   goToCategories() {
     this.router.navigate(['']).then(() => {
-      const element = document.getElementById('categories');
-      element?.scrollIntoView({ behavior: 'smooth' });
+      document
+        .getElementById('categories')
+        ?.scrollIntoView({ behavior: 'smooth' });
     });
   }
 

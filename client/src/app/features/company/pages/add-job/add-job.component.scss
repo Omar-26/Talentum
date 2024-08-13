@@ -1,55 +1,114 @@
-label {
-    color: #4640DE;
-    font-size: 18px;
-    display: block;
-  }
+* {
+  border-radius: var(--border-radius);
+}
+.background {
+  border-radius: 0;
+  background-image: url("../../../../../assets/images/hero-pattern.svg");
+  background-color: var(--accent-color);
+  background-size: 70rem;
+  background-position: -30% 80%;
+  padding: 3rem 0;
+}
+.welcome {
+  font-family: var(--font-clash-variable);
+  color: var(--text-color);
+  font-size: 2rem;
+  font-weight: 600;
+  margin-bottom: 1rem;
+  text-align: center;
+}
 
-  input, select, textarea {
-    border-color: #4640DE;
-    background-color: #F8F8FD;
-    padding: 12px 15px;
-    margin: 8px 0;
-    width: 100%;
-    border-radius: 8px;
-  }
+.cardContent {
+  width: 90%;
+  margin: 0 auto;
+  padding: 3rem;
+  background-color: white;
+  position: relative;
+  overflow: hidden;
+  max-width: 55rem;
+  min-height: 700px;
 
-  form {
-    background-color: #F8F8FD;
-    padding: 60px;
+  .inputs {
     display: grid;
-    grid-template-columns: auto auto;
-    column-gap: 60px;
-    row-gap: 25px;
-    border-radius: 10px;
-  }
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
 
-  button {
-    display: block;
-    margin: auto;
-    border-radius: 20px;
-    border: 1px solid #4640DE;
-    background-color: #4640DE;
-    color: #FFFFFF;
-    font-size: 12px;
-    font-weight: bold;
-    padding: 12px 15px;
-    letter-spacing: 1px;
-    text-transform: uppercase;
-    transition: transform 80ms ease-in;
-    grid-column-start: 1;
-    grid-column-end: 3;
-    width: 200px;
-    text-align: center;
+    select {
+      font-size: 1rem;
+      color: var(--text-color);
+    }
+    option {
+      font-family: var(--font-red-hat);
+      color: var(--text-color);
+      font-size: 1rem;
+      font-weight: 600;
+    }
   }
+  .textAreas {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    margin-top: 1rem;
+    textarea {
+      border-radius: 1rem;
+      resize: vertical;
+      min-width: 100%;
+      max-width: 100%;
+      min-height: 3rem;
+      max-height: 8rem;
+    }
+    .popUp {
+      font-family: var(--font-red-hat);
+      color: var(--primary-color);
+      font-weight: 500;
+      font-size: 0.9rem;
+      margin-top: 0.2rem;
+      margin-left: 0.5rem;
+    }
+  }
+}
 
-  .addJob-form {
-    background-color: #D6DDEB;
+.floatingLabelContent {
+  position: relative;
+}
+.floatingLabel {
+  position: absolute;
+  font-family: var(--font-red-hat);
+  color: var(--grey-color);
+  font-weight: 500;
+  font-size: 1rem;
+  pointer-events: none;
+  left: 15px;
+  top: 11px;
+  padding: 0 5px;
+  background: white;
+  transition: 0.2s ease all;
+  -moz-transition: 0.2s ease all;
+  -webkit-transition: 0.2s ease all;
+}
+.floatingLabelInput {
+  width: 100%;
+  font-family: var(--font-red-hat);
+  color: var(--text-color);
+  font-size: 1rem;
+  font-weight: 500;
+  display: block;
+  padding: 12px 20px;
+  background: transparent;
+  border: 1px solid #ccc;
+  border-radius: var(--border-radius);
+  box-sizing: border-box;
+  &:focus {
+    border: 1px solid var(--primary-color);
+    outline: none;
+    ~ .floatingLabel {
+      top: -8px;
+      font-size: 0.8rem;
+    }
   }
+}
 
-  .content-wrap {
-    max-width: 800px;
-    width: 85%;
-    margin: 0 auto;
-    background-color: #F8F8FD;
-    border-radius: 30px;
-  }
+.floatingLabelInput:not(:placeholder-shown) ~ .floatingLabel {
+  top: -8px;
+  font-size: 0.8rem;
+}
