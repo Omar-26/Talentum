@@ -10,8 +10,9 @@ export class AnimatedButtonComponent {
   @Input() width!: string;
   @Input() height!: string;
   @Input() backgroundColor!: string;
+  @Input() textColor : string = 'white';
   @Input() icon!: string;
-  @Input() label: string = 'submit';
+  @Input() label!: string;
   @Input() fontSize!: string;
   @Input() fontWeight!: string;
   @Output() onSelect = new EventEmitter<void>();

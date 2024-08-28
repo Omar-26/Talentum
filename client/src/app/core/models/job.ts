@@ -19,4 +19,6 @@ export interface Job {
   benefits?: string;
   createdAt?: Date;
   tags?: string[];
+  isAppliedTo?: boolean;
+  numOfApplicants?: number;
 }

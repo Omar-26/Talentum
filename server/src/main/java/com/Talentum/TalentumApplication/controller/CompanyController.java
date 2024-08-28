@@ -27,8 +27,6 @@ public class CompanyController {
         return ResponseEntity.status(HttpStatus.CREATED).body(newJob);
     }
 
-
-
     // Update Job
     @PutMapping("/jobs/{jobId}")
     public ResponseEntity<?> updateJob(@PathVariable long jobId, @RequestBody Job updatedJob) {

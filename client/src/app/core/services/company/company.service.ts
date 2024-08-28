@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Company } from '@core/models/company';
 import { Job } from '@core/models/job';
+import { JobApplication } from '@core/models/job-application';
 import { environment } from '@environments/environment.development';
 import { catchError, Observable } from 'rxjs';
 import { ErrorHandler } from '../error-handling';
@@ -25,6 +26,7 @@ export class CompanyService {
       .pipe(catchError(ErrorHandler.handleError));
   }
 
+  // Add Job
   addJob(
     categoryId: string | number,
     companyId: string | number,
@@ -32,8 +34,26 @@ export class CompanyService {
   ): Observable<Job> {
     return this.http
       .post<Job>(
-        `${this.apiUrl}/company/add-job/category/${categoryId}/company/${companyId}`,
+        `${this.apiUrl}/company/${companyId}/add-job/category/${categoryId}`,
         job
+      )
+      .pipe(catchError(ErrorHandler.handleError));
+  }
+
+  // Get all Applicants
+  getAllApplicants(companyId: string | number): Observable<JobApplication[]> {
+    return this.http
+      .get<JobApplication[]>(
+        `${this.apiUrl}/job-application/all-applications/company/${companyId}`
+      )
+      .pipe(catchError(ErrorHandler.handleError));
+  }
+
+  // Get Applicants by Job
+  getApplicantsByJob(jobId: string | number): Observable<JobApplication[]> {
+    return this.http
+      .get<JobApplication[]>(
+        `${this.apiUrl}/job-application/all-applications/job/${jobId}`
       )
       .pipe(catchError(ErrorHandler.handleError));
   }

@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, ElementRef, inject, ViewChild } from '@angular/core';
+import { Router } from '@angular/router';
 import { Category } from '@core/models/category';
 import { Company } from '@core/models/company';
 import { Job } from '@core/models/job';
@@ -19,31 +20,48 @@ export class HomeComponent {
   featuredJobs!: Job[];
   latestJobs!: Job[];
   companies!: Company[];
+  cities!: string[];
+
+  @ViewChild('jobTitleInput') jobTitleInputElement!: ElementRef;
+  @ViewChild('cityInput') cityInputElement!: ElementRef;
 
   constructor(
     private categoryService: CategoryService,
-    private jobService: JobService // private adminService: AdminService
+    private jobService: JobService,
+    private router: Router
   ) {}
+
   ngOnInit(): void {
-    // To make the Jobs Fetching wait till the category fetching is done
+    this.getAllCategories();
+    this.getCities();
+    this.selectedCardIndex = 0;
+  }
+
+  getAllCategories() {
     this.categoryService
       .getAllCategories()
       .pipe(
         switchMap((categories) => {
           this.categories = categories;
-          return this.jobService.getAllJobsPerCategory(categories[0].id!);
+          return this.jobService.filterJobs([categories[0].id!]);
         })
       )
       .subscribe((jobs) => {
         this.featuredJobs = jobs;
       });
-    this.selectedCardIndex = 0;
   }
 
   onCategorySelected(categoryId: number, index: number) {
     this.selectedCardIndex = index;
-    this.jobService.getAllJobsPerCategory(categoryId).subscribe((jobs) => {
+    this.jobService.filterJobs([categoryId]).subscribe((jobs) => {
       this.featuredJobs = jobs;
+    });
+  }
+
+  getCities() {
+    this.jobService.filterJobs().subscribe((jobs) => {
+      const cities = jobs.map((job) => job.location.split(',')[0].trim());
+      this.cities = Array.from(new Set(cities)).sort();
     });
   }
 
@@ -60,5 +78,12 @@ export class HomeComponent {
     if (element) {
       element.scrollIntoView({ behavior: 'smooth' });
     }
+  }
+
+  onSearch(): void {
+    const jobTitle = this.jobTitleInputElement.nativeElement.value;
+    const city = this.cityInputElement.nativeElement.value;
+    this.router.navigate(['/jobs'], { queryParams: { jobTitle, city } });
+    window.scrollTo({ top: 0, behavior: 'smooth' });
   }
 }

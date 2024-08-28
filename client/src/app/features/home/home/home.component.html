@@ -1,19 +1,24 @@
 <!-- Hero Image -->
 <div class="row hero">
   <div class="column heroText">
+    <!-- Title -->
     <span class="darkText">Discover</span>
     <span class="darkText">More Than</span>
     <span class="primaryText">5000+ Jobs</span>
     <img class="curlyLine" src="assets\images\curly-line.svg" />
+    <!-- Label -->
     <span class="labelText mt-25">Where Talent Meets Opportunity !</span>
+    <!-- Search Bar -->
     <div class="searchBar row mt-15 align-center gap-2">
       <div class="row align-center gap-05">
+        <!-- Job Title -->
         <i
           class="pi pi-search"
           style="color: var(--text-color); font-size: 1.5rem"
         ></i>
         <div class="floatingLabelContent">
           <input
+            #jobTitleInput
             class="floatingLabelInput"
             type="text"
             placeholder=""
@@ -23,28 +28,30 @@
           <label class="floatingLabel">Job Title or Keyword</label>
         </div>
       </div>
-      <div class="row align-center gap-05">
+      <!-- City -->
+      <div class="row align-center gap-05"
+      style="margin-right: 2rem"
+      >
         <i
           class="pi pi-map-marker"
           style="color: var(--text-color); font-size: 1.5rem"
         ></i>
         <div class="floatingLabelContent">
           <select
+            #cityInput
             class="floatingLabelInput"
             type="text"
             placeholder=""
             style="padding-right: 3rem"
           >
             <option value="" disabled [selected]="true">Select City</option>
-            <option
-              *ngFor="let category of categories"
-              value="{{ category.id }}"
-            >
-              {{ category.name }}
+            <option *ngFor="let city of cities" value="{{ city }}">
+              {{ city }}
             </option>
           </select>
         </div>
       </div>
+      <!-- Search Button -->
       <app-animated-button
         label="Search my Job"
         width="13rem"
@@ -52,6 +59,7 @@
         backgroundColor="var(--primary-color)"
         fontSize="1.1rem"
         fontWeight="700"
+        (click)="onSearch()"
       ></app-animated-button>
     </div>
     <div class="popular">
@@ -189,7 +197,7 @@
   </section>
 
   <!-- Latest Jobs Section -->
-  <section class="latestJobs">
+  <section class="latestJobs" id="latestJobs">
     <div class="row space-between align-center sectionHeading">
       <!-- Title -->
       <div class="row gap-1 sectionTitle">

@@ -12,6 +12,8 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
+import java.util.Base64;
 import java.util.Map;
 
 @RestController
@@ -54,7 +56,8 @@ public class AuthController {
             }
 
             String companyJson = parts[0];
-            byte[] logoBytes = parts[1].getBytes();
+            String base64Logo = parts[1].replaceAll("\\s", ""); // Remove any whitespace characters
+            byte[] logoBytes = Base64.getDecoder().decode(base64Logo);
 
             ObjectMapper objectMapper = new ObjectMapper();
             Company company = objectMapper.readValue(companyJson, Company.class);
@@ -62,6 +65,9 @@ public class AuthController {
             authenticationService.registerCompany(company, logoBytes);
             logger.info("Company registered successfully");
             return ResponseEntity.ok("{\"message\": \"Company registered successfully\"}");
+        } catch (IllegalArgumentException e) {
+            logger.error("Invalid Base64 input", e);
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("{\"error\": \"Invalid Base64 input: " + e.getMessage() + "\"}");
         } catch (Exception e) {
             logger.error("Error registering company", e);
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("{\"error\": \"Error registering company: " + e.getMessage() + "\"}");

@@ -8,6 +8,7 @@ import { FeaturesModule } from '@features';
 import { SharedModule } from '@shared';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { TimeFormatterPipe } from './time-formatter.pipe';
 @NgModule({
   declarations: [AppComponent],
   imports: [

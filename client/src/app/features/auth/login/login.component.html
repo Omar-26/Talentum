@@ -76,7 +76,7 @@
             class="errorMessage"
           >
             <small *ngIf="loginFormControls['password'].dirty"
-              >*Please enter a valid Password</small
+              >*Minimum password length is 8 characters</small
             >
           </div>
         </div>
@@ -108,31 +108,3 @@
     </form>
   </div>
 </div>
-
-<!-- <label for="email">Email</label>
-<input
-  type="email"
-  formControlName="email"
-  placeholder="Email Address"
-  [ngClass]="{
-    invalid: submitted && loginForm.controls.email.errors
-  }"
-/>
-
-<label for="password">Password</label>
-<input
-  [type]="type"
-  formControlName="password"
-  placeholder="Password"
-  required
-  [ngClass]="{
-    'is-invalid': submitted && loginForm.controls.password.errors
-  }"
-/>
-
-<i class="pi {{ eyeIcon }} pass-icon" (click)="hideShowPass()"></i>
-<div *ngIf="submitted && loginForm.controls.password.errors">
-  <small class="invalid" *ngIf="loginForm.controls.password.errors"
-    >*Password is required.</small
-  >
-</div> -->

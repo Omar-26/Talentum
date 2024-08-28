@@ -22,8 +22,8 @@
       "args": [],
       "stopAtEntry": false,
       "externalConsole": true,
-      "cwd": "d:/Coursework/Full Stack/Ejada/Talentum/client/src/app/shared/models",
-      "program": "d:/Coursework/Full Stack/Ejada/Talentum/client/src/app/shared/models/build/Debug/outDebug",
+      "cwd": "d:/Coursework/Full Stack/Ejada/Talentum/client/src/app/features/auth/signup",
+      "program": "d:/Coursework/Full Stack/Ejada/Talentum/client/src/app/features/auth/signup/build/Debug/outDebug",
       "MIMode": "gdb",
       "miDebuggerPath": "gdb",
       "setupCommands": [

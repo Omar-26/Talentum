@@ -1,10 +1,14 @@
-import { Component, Input } from '@angular/core';
+import { Component } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { categoryIcons } from '@core/models/category';
 import { Job } from '@core/models/job';
+import { JobApplication } from '@core/models/job-application';
 import { CategoryService, JobService } from '@core/services';
+import { AdminService } from '@core/services/admin/admin.service';
 import { LocalStorageService } from '@core/services/local-storage/local-storage.service';
 import { UserService } from '@core/services/user/user.service';
+import { formatDistanceToNow } from 'date-fns';
+import { MessageService } from 'primeng/api';
 
 @Component({
   selector: 'app-job-details',
@@ -12,11 +16,13 @@ import { UserService } from '@core/services/user/user.service';
   styleUrl: './job-details.component.scss',
 })
 export class JobDetailsComponent {
-  @Input() jobId!: string | number;
-  role!: string;
+  jobId!: string | number;
   job!: Job;
+  isAppliedTo: boolean = false;
+  role!: string;
+  userId!: string;
+  postedIn!: string;
   isBookmarked!: boolean;
-  userId = localStorage.getItem('id') || '0';
   relatedJobs!: Job[];
   responsibilities!: string[];
   qualifications!: string[];
@@ -27,15 +33,21 @@ export class JobDetailsComponent {
     private userService: UserService,
     private jobService: JobService,
     private route: ActivatedRoute,
-    private router : Router,
-    private storage: LocalStorageService
+    private router: Router,
+    private messageService: MessageService,
+    private storage: LocalStorageService,
+    private adminService: AdminService
   ) {}
 
   ngOnInit() {
     this.role = this.storage.getRole();
+    this.userId = this.storage.getUserId();
     this.loadJobDetails();
   }
   // add to utils
+  formatRelativeTime(date: Date): string {
+    return formatDistanceToNow(date, { addSuffix: true });
+  }
   formatToList: any = (str: string) => {
     return str
       .split(/[,\.]/)
@@ -48,7 +60,23 @@ export class JobDetailsComponent {
     this.jobId = this.route.snapshot.paramMap.get('job-id') || '0';
     this.jobService.getJobById(this.jobId).subscribe((job) => {
       this.job = job;
+      if (!this.job.company?.id) {
+        console.warn('Company ID is not available');
+        return;
+      }
+      this.adminService
+        .getCompanyLogo(this.job.company?.id)
+        // .getCompanyLogo(this.job.company?.id)
+        .subscribe((blob) => {
+          const reader = new FileReader();
+          reader.onload = (event: any) => {
+            this.job.company.logo = event.target.result;
+          };
+          reader.readAsDataURL(blob);
+        });
       this.job.category.icon = categoryIcons[this.job.category.name];
+      this.postedIn = this.formatRelativeTime(this.job.createdAt as Date);
+      this.isInTheAppliedList();
       this.responsibilities = this.formatToList(job.responsibilities);
       this.qualifications = this.formatToList(job.qualifications);
       job.benefits ? (this.benefits = this.formatToList(job.benefits)) : null;
@@ -88,6 +116,28 @@ export class JobDetailsComponent {
 
   // Apply to job
   onApplyToJob(): void {
-    this.router.navigate([`job-details/${this.jobId}/apply-to-job`]);
+    if (this.role === '' || this.userId === '0') {
+      this.messageService.add({
+        icon: 'pi pi-exclamation-circle',
+        summary: 'Heads Up!',
+        detail: 'You must Login to Apply for Jobs',
+        life: 2500,
+      });
+      setTimeout(() => {
+        this.router.navigate(['/login']);
+      }, 3000);
+    } else this.router.navigate([`job-details/${this.jobId}/apply-to-job`]);
+  }
+
+  isInTheAppliedList(): void {
+    this.userService
+      .getAppliedJobs(this.userId)
+      .subscribe((jobApplications) => {
+        jobApplications.forEach((jobApplication: JobApplication) => {
+          if (jobApplication.job.id == this.jobId) {
+            this.isAppliedTo = true;
+          }
+        });
+      });
   }
 }

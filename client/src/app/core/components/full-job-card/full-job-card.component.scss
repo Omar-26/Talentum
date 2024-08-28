@@ -18,16 +18,30 @@
     font-weight: 500;
     font-size: 0.8rem;
   }
+
+  .appliedTag{
+    display: flex;
+    font-family: var(--font-clash-variable);
+    color: #179a56;
+    background-color: #32de8549;
+    padding: .3rem;
+    width: 6rem;
+    border-radius: var(--border-radius);
+    font-weight: 500;
+    font-size: 1rem;
+  }
+
   .companyLogoContainer {
     width: 4rem;
     height: 4rem;
     border-radius: 4rem;
+    overflow: hidden;
   }
 
   .companyLogoContainer img {
     width: 100%;
     height: 100%;
-    object-fit: contain;
+    object-fit: scale-down;
   }
 
   .jobTitle {
@@ -44,6 +58,7 @@
     font-weight: 500;
     color: var(--grey-color);
     font-size: 1.2rem;
+    cursor: pointer;
   }
 
   .jobData {

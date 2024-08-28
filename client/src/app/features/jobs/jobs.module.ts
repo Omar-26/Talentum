@@ -4,14 +4,18 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterLink, RouterModule } from '@angular/router';
 import { CoreModule } from '@core';
 import { SharedModule } from '@shared';
-import { FullJobCardComponent } from '../../core/components/full-job-card/full-job-card.component';
 import { JobsRoutingModule } from './jobs-routing.module';
 import { ApplyToJobComponent } from './pages/apply-to-job/apply-to-job.component';
 import { JobDetailsComponent } from './pages/job-details/job-details.component';
 import { JobsComponent } from './pages/jobs/jobs.component';
 
 @NgModule({
-  declarations: [JobsComponent, JobDetailsComponent, ApplyToJobComponent],
+  declarations: [
+    JobsComponent,
+    JobDetailsComponent,
+    ApplyToJobComponent,
+
+  ],
   imports: [
     CommonModule,
     JobsRoutingModule,

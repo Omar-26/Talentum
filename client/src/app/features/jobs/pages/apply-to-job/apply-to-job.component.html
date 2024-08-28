@@ -5,31 +5,57 @@
       <!--  Inputs -->
       <div class="inputs">
         <!-- First Name -->
-        <div class="floatingLabelContent">
+        <div
+          [ngClass]="{
+            inputError:
+              applyToJobFormControls['firstName'].invalid &&
+              (applyToJobFormControls['lastName'].dirty ||
+                applyToJobFormControls['firstName'].touched)
+          }"
+          class="floatingLabelContent"
+        >
           <input
             formControlName="firstName"
             class="floatingLabelInput"
             type="text"
             placeholder=""
             pInputText
+            pKeyFilter="alpha"
           />
           <label class="floatingLabel">First Name</label>
         </div>
 
         <!-- Last Name -->
-        <div class="floatingLabelContent">
+        <div
+          [ngClass]="{
+            inputError:
+              applyToJobFormControls['lastName'].invalid &&
+              (applyToJobFormControls['lastName'].dirty ||
+                applyToJobFormControls['lastName'].touched)
+          }"
+          class="floatingLabelContent"
+        >
           <input
             formControlName="lastName"
             class="floatingLabelInput"
             type="text"
             placeholder=""
             pInputText
+            pKeyFilter="alpha"
           />
           <label class="floatingLabel">Last Name</label>
         </div>
 
         <!-- Email -->
-        <div class="floatingLabelContent">
+        <div
+          [ngClass]="{
+            inputError:
+              applyToJobFormControls['email'].invalid &&
+              (applyToJobFormControls['email'].dirty ||
+                applyToJobFormControls['email'].touched)
+          }"
+          class="floatingLabelContent"
+        >
           <input
             formControlName="email"
             class="floatingLabelInput"
@@ -41,19 +67,36 @@
         </div>
 
         <!-- Phone Number -->
-        <div class="floatingLabelContent">
+        <div
+          [ngClass]="{
+            inputError:
+              applyToJobFormControls['phoneNumber'].invalid &&
+              (applyToJobFormControls['phoneNumber'].dirty ||
+                applyToJobFormControls['phoneNumber'].touched)
+          }"
+          class="floatingLabelContent"
+        >
           <input
             formControlName="phoneNumber"
             class="floatingLabelInput"
             type="text"
             placeholder=""
             pInputText
+            pKeyFilter="int"
           />
           <label class="floatingLabel">Phone Number</label>
         </div>
 
         <!-- Country -->
-        <div class="floatingLabelContent">
+        <div
+          [ngClass]="{
+            inputError:
+              applyToJobFormControls['country'].invalid &&
+              (applyToJobFormControls['country'].dirty ||
+                applyToJobFormControls['country'].touched)
+          }"
+          class="floatingLabelContent"
+        >
           <input
             formControlName="country"
             class="floatingLabelInput"
@@ -64,8 +107,16 @@
           <label class="floatingLabel">Country</label>
         </div>
 
-        <!-- availableStartDate -->
-        <div class="floatingLabelContent">
+        <!-- Available Start Date -->
+        <div
+          [ngClass]="{
+            inputError:
+              applyToJobFormControls['availableStartDate'].invalid &&
+              (applyToJobFormControls['availableStartDate'].dirty ||
+                applyToJobFormControls['availableStartDate'].touched)
+          }"
+          class="floatingLabelContent"
+        >
           <input
             formControlName="availableStartDate"
             class="floatingLabelInput"
@@ -91,7 +142,7 @@
         <!-- Qualifications -->
         <div class="floatingLabelContent">
           <textarea
-            formControlName="reasonOfHire"
+            formControlName="qualifications"
             class="floatingLabelInput"
             type="text"
             placeholder=""
@@ -99,7 +150,15 @@
           <label class="floatingLabel">Tell Us About Your Qualifications</label>
         </div>
         <!-- LinkedIn -->
-        <div class="floatingLabelContent">
+        <div
+          [ngClass]="{
+            inputError:
+              applyToJobFormControls['linkedIn'].invalid &&
+              (applyToJobFormControls['linkedIn'].dirty ||
+                applyToJobFormControls['linkedIn'].touched)
+          }"
+          class="floatingLabelContent"
+        >
           <input
             formControlName="linkedIn"
             class="floatingLabelInput"
@@ -111,7 +170,15 @@
         </div>
 
         <!-- Github -->
-        <div class="floatingLabelContent">
+        <div
+          [ngClass]="{
+            inputError:
+              applyToJobFormControls['github'].invalid &&
+              (applyToJobFormControls['github'].dirty ||
+                applyToJobFormControls['github'].touched)
+          }"
+          class="floatingLabelContent"
+        >
           <input
             formControlName="github"
             class="floatingLabelInput"

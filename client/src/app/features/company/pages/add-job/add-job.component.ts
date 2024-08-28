@@ -41,7 +41,9 @@ export class AddJobComponent {
       category: ['', Validators.required],
       type: ['', Validators.required],
       location: ['', Validators.required],
-      salary: ['', Validators.required],
+      minSalary: ['', Validators.required],
+      maxSalary: ['', Validators.required],
+      salaryCurrency: ['', Validators.required],
       gender: ['', Validators.required],
       experience: ['', Validators.required],
       description: ['', Validators.required],
@@ -65,7 +67,7 @@ export class AddJobComponent {
       this.categories = categories;
     });
   }
-  
+
   get formControls() {
     return this.addJobForm.controls;
   }
@@ -80,15 +82,28 @@ export class AddJobComponent {
       });
       return;
     }
-    let job: Job;
+    const minSalary = formatSalary(this.addJobForm.value.minSalary);
+    const maxSalary = formatSalary(this.addJobForm.value.maxSalary);
+    let salary =
+      this.addJobForm.value.salaryCurrency === 'LE'
+        ? `${minSalary} ${this.addJobForm.value.salaryCurrency} - ${maxSalary} ${this.addJobForm.value.salaryCurrency}`
+        : `${this.addJobForm.value.salaryCurrency}${minSalary} - ${this.addJobForm.value.salaryCurrency}${maxSalary}`;
+    console.log(salary);
+    let job;
     let categoryId!: string;
-    job = this.addJobForm.value;
+    job = {
+      ...this.addJobForm.value,
+      salary: salary,
+    };
+    delete job.salaryCurrency;
+    delete job.minSalary;
+    delete job.maxSalary;
     categoryId = this.formControls['category'].value;
     this.companyService
       .addJob(categoryId, this.companyId, job)
       .subscribe(() => {
         this.messageService.add({
-          icon: 'pi pi-times',
+          icon: 'pi pi-check',
           summary: 'Success',
           detail: 'Job Added Successfully',
           life: 2500,
@@ -102,4 +117,7 @@ export class AddJobComponent {
         }, 3000);
       });
   }
+}
+function formatSalary(value: number): string {
+  return `${(value / 1000).toFixed(0)}K`;
 }

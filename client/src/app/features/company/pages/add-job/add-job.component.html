@@ -57,9 +57,11 @@
             placeholder=""
           >
             <option [defaultSelected]="true" disabled>Select Job Type</option>
-            <option value="full time">Full Time</option>
-            <option value="part time">Part Time</option>
-            <option value="internship">Internship</option>
+            <option value="Full Time">Full Time</option>
+            <option value="Part Time">Part Time</option>
+            <option value="Internship">Internship</option>
+            <option value="Freelance">Freelance</option>
+            <option value="Contract">Contract</option>
           </select>
           <label class="floatingLabel">Job Type</label>
         </div>
@@ -73,10 +75,10 @@
             placeholder=""
           >
             <option [defaultSelected]="true" disabled>Select Experience</option>
-            <option value="no experience">No Experience</option>
-            <option value="entry level">Entry Level</option>
-            <option value="junior level">Junior Level</option>
-            <option value="senior level">Senior Level</option>
+            <option value="No Experience">No Experience</option>
+            <option value="Entry Level">Entry Level</option>
+            <option value="Junior Level">Junior Level</option>
+            <option value="Senior Level">Senior Level</option>
           </select>
           <label class="floatingLabel">Experience</label>
         </div>
@@ -90,14 +92,13 @@
             placeholder=""
           >
             <option [defaultSelected]="true" disabled>Select Gender</option>
-            <option value="any">Any</option>
-            <option value="male">Male</option>
-            <option value="female">Female</option>
+            <option value="Any">Any</option>
+            <option value="Male">Male</option>
+            <option value="Female">Female</option>
           </select>
           <label class="floatingLabel">Gender</label>
         </div>
 
-        <!-- may be a selection -->
         <!-- Location -->
         <div class="floatingLabelContent">
           <input
@@ -109,19 +110,55 @@
             [pKeyFilter]="blockChars"
           />
           <label class="floatingLabel">Location</label>
+          <p class="popUp">City, Country (eg: Cairo, Egypt)</p>
         </div>
 
         <!-- Salary -->
-        <div class="floatingLabelContent">
-          <input
-            formControlName="salary"
-            class="floatingLabelInput"
-            type="text"
-            placeholder=""
-            pInputText
-            pKeyFilter="int"
-          />
-          <label class="floatingLabel">Salary</label>
+        <div class="column">
+          <div class="row gap-1">
+            <div class="floatingLabelContent">
+              <input
+                formControlName="minSalary"
+                class="floatingLabelInput"
+                type="text"
+                placeholder=""
+                pInputText
+                pKeyFilter="int"
+              />
+              <label class="floatingLabel">Min. Salary</label>
+            </div>
+            <div class="floatingLabelContent">
+              <input
+                formControlName="maxSalary"
+                class="floatingLabelInput"
+                type="text"
+                placeholder=""
+                pInputText
+                pKeyFilter="int"
+              />
+              <label class="floatingLabel">Max. Salary</label>
+            </div>
+            <div class="floatingLabelContent">
+              <select
+                formControlName="salaryCurrency"
+                class="floatingLabelInput"
+                type="text"
+                placeholder=""
+                style="padding-left: 0.5rem; padding-right: 0rem; width: 5rem"
+              >
+                <option [defaultSelected]="true" disabled>
+                  Select Currency
+                </option>
+                <option value="$">USD $</option>
+                <option value="LE">EGP LE</option>
+                <option value="€">EUR €</option>
+                <option value="¥">JPY ¥</option>
+                <option value="£">GBP £</option>
+                <option value="₣">CFA ₣</option>
+              </select>
+            </div>
+          </div>
+          <p class="popUp">Salary per Year</p>
         </div>
       </div>
       <!-- Text Areas -->
@@ -135,7 +172,6 @@
             placeholder=""
           ></textarea>
           <label class="floatingLabel">Detailed Job Description</label>
-          <!-- <p>separated by . </p> -->
         </div>
 
         <!-- Responsibilities -->
@@ -147,7 +183,7 @@
             placeholder=""
           ></textarea>
           <label class="floatingLabel">Responsibilities</label>
-          <p class="popUp">separated by , or .</p>
+          <p class="popUp">Separated by , or .</p>
         </div>
 
         <!-- Qualifications or Professional Skills -->
@@ -161,7 +197,7 @@
           <label class="floatingLabel"
             >Qualifications or Professional Skills</label
           >
-          <p class="popUp">separated by , or .</p>
+          <p class="popUp">Separated by , or .</p>
         </div>
 
         <!-- Benefits (Optional) -->
@@ -173,7 +209,7 @@
             placeholder=""
           ></textarea>
           <label class="floatingLabel">Benefits (Optional)</label>
-          <p class="popUp">separated by , or .</p>
+          <p class="popUp">Separated by , or .</p>
         </div>
       </div>
     </form>

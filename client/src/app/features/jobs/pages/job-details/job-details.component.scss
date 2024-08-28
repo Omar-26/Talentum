@@ -34,15 +34,25 @@
         font-weight: 500;
         padding: 0.5rem;
       }
-    //   .saveButton {
-    //     margin-right: 0.6rem;
-    //   }
+
+      .appliedTag {
+        display: flex;
+        font-family: var(--font-clash-variable);
+        color: #179a56;
+        background-color: #32de8549;
+        padding: 0.5rem;
+        width: 10rem;
+        border-radius: var(--border-radius);
+        font-weight: 500;
+        font-size: 1.2rem;
+      }
     }
 
     .companyLogoContainer {
       width: 5rem;
       height: 5rem;
       border-radius: 4rem;
+      overflow: hidden;
     }
 
     .companyLogoContainer img {
@@ -62,6 +72,7 @@
       font-family: var(--font-clash-variable);
       font-weight: 500;
       font-size: 1.3rem;
+      cursor: pointer;
       i {
         color: var(--primary-color);
         font-weight: 900;

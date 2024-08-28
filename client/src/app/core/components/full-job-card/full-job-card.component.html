@@ -3,15 +3,20 @@
   <div class="row space-between mb-25">
     <!-- added at -->
     <!-- <div class="darkText">{{ job.addedAt }}</div> -->
-    <div class="darkText timeAdded">15 mins ago</div>
+    <div class="darkText timeAdded">{{postedIn}}</div>
 
     <!-- bookmark button-->
-    <div class="saveButton">
+    <div *ngIf="!isAppliedTo" class="saveButton">
       <app-save-button
         *ngIf="!(role === 'company')"
         (click)="onSaveJob()"
         [isChecked]="isBookmarked"
       ></app-save-button>
+    </div>
+
+    <!-- Already Applied Tag -->
+    <div *ngIf="isAppliedTo" class="darkText appliedTag full-center">
+      Applied
     </div>
   </div>
   <!-- company and Job Title -->
@@ -27,7 +32,10 @@
       <div class="darkText jobTitle">{{ job.title }}</div>
 
       <!-- Company Name -->
-      <div class="row gap-025 align-center company">
+      <div
+        (click)="onCompanyClicked()"
+        class="row gap-025 align-center company"
+      >
         <i class="pi pi-verified"></i>
         <span>{{ job.company.name }}</span>
       </div>

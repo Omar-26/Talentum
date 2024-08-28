@@ -7,6 +7,7 @@ import {
   Validators,
 } from '@angular/forms';
 import { Router } from '@angular/router';
+import { passwordMatchValidator } from '@core/directives/password-match.directive';
 import { RegisterService } from '@core/services/auth/signup/register.service';
 import { MessageService } from 'primeng/api';
 
@@ -39,8 +40,12 @@ export class SignupComponent {
           '',
           [Validators.required, Validators.pattern('^[a-zA-Z]+$')],
         ],
-        username: ['', [Validators.required, Validators.minLength(5)]],
+        username: ['', Validators.required],
         email: ['', [Validators.required, Validators.email]],
+        phoneNumber: [
+          '',
+          [Validators.required, Validators.pattern('^01\\d{9}$')],
+        ],
         password: [
           '',
           [
@@ -49,11 +54,14 @@ export class SignupComponent {
             Validators.pattern('^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d).+$'),
           ],
         ],
-        phoneNumber: [
+        confirmPassword: [
           '',
-          [Validators.required, Validators.pattern('^\\d{11}$')],
+          [
+            Validators.required,
+            Validators.minLength(8),
+            Validators.pattern('^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d).+$'),
+          ],
         ],
-        confirmPassword: ['', [Validators.required]],
         dateOfBirth: [
           '',
           [
@@ -64,7 +72,7 @@ export class SignupComponent {
           ],
         ],
       },
-      { validators: confirmPasswordValidator('password', 'confirmPassword') }
+      { validators: passwordMatchValidator }
     );
 
     this.companySignupForm = this.fb.group(
@@ -92,55 +100,7 @@ export class SignupComponent {
       { validators: confirmPasswordValidator('password', 'confirmPassword') }
     );
   }
-
-  minDateValidator(minDate: Date) {
-    return (control: AbstractControl): ValidationErrors | null => {
-      const value = new Date(control.value);
-      return value >= minDate ? null : { minDate: true };
-    };
-  }
-
-  maxDateValidator(maxDate: Date) {
-    return (control: AbstractControl): ValidationErrors | null => {
-      const value = new Date(control.value);
-      return value <= maxDate ? null : { maxDate: true };
-    };
-  }
-
-  get userFormControls() {
-    return this.userSignupForm.controls;
-  }
-
-  get companyFormControls() {
-    return this.companySignupForm.controls;
-  }
-
-  showPassword(): void {
-    this.show = !this.show;
-    this.passwordIcon = this.show ? 'pi-eye' : 'pi-eye-slash';
-  }
-
-  onRegisterCompany() {
-    this.isRightPanelActive = true;
-  }
-
-  onRegisterUser() {
-    this.isRightPanelActive = false;
-  }
-
-  onEditorContentChange(content: string) {
-    this.editorText = content;
-  }
-
-  onFileChange(event: any) {
-    if (event.target.files.length > 0) {
-      const file = event.target.files[0];
-      this.companySignupForm.patchValue({
-        logo: file,
-      });
-    }
-  }
-
+  // Logic Utils
   registerUser() {
     if (this.userSignupForm.invalid) {
       this.userSignupForm.markAllAsTouched();
@@ -159,7 +119,6 @@ export class SignupComponent {
     }, 3000);
     this.registerService.registerUser(user).subscribe();
   }
-
   registerCompany() {
     const formData = new FormData();
     const companyData = JSON.stringify({
@@ -177,7 +136,8 @@ export class SignupComponent {
       const reader = new FileReader();
       reader.onload = () => {
         const logoData = reader.result as string;
-        const combinedData = `${companyData};${logoData}`;
+        const base64Logo = logoData.split(',')[1];
+        const combinedData = `${companyData};${base64Logo}`;
         formData.append(
           'data',
           new Blob([combinedData], { type: 'text/plain' })
@@ -207,11 +167,57 @@ export class SignupComponent {
           }
         );
       };
-      reader.readAsText(logoFile);
+      reader.readAsDataURL(logoFile);
     } else {
       console.error('Logo is not a valid file');
       return;
     }
+  }
+
+  get userFormControls() {
+    return this.userSignupForm.controls;
+  }
+  get companyFormControls() {
+    return this.companySignupForm.controls;
+  }
+
+  // View Utils
+  showPassword(): void {
+    this.show = !this.show;
+    this.passwordIcon = this.show ? 'pi-eye' : 'pi-eye-slash';
+  }
+  switchPanel(panel: string) {
+    panel === 'user'
+      ? (this.isRightPanelActive = true)
+      : (this.isRightPanelActive = false);
+  }
+
+  // Events
+  onEditorContentChange(content: string) {
+    this.editorText = content;
+  }
+  onFileChange(event: any) {
+    if (event.target.files.length > 0) {
+      const file = event.target.files[0];
+      this.companySignupForm.patchValue({
+        logo: file,
+      });
+    }
+  }
+
+  // Validators
+  minDateValidator(minDate: Date) {
+    return (control: AbstractControl): ValidationErrors | null => {
+      const value = new Date(control.value);
+      return value >= minDate ? null : { minDate: true };
+    };
+  }
+
+  maxDateValidator(maxDate: Date) {
+    return (control: AbstractControl): ValidationErrors | null => {
+      const value = new Date(control.value);
+      return value <= maxDate ? null : { maxDate: true };
+    };
   }
 }
 

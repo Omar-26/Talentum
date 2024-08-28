@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
 import { Company } from '@core/models/company';
 import { User } from '@core/models/user';
 import { AdminService } from '@core/services/admin/admin.service';
@@ -19,12 +19,13 @@ export class HeaderComponent {
   logoUrl: any = 'assets/images/user.svg';
   constructor(
     private router: Router,
+    private route: ActivatedRoute,
     private storage: LocalStorageService,
     private userService: UserService,
     private adminService: AdminService
   ) {
     this.role = this.storage.getRole();
-    this.isLoggedIn = this.storage.isLoggedIn();
+    this.isLoggedIn = this.storage.getIsLoggedIn();
     if (this.isLoggedIn) {
       if (this.role == 'user') {
         this.id = this.storage.getUserId();
@@ -55,22 +56,36 @@ export class HeaderComponent {
   }
 
   openProfile() {
-    this.router.navigate([`/${this.role}/${this.id}`]);
+    const url = this.router.url.split('/');
+    if (url[1] === this.role) {
+      url.splice(2, 1, this.id);
+      this.router.navigate(url).then(() => {
+        window.location.reload();
+      });
+    } else {
+      this.router.navigate([`/${this.role}/${this.id}`]);
+    }
   }
 
   goToCategories() {
-    this.router.navigate(['']).then(() => {
+    if (this.router.url == '/') {
       document
         .getElementById('categories')
         ?.scrollIntoView({ behavior: 'smooth' });
-    });
+    } else {
+      this.router.navigate(['/']).then(() => {
+        document
+          .getElementById('categories')
+          ?.scrollIntoView({ behavior: 'instant' });
+      });
+    }
   }
 
   logout() {
     localStorage.setItem('isLoggedIn', 'false');
+    this.storage.removeId();
+    this.storage.removeRole();
     this.router.navigate(['/login']);
-    localStorage.removeItem('id');
-    localStorage.removeItem('role');
     window.location.href = '/login';
   }
 }

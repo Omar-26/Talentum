@@ -5,21 +5,30 @@
   <div class="jobHeader">
     <!-- Time and save button -->
     <div class="row space-between timeAndSave">
-      <div class="darkText timeAdded">15 mins ago</div>
+      <!-- <div class="darkText timeAdded">15 mins ago</div> -->
+      <div class="darkText timeAdded">
+        {{ postedIn }}
+      </div>
 
       <!-- bookmark button-->
       <div *ngIf="!(role === 'company')" class="saveButton">
         <app-save-button
           (click)="onSaveJob()"
           [isChecked]="isBookmarked"
+          *ngIf="!isAppliedTo"
         ></app-save-button>
+
+        <!-- Already Applied Tag -->
+        <div *ngIf="isAppliedTo" class="darkText appliedTag full-center">
+          Applied
+        </div>
       </div>
     </div>
     <!-- company and Job Title -->
     <div class="row gap-2">
       <!-- Company Logo -->
       <div class="companyLogoContainer">
-        <img src="{{ job.company.logo }}" alt="Company" />
+        <img src="{{ job.company!.logo }}" alt="Company" />
       </div>
 
       <!-- company data -->
@@ -28,7 +37,10 @@
         <div class="darkText jobTitle">{{ job.title }}</div>
 
         <!-- Company Name -->
-        <div class="row gap-025 align-center company">
+        <div
+          routerLink="../../company/{{ job.company!.id }}"
+          class="row gap-025 align-center company"
+        >
           <i class="pi pi-verified"></i>
           <span>{{ job.company.name }}</span>
         </div>
@@ -64,6 +76,7 @@
         width="20.75rem"
         height="2.8rem"
         backgroundColor="var(--primary-color)"
+        *ngIf="!isAppliedTo && role !== 'company'"
         fontSize="1.1rem"
         fontWeight="700"
         (click)="onApplyToJob()"
@@ -124,21 +137,6 @@
                 {{ benefits[index] }}
               </li>
             </ul>
-          </div>
-        </div>
-
-        <!-- Tags -->
-        <div class="column gap-05 detailsItem">
-          <div class="sectionTitle">Tags:</div>
-          <div class="sectionContent">
-            <div class="row gap-05 mt-15 tags">
-              <!-- Job Type Tag -->
-              <div class="row gap-05 tag-container">
-                <span *ngFor="let tag of job.tags" class="tag">
-                  {{ tag }}
-                </span>
-              </div>
-            </div>
           </div>
         </div>
       </div>

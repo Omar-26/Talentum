@@ -45,11 +45,13 @@
       <div class="row gap-05 full-center" *ngIf="!isVertical">
         <span class="jobType">{{ job.type }}</span>
         <div class="divider"></div>
+        <!-- Job Type Tag -->
+        <span class="tag">{{ job.experience }}</span>
+        <span class="tag">{{ job.location }}</span>
       </div>
-      <div class="row gap-05 tag-container">
-        <span *ngFor="let tag of job.tags | slice : 0 : 3" class="tag">
-          {{ tag }}
-        </span>
+      <div class="row gap-05 tag-container" *ngIf="isVertical">
+        <span class="tag">{{ job.experience }}</span>
+        <span class="tag">{{ job.location }}</span>
       </div>
     </div>
   </div>
@@ -57,7 +59,7 @@
   <!-- bookmark button-->
   <div *ngIf="!isVertical && !(role === 'company')" class="saveButton">
     <app-save-button
-      (click)="onSaveJob()"
+      (click)="onSaveJob($event)"
       [isChecked]="isBookmarked"
     ></app-save-button>
   </div>

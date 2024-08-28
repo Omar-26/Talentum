@@ -15,7 +15,6 @@
 .logo img {
   width: 50px;
   display: inline;
-  // margin-right: 20px;
 }
 
 .welcome {
@@ -288,8 +287,7 @@ input[type="checkbox"]:checked + label > span:before {
 .toggleIcon {
   position: absolute;
   right: 1rem;
-  top: 50%;
-  transform: translateY(-50%);
+  top: 13.2px;
   cursor: pointer;
   color: var(--grey-color);
 }
@@ -299,6 +297,5 @@ input[type="checkbox"]:checked + label > span:before {
 }
 
 .inputError .toggleIcon i {
-  transform: translateY(-50%);
   color: #9d3b3b;
 }

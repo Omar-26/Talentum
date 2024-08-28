@@ -83,7 +83,7 @@ public class AuthService {
         String password = body.getPassword();
         User user = userRepository.findAccountByEmail(email);
         if (user != null) {
-            if (passwordEncoder.matches(password, user.getPassword()) || password.equals(user.getPassword())) {
+            if (passwordEncoder.matches(password, user.getPassword())) {
                 return Map.of("id", user.getId(), "role", "user");
             } else {
                 throw new RuntimeException("Incorrect password");
@@ -91,7 +91,7 @@ public class AuthService {
         }
         Company company = companyRepository.findByEmail(email);
         if (company != null) {
-            if (passwordEncoder.matches(password, company.getPassword()) || password.equals(company.getPassword())) {
+            if (passwordEncoder.matches(password, company.getPassword())) {
                 return Map.of("id", company.getId(), "role", "Company");
             } else {
                 throw new RuntimeException("Incorrect password");

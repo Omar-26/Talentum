@@ -7,29 +7,37 @@
   position: relative;
   z-index: 0;
   overflow: hidden;
-  transition: box-shadow 0.3s ease, background-color 0.3s ease, color 0.3s ease;
+  &:before {
+    content: "";
+    position: absolute;
+    z-index: -1;
+    top: -40px;
+    right: -40px;
+    background: rgba(68, 63, 222, 0.05);
+    height: 60px;
+    width: 60px;
+    border-radius: 48px;
+    transform: scale(1);
+    transform-origin: 50% 50%;
+    transition: transform 0.4s ease-out;
+  }
+
+  &:hover:before {
+    transform: scale(21);
+  }
 }
 
 .companyLogoContainer {
   width: 3.5rem;
   height: 3.5rem;
   border-radius: 4rem;
+  overflow: hidden;
 }
 
 .companyLogoContainer img {
   width: 100%;
   height: 100%;
   object-fit: contain;
-}
-
-.jobType {
-  font-family: var(--font-clash-variable);
-  color: var(--primary-color);
-  border: 1.5px solid var(--primary-color);
-  padding: 0.4rem;
-  border-radius: var(--border-radius);
-  font-weight: 500;
-  font-size: 0.8rem;
 }
 
 .jobTitle {
@@ -47,7 +55,6 @@
   font-weight: 500;
   color: var(--grey-color);
   font-size: 1rem;
-  margin-top: 0.2rem;
 }
 
 .location {
@@ -76,6 +83,32 @@
   box-orient: vertical;
   line-clamp: 2;
 }
+
+.vertical {
+  width: 17.125rem;
+  height: 17.6875rem;
+  padding: 1.5rem;
+}
+
+.horizontal {
+  width: 36.25rem;
+  height: 9.3125rem;
+  padding: 0.5rem 1.8rem;
+  .companyLogoContainer {
+    margin-right: 2rem;
+  }
+}
+
+.jobType {
+  font-family: var(--font-clash-variable);
+  color: var(--primary-color);
+  border: 1.5px solid var(--primary-color);
+  padding: 0.4rem;
+  border-radius: var(--border-radius);
+  font-weight: 500;
+  font-size: 0.8rem;
+}
+
 .tag-container {
   max-width: 19rem;
   display: flex;
@@ -93,21 +126,6 @@
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
-}
-
-.vertical {
-  width: 17.125rem;
-  height: 17.6875rem;
-  padding: 1.5rem;
-}
-
-.horizontal {
-  width: 36.25rem;
-  height: 9.3125rem;
-  padding: 0.5rem 1.8rem;
-  .companyLogoContainer {
-    margin-right: 2rem;
-  }
 }
 
 .divider {

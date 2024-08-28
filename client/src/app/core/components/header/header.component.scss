@@ -95,18 +95,24 @@
 
 .profileButton {
   cursor: pointer;
-  padding: 0.2rem 0.6rem;
+  background-color: var(--accent-color);
+  padding: 0.2rem 0.8rem 0.2rem 0.4rem;
   border: 2px solid var(--primary-color);
   border-radius: var(--border-radius);
-  gap: 0.5rem;
   font-family: var(--font-red-hat);
   color: var(--primary-color);
-  font-size: 1rem;
   font-weight: 900;
   .profilePicture {
     width: 2.5rem;
     height: 2.5rem;
     border-radius: var(--border-radius);
     object-fit: scale-down;
+    margin-right: 0.5rem;
+  }
+  i{
+    color: var(--primary-color);
+    font-size: 1rem;
+    font-weight: 900;
+    margin-left: 0.8rem;
   }
 }

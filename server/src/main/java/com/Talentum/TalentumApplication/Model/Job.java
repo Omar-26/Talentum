@@ -6,25 +6,14 @@ import lombok.Setter;
 
 import java.sql.Timestamp;
 
-@Setter
 @Getter
+@Setter
 @Entity
 public class Job {
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
     private String title;
-
-    @ManyToOne
-    @JoinColumn(name = "company_id", nullable = false)
-    private Company company;
-
-    @ManyToOne
-    @JoinColumn(name = "category_id", nullable = false)
-
-    private Category category;
     private String type;
     private String salary;
     private String location;
@@ -35,14 +24,21 @@ public class Job {
     private String benefits;
     private String experience;
     private Timestamp createdAt;
+    @ManyToOne
+    @JoinColumn(name = "company_id", nullable = false)
+    private Company company;
 
-    public Job() {
-    }
+    @ManyToOne
+    @JoinColumn(name = "category_id", nullable = false)
+    private Category category;
 
-    public Job(String title, Company company, Category category, String type, String salary, String location, String gender, String description, String responsibilities, String qualifications, String benefits, String experience, Timestamp createdAt) {
+    // Default constructor
+    public Job() {}
+
+    // Parameterized constructor
+
+    public Job(String title, String type, String salary, String location, String gender, String description, String responsibilities, String qualifications, String benefits, String experience, Timestamp createdAt, Company company, Category category) {
         this.title = title;
-        this.company = company;
-        this.category = category;
         this.type = type;
         this.salary = salary;
         this.location = location;
@@ -53,6 +49,7 @@ public class Job {
         this.benefits = benefits;
         this.experience = experience;
         this.createdAt = createdAt;
+        this.company = company;
+        this.category = category;
     }
-
 }

@@ -39,6 +39,7 @@ export class UserService {
       .pipe(catchError(ErrorHandler.handleError));
   }
 
+  // Check if job is saved
   isInSavedJobs(
     userId: string | number,
     jobId: string | number
@@ -46,5 +47,12 @@ export class UserService {
     return this.http.get<boolean>(
       `${this.apiUrl}/user/is-job-saved/${userId}/${jobId}`
     );
+  }
+
+  // Get Applied Jobs
+  getAppliedJobs(userId: number | string): Observable<any> {
+    return this.http
+      .get<any>(`${this.apiUrl}/job-application/all-applications/user/${userId}`)
+      .pipe(catchError(ErrorHandler.handleError));
   }
 }

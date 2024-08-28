@@ -41,7 +41,6 @@ public class JobApplication {
     }
 
     public JobApplication(User user, Job job, String firstname, String lastname, String email,String country, String phone, String reasonOfHire, String linkedInLink, String githubLink, String qualification, String status,Date availableStartDate,Timestamp appliedAt) {
-
         this.user = user;
         this.job = job;
         this.firstname = firstname;

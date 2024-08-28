@@ -35,7 +35,7 @@
       routerLink="/signup"
     ></app-animated-button>
   </div>
-  <div *ngIf="isLoggedIn" class="row align-center profileButton">
+  <div *ngIf="isLoggedIn" class="row  align-center profileButton">
     <!-- user profile implementation-->
     <img
       [src]="logoUrl"
@@ -48,6 +48,6 @@
       {{ loggedInEntity?.firstName || loggedInEntity?.name }}
     </p>
     <!-- arrow down -->
-    <i (click)="logout()" class="pi pi-angle-down"></i>
+    <i (click)="logout()" class="pi pi-sign-out"></i>
   </div>
 </header>

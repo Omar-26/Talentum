@@ -6,9 +6,13 @@
   [style.height]="height"
   [style.background-color]="backgroundColor"
 >
-  <div class="row gap-1">
+  <div
+    class="row gap-1"
+    [style.font-size]="fontSize"
+    [style.font-weight]="fontWeight"
+  >
     <i *ngIf="icon != null" class="pi {{ icon }}"></i>
-    <p [style.font-size]="fontSize" [style.font-weight]="fontWeight">
+    <p *ngIf="label != null">
       {{ label }}
     </p>
   </div>

@@ -1,60 +1,61 @@
 package com.Talentum.TalentumApplication.controller;
 
-import com.Talentum.TalentumApplication.model.Job;
 import com.Talentum.TalentumApplication.model.JobApplication;
-import com.Talentum.TalentumApplication.model.User;
-import com.Talentum.TalentumApplication.repository.JobApplicationRepository;
-import com.Talentum.TalentumApplication.repository.JobRepository;
-import com.Talentum.TalentumApplication.repository.UserRepository;
+import com.Talentum.TalentumApplication.service.JobApplicationService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.sql.Timestamp;
-
 @RestController
-@RequestMapping("/api")
+@RequestMapping("/api/job-application")
 public class JobApplicationController {
 
-    private final JobApplicationRepository jobApplicationRepository;
+    private final JobApplicationService jobApplicationService;
 
-    private final UserRepository userRepository;
-
-    private final JobRepository jobRepository;
-
-    public JobApplicationController(JobApplicationRepository jobApplicationRepository, UserRepository userRepository, JobRepository jobRepository) {
-        this.jobApplicationRepository = jobApplicationRepository;
-        this.userRepository = userRepository;
-        this.jobRepository = jobRepository;
+    public JobApplicationController(JobApplicationService jobApplicationService) {
+        this.jobApplicationService = jobApplicationService;
     }
 
+    // Apply for a job
     @PostMapping("/apply/{userId}/{jobId}")
     public ResponseEntity<?> applyForJob(@PathVariable Long userId,
                                          @PathVariable Long jobId,
                                          @RequestBody JobApplication jobApplication) {
-        User user = userRepository.findById(userId)
-                .orElseThrow(() -> new RuntimeException("User not found"));
-
-        Job job = jobRepository.findById(jobId)
-                .orElseThrow(() -> new RuntimeException("Job not found"));
         try {
-            JobApplication application = jobApplicationRepository.getByUserId(user.getId());
-            if (application.getJob().getId().equals(jobId)) {
-                return ResponseEntity.badRequest().body("you already submit the application");
-            }
-        } catch (Exception e) {
-            System.out.println(e);
+            JobApplication savedApplication = jobApplicationService.applyForJob(userId, jobId, jobApplication);
+            return ResponseEntity.ok(savedApplication);
+        } catch (RuntimeException e) {
+            return ResponseEntity.badRequest().body(e.getMessage());
         }
-        try {
-            jobApplication.setUser(user);
-            jobApplication.setJob(job);
-            jobApplication.setAppliedAt(new Timestamp(System.currentTimeMillis()));
-
-            return ResponseEntity.ok(jobApplicationRepository.save(jobApplication));
-        } catch (Exception e) {
-            System.out.println(e);
-        }
-        return null;
-
     }
 
+    // Get all job applications
+    @GetMapping("/all-applications")
+    public ResponseEntity<?> getAllJobApplications() {
+        return ResponseEntity.ok(jobApplicationService.getAllJobApplications());
+    }
+
+    // Get all job applications by user
+    @GetMapping("/all-applications/user/{userId}")
+    public ResponseEntity<?> getAllJobApplicationsByUser(@PathVariable Long userId) {
+        return ResponseEntity.ok(jobApplicationService.getAllJobApplicationsByUser(userId));
+    }
+
+    // Get all job applications by job
+    @GetMapping("/all-applications/job/{jobId}")
+    public ResponseEntity<?> getAllJobApplicationsByJob(@PathVariable Long jobId) {
+        return ResponseEntity.ok(jobApplicationService.getAllJobApplicationsByJob(jobId));
+    }
+
+    // Get if a specific job is applied to by this user
+    @GetMapping("/is-applied/{userId}/{jobId}")
+    public ResponseEntity<Boolean> isJobAppliedByUser(@PathVariable Long userId, @PathVariable Long jobId) {
+        boolean isApplied = jobApplicationService.isJobAppliedByUser(userId, jobId);
+        return ResponseEntity.ok(isApplied);
+    }
+
+    // Get all Applications for a Company
+    @GetMapping("/all-applications/company/{companyId}")
+    public ResponseEntity<?> getAllJobApplicationsByCompany(@PathVariable Long companyId) {
+        return ResponseEntity.ok(jobApplicationService.getAllJobApplicationsByCompany(companyId));
+    }
 }

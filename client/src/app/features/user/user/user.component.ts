@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
+import { JobApplication } from '@core/models/job-application';
 import { Job } from '@core/models/tempCodeRunnerFile';
 import { LocalStorageService } from '@core/services/local-storage/local-storage.service';
 import { UserService } from '@core/services/user/user.service';
@@ -15,21 +16,24 @@ export class UserComponent {
   user!: User;
   role!: string;
   savedJobs: Job[] = [];
+  jobApplications: JobApplication[] = [];
   dob!: string;
 
   constructor(
     public storage: LocalStorageService,
-    private router: ActivatedRoute,
+    private route: ActivatedRoute,
+    private router: Router,
     private userService: UserService
   ) {}
 
   ngOnInit() {
-    this.userId = this.router.snapshot.paramMap.get('user-id') || '0';
+    this.userId = this.route.snapshot.paramMap.get('user-id') || '0';
     this.role = this.storage.getRole();
     this.userService.getUserProfile(this.userId).subscribe((user) => {
       this.user = user;
       this.dob = formatDateToDayMonYear(user.dateOfBirth);
       this.loadSavedJobs();
+      this.loadAppliedToJobs();
     });
   }
   loadSavedJobs() {
@@ -40,11 +44,27 @@ export class UserComponent {
     }
   }
 
+  loadAppliedToJobs() {
+    if (this.user) {
+      this.userService
+        .getAppliedJobs(this.userId)
+        .subscribe((jobApplications) => {
+          this.jobApplications = jobApplications;
+        });
+    }
+  }
+
   goTo(id: string) {
     const element = document.getElementById(id);
     if (element) {
       element.scrollIntoView({ behavior: 'smooth' });
     }
+  }
+
+  goToJobsPage() {
+    this.router
+      .navigate(['../../jobs'])
+      .then(() => window.scrollTo({ top: 0, behavior: 'smooth' }));
   }
 }
 // should be in another file
