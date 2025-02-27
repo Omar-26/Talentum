@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/company")
+@RequestMapping("/api/company") //add versioning
 public class CompanyController {
 
     private final CompanyService companyService;
@@ -21,7 +21,7 @@ public class CompanyController {
 
     // Jobs
     // Add Job
-    @PostMapping("{companyId}/add-job/category/{categoryId}")
+    @PostMapping("{companyId}/add-job/category/{categoryId}") //needs to be updated
     public ResponseEntity<Job> createJob(@RequestBody Job job, @PathVariable Long categoryId, @PathVariable Long companyId) {
         Job newJob = companyService.createJob(job, categoryId, companyId);
         return ResponseEntity.status(HttpStatus.CREATED).body(newJob);
@@ -34,6 +34,9 @@ public class CompanyController {
             Job savedJob = companyService.updateJob(jobId, updatedJob);
             return ResponseEntity.ok(savedJob);
         } catch (DataIntegrityViolationException e) {
+            // add localization for messages
+            // improve exception handling using controller advice
+            // we may use an agreed upon error codes between front-end and back-end
             return ResponseEntity.status(HttpStatus.CONFLICT).body("Cannot update job: " + e.getMessage());
         } catch (RuntimeException e) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Job not found: " + e.getMessage());
@@ -55,5 +58,10 @@ public class CompanyController {
     @GetMapping("/jobs/{companyId}")
     public List<Job> getAllCompanyJobs(@PathVariable Long companyId) {
         return companyService.getAllCompanyJobs(companyId);
+    }
+
+    @ExceptionHandler(DataIntegrityViolationException.class)
+    public ResponseEntity<String> handleDataIntegrityViolationException(DataIntegrityViolationException e) {
+        return ResponseEntity.status(HttpStatus.CONFLICT).body("Data integrity violation: " + e.getMessage());
     }
 }
